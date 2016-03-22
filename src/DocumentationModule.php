@@ -2,15 +2,16 @@
 
 use Anomaly\Streams\Platform\Addon\Module\Module;
 
+/**
+ * Class DocumentationModule
+ *
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @package       Anomaly\DocumentationModule
+ */
 class DocumentationModule extends Module
 {
-
-    /**
-     * The navigation icon.
-     *
-     * @var string
-     */
-    protected $icon = 'addon';
 
     /**
      * The module sections.
@@ -18,7 +19,15 @@ class DocumentationModule extends Module
      * @var array
      */
     protected $sections = [
-        'example'
+        'projects' => [
+            'buttons' => [
+                'new_project' => [
+                    'data-toggle' => 'modal',
+                    'data-target' => '#modal',
+                    'href'        => 'admin/documentation/choose'
+                ]
+            ]
+        ]
     ];
 
 }

@@ -1,6 +1,24 @@
 {
     "name": "anomaly/documentation-module",
+    "description": "An API documentation utility for VCS projects.",
     "type": "streams-addon",
+    "keywords": [
+        "documentation module",
+        "module"
+    ],
+    "homepage": "http://pyrocms.com/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PyroCMS, Inc.",
+            "email": "support@pyrocms.com",
+            "homepage": "http://pyrocms.com/",
+            "role": "Owner"
+        }
+    ],
+    "support": {
+        "email": "support@pyrocms.com"
+    },
     "autoload": {
         "psr-4": {
             "Anomaly\\DocumentationModule\\": "src/"

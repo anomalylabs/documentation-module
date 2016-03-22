@@ -2,35 +2,36 @@
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 
+/**
+ * Class DocumentationModuleServiceProvider
+ *
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @package       Anomaly\DocumentationModule
+ */
 class DocumentationModuleServiceProvider extends AddonServiceProvider
 {
 
-    protected $plugins = [];
+    /**
+     * The addon routes.
+     *
+     * @var array
+     */
+    protected $routes = [
+        'admin/documentation'           => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@index',
+        'admin/documentation/choose'    => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@choose',
+        'admin/documentation/create'    => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@create',
+        'admin/documentation/edit/{id}' => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@edit'
+    ];
 
-    protected $routes = [];
-
-    protected $middleware = [];
-
-    protected $listeners = [];
-
-    protected $aliases = [];
-
-    protected $bindings = [];
-
-    protected $providers = [];
-
-    protected $singletons = [];
-
-    protected $overrides = [];
-
-    protected $mobile = [];
-
-    public function register()
-    {
-    }
-
-    public function map()
-    {
-    }
+    /**
+     * The addon singletons.
+     *
+     * @var array
+     */
+    protected $singletons = [
+        'Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface' => 'Anomaly\DocumentationModule\Project\ProjectRepository'
+    ];
 
 }

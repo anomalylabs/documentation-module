@@ -2,6 +2,13 @@
 
 use Anomaly\Streams\Platform\Database\Migration\Migration;
 
+/**
+ * Class AnomalyModuleDocumentationCreateDocumentationFields
+ *
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
+ */
 class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
 {
 
@@ -10,6 +17,15 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
      *
      * @var array
      */
-    protected $fields = [];
-
+    protected $fields = [
+        'name'        => 'anomaly.field_type.text',
+        'slug'        => [
+            'type'   => 'anomaly.field_type.slug',
+            'config' => [
+                'slugify' => 'name',
+                'type'    => '-'
+            ]
+        ],
+        'description' => 'anomaly.field_type.textarea'
+    ];
 }
