@@ -13,4 +13,11 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
 interface ProjectRepositoryInterface extends EntryRepositoryInterface
 {
 
+    /**
+     * Find a project by it's slug.
+     *
+     * @param $slug
+     * @return ProjectInterface|null
+     */
+    public function findBySlug($slug);
 }

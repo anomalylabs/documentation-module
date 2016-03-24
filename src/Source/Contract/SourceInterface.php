@@ -11,4 +11,12 @@
 interface SourceInterface
 {
 
+    /**
+     * Return the file's content.
+     *
+     * @param $section
+     * @param $file
+     * @return string
+     */
+    public function content($section, $file);
 }
