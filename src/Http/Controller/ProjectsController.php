@@ -1,7 +1,8 @@
 <?php namespace Anomaly\DocumentationModule\Http\Controller;
 
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
-use Anomaly\GithubDocumentationExtension\GithubDocumentationExtension;
+use Anomaly\DocumentationModule\Project\ProjectDocumentation;
+use Anomaly\DocumentationModule\Project\ProjectTranslator;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\Streams\Platform\Support\Template;
 use Michelf\Markdown;
@@ -17,14 +18,47 @@ use Michelf\Markdown;
 class ProjectsController extends PublicController
 {
 
-    public function file(GithubDocumentationExtension $extension, ProjectRepositoryInterface $projects, Template $template, Markdown $markdown, $project, $section, $file)
-    {
+    /**
+     * Render a documentation file.
+     *
+     * @param ProjectRepositoryInterface   $projects
+     * @param ProjectDocumentation         $documentation
+     * @param ProjectTranslator            $translator
+     * @param Template                     $template
+     * @param Markdown                     $markdown
+     * @param                              $project
+     * @param                              $version
+     * @param                              $file
+     * @return \Illuminate\Contracts\View\View|mixed|object
+     * @internal param GithubDocumentationExtension $extension
+     */
+    public function file(
+        ProjectRepositoryInterface $projects,
+        ProjectDocumentation $documentation,
+        ProjectTranslator $translator,
+        Template $template,
+        Markdown $markdown,
+        $project,
+        $version,
+        $file = null
+    ) {
         $project = $projects->findBySlug($project);
 
-        $content = $markdown->transform(base64_decode($extension->content($section, $file)['content']));
+        $composer  = $documentation->composer($project, $file ? $version : null);
+        $structure = $documentation->structure($project, $file ? $version : null);
+        $content   = $documentation->content($project, $file ? $version : null, basename($file ?: $version));
 
-        $content = $template->render($content);
+        $structure = $translator->translate($structure);
+        $content   = $template->render($markdown->transform($content), compact('project', 'composer'));
 
-        return $this->view->make('anomaly.module.documentation::file', compact('project', 'content'));
+        return $this->view->make(
+            'anomaly.module.documentation::file',
+            compact(
+                'project',
+                'composer',
+                'structure',
+                'content'
+            )
+        );
     }
 }

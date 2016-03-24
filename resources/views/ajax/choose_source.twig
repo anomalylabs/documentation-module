@@ -2,18 +2,18 @@
     <button class="close" data-dismiss="modal">
         <span>&times;</span>
     </button>
-    <h4 class="modal-title">{{ trans('module::message.choose_source') }}</h4>
+    <h4 class="modal-title">{{ trans('module::message.choose_documentation') }}</h4>
 </div>
 
 <div class="modal-body">
-    {% if not sources.isEmpty() %}
+    {% if not documentations.isEmpty() %}
         <ul class="nav nav-pills nav-stacked">
-            {% for source in sources %}
+            {% for documentation in documentations %}
                 <li class="nav-item">
-                    <a href="{{ url_to('admin/documentation/create?source=' ~ source.namespace) }}" class="nav-link">
-                        <strong>{{ trans(source.getTitle()) }}</strong>
+                    <a href="{{ url_to('admin/documentation/create?documentation=' ~ documentation.namespace) }}" class="nav-link">
+                        <strong>{{ trans(documentation.getTitle()) }}</strong>
                         <br>
-                        <small>{{ trans(source.getDescription()) }}</small>
+                        <small>{{ trans(documentation.getDescription()) }}</small>
                     </a>
                 </li>
             {% endfor %}

@@ -10,7 +10,7 @@ return [
     'description' => [
         'name' => 'Description'
     ],
-    'source'      => [
-        'name' => 'Source'
+    'documentation'      => [
+        'name' => 'Documentation'
     ]
 ];

@@ -23,7 +23,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
         'admin/documentation/choose'               => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@choose',
         'admin/documentation/create'               => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@create',
         'admin/documentation/edit/{id}'            => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@edit',
-        'documentation/{project}/{section}/{file}' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@file',
+        'documentation/{project}/{version}/{file?}' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@file',
     ];
 
     /**

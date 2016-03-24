@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'choose_source' => 'What VCS does this project use?'
+    'choose_documentation' => 'What VCS does this project use?'
 ];

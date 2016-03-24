@@ -1,6 +1,8 @@
 <?php namespace Anomaly\DocumentationModule\Project;
 
+use Anomaly\DocumentationModule\Documentation\Contract\DocumentationInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
+use Anomaly\Streams\Platform\Addon\Extension\Extension;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel;
 
 /**
@@ -22,5 +24,15 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Get the documentation.
+     *
+     * @return Extension|DocumentationInterface
+     */
+    public function getDocumentation()
+    {
+        return $this->documentation;
     }
 }

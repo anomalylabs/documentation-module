@@ -1,4 +1,4 @@
-<?php namespace Anomaly\DocumentationModule\Source\Form;
+<?php namespace Anomaly\DocumentationModule\Documentation\Form;
 
 use Anomaly\ConfigurationModule\Configuration\Form\ConfigurationFormBuilder;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
@@ -6,14 +6,14 @@ use Anomaly\DocumentationModule\Project\Form\ProjectFormBuilder;
 use Anomaly\Streams\Platform\Ui\Form\Multiple\MultipleFormBuilder;
 
 /**
- * Class SourceFormBuilder
+ * Class DocumentationFormBuilder
  *
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\DocumentationModule\Source\Form
+ * @package       Anomaly\DocumentationModule\Documentation\Form
  */
-class SourceFormBuilder extends MultipleFormBuilder
+class DocumentationFormBuilder extends MultipleFormBuilder
 {
 
     /**

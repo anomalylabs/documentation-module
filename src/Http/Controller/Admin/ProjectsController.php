@@ -1,7 +1,9 @@
 <?php namespace Anomaly\DocumentationModule\Http\Controller\Admin;
 
+use Anomaly\ConfigurationModule\Configuration\Form\ConfigurationFormBuilder;
 use Anomaly\DocumentationModule\Project\Form\ProjectFormBuilder;
 use Anomaly\DocumentationModule\Project\Table\ProjectTableBuilder;
+use Anomaly\DocumentationModule\Documentation\Form\DocumentationFormBuilder;
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
@@ -28,7 +30,7 @@ class ProjectsController extends AdminController
     }
 
     /**
-     * Return an ajax modal to choose the source
+     * Return an ajax modal to choose the documentation
      * of the documentation to use for creating a new disk.
      *
      * @param ExtensionCollection $extensions
@@ -37,9 +39,9 @@ class ProjectsController extends AdminController
     public function choose(ExtensionCollection $extensions)
     {
         return view(
-            'module::ajax/choose_source',
+            'module::ajax/choose_documentation',
             [
-                'sources' => $extensions->search('anomaly.module.documentation::source.*')->enabled()
+                'documentations' => $extensions->search('anomaly.module.documentation::documentation.*')->enabled()
             ]
         );
     }
@@ -47,12 +49,16 @@ class ProjectsController extends AdminController
     /**
      * Create a new entry.
      *
-     * @param ProjectFormBuilder $form
+     * @param DocumentationFormBuilder $form
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(ProjectFormBuilder $form, ExtensionCollection $extensions)
+    public function create(DocumentationFormBuilder $form, ProjectFormBuilder $project, ConfigurationFormBuilder $configuration, ExtensionCollection $extensions)
     {
-        $form->setSource($extensions->get($this->request->get('source')));
+        $project->setDocumentation($extensions->get($this->request->get('documentation')));
+        $configuration->setEntry($this->request->get('documentation'));
+
+        $form->addForm('project', $project);
+        $form->addForm('configuration', $configuration);
 
         return $form->render();
     }

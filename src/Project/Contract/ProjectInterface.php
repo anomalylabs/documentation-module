@@ -1,5 +1,7 @@
 <?php namespace Anomaly\DocumentationModule\Project\Contract;
 
+use Anomaly\DocumentationModule\Documentation\Contract\DocumentationInterface;
+use Anomaly\Streams\Platform\Addon\Extension\Extension;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 
 /**
@@ -19,4 +21,11 @@ interface ProjectInterface extends EntryInterface
      * @return string
      */
     public function getSlug();
+
+    /**
+     * Get the documentation.
+     *
+     * @return Extension|DocumentationInterface
+     */
+    public function getDocumentation();
 }

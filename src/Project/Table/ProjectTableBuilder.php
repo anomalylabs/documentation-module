@@ -20,7 +20,7 @@ class ProjectTableBuilder extends TableBuilder
      */
     protected $columns = [
         'name',
-        'entry.source.title'
+        'entry.documentation.title'
     ];
 
     /**

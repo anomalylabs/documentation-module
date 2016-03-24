@@ -41,7 +41,7 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
         'description' => [
             'translatable' => true
         ],
-        'source'      => [
+        'documentation'      => [
             'required' => true
         ],
     ];

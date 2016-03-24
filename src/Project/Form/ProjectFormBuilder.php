@@ -1,6 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Project\Form;
 
-use Anomaly\DocumentationModule\Source\Contract\SourceInterface;
+use Anomaly\DocumentationModule\Documentation\Contract\DocumentationInterface;
 use Anomaly\Streams\Platform\Addon\Extension\Extension;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
@@ -16,11 +16,11 @@ class ProjectFormBuilder extends FormBuilder
 {
 
     /**
-     * The storage source.
+     * The storage documentation.
      *
-     * @var Extension|SourceInterface|null
+     * @var Extension|DocumentationInterface|null
      */
-    protected $source = null;
+    protected $documentation = null;
 
     /**
      * The fields to skip.
@@ -28,7 +28,7 @@ class ProjectFormBuilder extends FormBuilder
      * @var array
      */
     protected $skips = [
-        'source'
+        'documentation'
     ];
 
     /**
@@ -38,30 +38,30 @@ class ProjectFormBuilder extends FormBuilder
     public function onSaving()
     {
         $entry  = $this->getFormEntry();
-        $source = $this->getSource();
+        $documentation = $this->getDocumentation();
 
-        $entry->source = $source->getNamespace();
+        $entry->documentation = $documentation->getNamespace();
     }
 
     /**
-     * Get the source.
+     * Get the documentation.
      *
-     * @return Extension|SourceInterface|null
+     * @return Extension|DocumentationInterface|null
      */
-    public function getSource()
+    public function getDocumentation()
     {
-        return $this->source;
+        return $this->documentation;
     }
 
     /**
-     * Set the source.
+     * Set the documentation.
      *
-     * @param SourceInterface $source
+     * @param DocumentationInterface $documentation
      * @return $this
      */
-    public function setSource(SourceInterface $source)
+    public function setDocumentation(DocumentationInterface $documentation)
     {
-        $this->source = $source;
+        $this->documentation = $documentation;
 
         return $this;
     }
