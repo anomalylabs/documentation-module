@@ -17,27 +17,27 @@ interface DocumentationInterface
      * Return the documentation structure object.
      *
      * @param ProjectInterface $project
-     * @param                  $version
+     * @param                  $reference
      * @return \stdClass
      */
-    public function structure(ProjectInterface $project, $version);
+    public function structure(ProjectInterface $project, $reference);
 
     /**
      * Return the composer json object.
      *
      * @param ProjectInterface $project
-     * @param                  $version
+     * @param                  $reference
      * @return \stdClass
      */
-    public function composer(ProjectInterface $project, $version);
+    public function composer(ProjectInterface $project, $reference);
 
     /**
      * Return the file content for a project.
      *
      * @param ProjectInterface $project
-     * @param                  $version
+     * @param                  $reference
      * @param                  $file
      * @return string
      */
-    public function content(ProjectInterface $project, $version, $file);
+    public function content(ProjectInterface $project, $reference, $file);
 }

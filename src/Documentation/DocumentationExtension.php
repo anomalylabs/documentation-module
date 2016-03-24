@@ -19,10 +19,10 @@ class DocumentationExtension extends Extension implements DocumentationInterface
      * Return the documentation structure object.
      *
      * @param ProjectInterface $project
-     * @param                  $version
+     * @param                  $reference
      * @return object
      */
-    public function structure(ProjectInterface $project, $version)
+    public function structure(ProjectInterface $project, $reference)
     {
         throw new \Exception('You must implement the [structure] method.');
     }
@@ -31,10 +31,10 @@ class DocumentationExtension extends Extension implements DocumentationInterface
      * Return the composer json object.
      *
      * @param ProjectInterface $project
-     * @param                  $version
+     * @param                  $reference
      * @return object
      */
-    public function composer(ProjectInterface $project, $version)
+    public function composer(ProjectInterface $project, $reference)
     {
         throw new \Exception('You must implement the [composer] method.');
     }
@@ -43,11 +43,11 @@ class DocumentationExtension extends Extension implements DocumentationInterface
      * Return the file content for a project.
      *
      * @param ProjectInterface $project
-     * @param                  $version
+     * @param                  $reference
      * @param                  $file
      * @return string
      */
-    public function content(ProjectInterface $project, $version, $file)
+    public function content(ProjectInterface $project, $reference, $file)
     {
         throw new \Exception('You must implement the [content] method.');
     }

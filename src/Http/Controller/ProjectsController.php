@@ -44,9 +44,11 @@ class ProjectsController extends PublicController
     ) {
         $project = $projects->findBySlug($project);
 
-        $composer  = $documentation->composer($project, $file ? $version : null);
-        $structure = $documentation->structure($project, $file ? $version : null);
-        $content   = $documentation->content($project, $file ? $version : null, basename($file ?: $version));
+        $reference = $file ? $project->reference($version) : array_values($project->getVersions())[0];
+
+        $composer  = $documentation->composer($project, $reference);
+        $structure = $documentation->structure($project, $reference);
+        $content   = $documentation->content($project, $reference, basename($file ?: $version));
 
         $structure = $translator->translate($structure);
         $content   = $template->render($markdown->transform($content), compact('project', 'composer'));
