@@ -50,8 +50,10 @@ class ProjectsController extends AdminController
      * @param ProjectFormBuilder $form
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(ProjectFormBuilder $form)
+    public function create(ProjectFormBuilder $form, ExtensionCollection $extensions)
     {
+        $form->setSource($extensions->get($this->request->get('source')));
+
         return $form->render();
     }
 

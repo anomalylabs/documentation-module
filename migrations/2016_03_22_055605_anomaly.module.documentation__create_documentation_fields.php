@@ -26,6 +26,13 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
                 'type'    => '-'
             ]
         ],
-        'description' => 'anomaly.field_type.textarea'
+        'description' => 'anomaly.field_type.textarea',
+        'source'      => [
+            'type'   => 'anomaly.field_type.addon',
+            'config' => [
+                'type'   => 'extensions',
+                'search' => 'anomaly.module.documentation::source.*'
+            ]
+        ]
     ];
 }

@@ -13,4 +13,10 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 interface ProjectInterface extends EntryInterface
 {
 
+    /**
+     * Get the slug.
+     *
+     * @return string
+     */
+    public function getSlug();
 }

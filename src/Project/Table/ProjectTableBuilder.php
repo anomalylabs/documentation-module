@@ -13,4 +13,31 @@ use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 class ProjectTableBuilder extends TableBuilder
 {
 
+    /**
+     * The table columns.
+     *
+     * @var array
+     */
+    protected $columns = [
+        'name',
+        'entry.source.title'
+    ];
+
+    /**
+     * The table buttons.
+     *
+     * @var array
+     */
+    protected $buttons = [
+        'edit'
+    ];
+
+    /**
+     * The table actions.
+     *
+     * @var array
+     */
+    protected $actions = [
+        'delete'
+    ];
 }

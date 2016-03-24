@@ -14,4 +14,13 @@ use Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel
 class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInterface
 {
 
+    /**
+     * Get the slug.
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 }
