@@ -16,11 +16,27 @@ interface ProjectInterface extends EntryInterface
 {
 
     /**
+     * Return the reference for a version.
+     *
+     * @param        $version
+     * @param string $default
+     * @return string
+     */
+    public function reference($version, $default = 'master');
+
+    /**
      * Get the slug.
      *
      * @return string
      */
     public function getSlug();
+
+    /**
+     * Get the versions.
+     *
+     * @return array
+     */
+    public function getVersions();
 
     /**
      * Get the documentation.

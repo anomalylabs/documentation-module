@@ -18,16 +18,17 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
      * @var array
      */
     protected $fields = [
-        'name'        => 'anomaly.field_type.text',
-        'slug'        => [
+        'name'          => 'anomaly.field_type.text',
+        'slug'          => [
             'type'   => 'anomaly.field_type.slug',
             'config' => [
                 'slugify' => 'name',
                 'type'    => '-'
             ]
         ],
-        'description' => 'anomaly.field_type.textarea',
-        'documentation'      => [
+        'description'   => 'anomaly.field_type.textarea',
+        'versions'      => 'anomaly.field_type.textarea',
+        'documentation' => [
             'type'   => 'anomaly.field_type.addon',
             'config' => [
                 'type'   => 'extensions',

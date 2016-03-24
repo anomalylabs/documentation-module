@@ -17,6 +17,18 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
 {
 
     /**
+     * Return the reference for a version.
+     *
+     * @param        $version
+     * @param string $default
+     * @return string
+     */
+    public function reference($version, $default = 'master')
+    {
+        return array_get($this->getVersions(), $version, 'master');
+    }
+
+    /**
      * Get the slug.
      *
      * @return string
@@ -24,6 +36,31 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Get the versions.
+     *
+     * @return array
+     */
+    public function getVersions()
+    {
+        $lines = explode("\n", $this->versions);
+
+        return array_combine(
+            array_map(
+                function ($line) {
+                    return trim(explode(':', $line)[0]);
+                },
+                $lines
+            ),
+            array_map(
+                function ($line) {
+                    return trim(explode(':', $line)[1]);
+                },
+                $lines
+            )
+        );
     }
 
     /**

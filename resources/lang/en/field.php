@@ -1,16 +1,19 @@
 <?php
 
 return [
-    'name'        => [
+    'name'          => [
         'name' => 'Name'
     ],
-    'slug'        => [
+    'slug'          => [
         'name' => 'Slug'
     ],
-    'description' => [
+    'description'   => [
         'name' => 'Description'
     ],
-    'documentation'      => [
+    'versions'      => [
+        'name' => 'Versions'
+    ],
+    'documentation' => [
         'name' => 'Documentation'
     ]
 ];
