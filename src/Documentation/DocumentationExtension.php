@@ -20,7 +20,7 @@ class DocumentationExtension extends Extension implements DocumentationInterface
      *
      * @param ProjectInterface $project
      * @param                  $reference
-     * @return object
+     * @return array
      */
     public function structure(ProjectInterface $project, $reference)
     {
@@ -32,7 +32,7 @@ class DocumentationExtension extends Extension implements DocumentationInterface
      *
      * @param ProjectInterface $project
      * @param                  $reference
-     * @return object
+     * @return /stdClass
      */
     public function composer(ProjectInterface $project, $reference)
     {
@@ -40,14 +40,14 @@ class DocumentationExtension extends Extension implements DocumentationInterface
     }
 
     /**
-     * Return the file content for a project.
+     * Return the page content for a project.
      *
      * @param ProjectInterface $project
      * @param                  $reference
-     * @param                  $file
+     * @param                  $page
      * @return string
      */
-    public function content(ProjectInterface $project, $reference, $file)
+    public function content(ProjectInterface $project, $reference, $page)
     {
         throw new \Exception('You must implement the [content] method.');
     }

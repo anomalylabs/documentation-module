@@ -49,7 +49,7 @@ class ProjectDocumentation
      *
      * @param ProjectInterface $project
      * @param                  $version
-     * @return \stdClass
+     * @return array
      */
     public function structure(ProjectInterface $project, $version)
     {
@@ -93,26 +93,26 @@ class ProjectDocumentation
     }
 
     /**
-     * Return the documentation file content.
+     * Return the documentation page content.
      *
      * @param ProjectInterface $project
      * @param                  $version
-     * @param                  $file
+     * @param                  $page
      * @return string
      */
-    public function content(ProjectInterface $project, $version, $file)
+    public function content(ProjectInterface $project, $version, $page)
     {
         $documentation = $project->getDocumentation();
 
         if ($this->config->get('app.debug')) {
-            return $documentation->content($project, $version, $file);
+            return $documentation->content($project, $version, $page);
         }
 
         return $this->cache->remember(
             $documentation->getNamespace($project->getSlug() . '.content'),
             $this->config->get('anomaly.module.documentation::config.cache', 0),
-            function () use ($documentation, $project, $version, $file) {
-                return $documentation->content($project, $version, $file);
+            function () use ($documentation, $project, $version, $page) {
+                return $documentation->content($project, $version, $page);
             }
         );
     }

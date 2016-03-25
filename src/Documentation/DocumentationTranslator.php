@@ -1,17 +1,17 @@
-<?php namespace Anomaly\DocumentationModule\Project;
+<?php namespace Anomaly\DocumentationModule\Documentation;
 
 use Anomaly\Streams\Platform\Support\Translator;
 use Illuminate\Contracts\Config\Repository;
 
 /**
- * Class ProjectTranslator
+ * Class DocumentationTranslator
  *
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\DocumentationModule\Project
  */
-class ProjectTranslator
+class DocumentationTranslator
 {
 
     /**
@@ -29,7 +29,7 @@ class ProjectTranslator
     protected $translator;
 
     /**
-     * Create a new ProjectTranslator instance.
+     * Create a new DocumentationTranslator instance.
      *
      * @param Repository $config
      * @param Translator $translator
@@ -60,10 +60,10 @@ class ProjectTranslator
             }
 
             foreach ($section['documentation'] as &$documentation) {
-                if (isset($documentation[$locale])) {
-                    $documentation = $documentation[$locale];
+                if (isset($documentation['title'][$locale])) {
+                    $documentation['title'] = $documentation['title'][$locale];
                 } else {
-                    $documentation = $documentation[$fallback];
+                    $documentation['title'] = $documentation['title'][$fallback];
                 }
             }
         }

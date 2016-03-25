@@ -27,17 +27,17 @@ interface DocumentationInterface
      *
      * @param ProjectInterface $project
      * @param                  $reference
-     * @return \stdClass
+     * @return array
      */
     public function composer(ProjectInterface $project, $reference);
 
     /**
-     * Return the file content for a project.
+     * Return the page content for a project.
      *
      * @param ProjectInterface $project
      * @param                  $reference
-     * @param                  $file
+     * @param                  $page
      * @return string
      */
-    public function content(ProjectInterface $project, $reference, $file);
+    public function content(ProjectInterface $project, $reference, $page);
 }
