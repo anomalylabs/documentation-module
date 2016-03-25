@@ -41,12 +41,11 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
         'description'   => [
             'translatable' => true
         ],
-        'versions'      => [
-            'required' => true
-        ],
         'documentation' => [
             'required' => true
         ],
+        'enabled',
+        'versions'
     ];
 
 }

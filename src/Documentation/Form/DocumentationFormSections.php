@@ -24,8 +24,9 @@ class DocumentationFormSections
         $builder->setSections(
             [
                 'project'       => [
-                    'title'  => 'anomaly.module.documentation::form.section.project',
-                    'fields' => array_map(
+                    'context' => 'primary',
+                    'title'   => 'anomaly.module.documentation::form.section.project',
+                    'fields'  => array_map(
                         function ($slug) {
                             return 'project_' . $slug;
                         },
@@ -33,8 +34,9 @@ class DocumentationFormSections
                     )
                 ],
                 'configuration' => [
-                    'title'  => 'anomaly.module.configuration::form.section.configuration',
-                    'fields' => array_map(
+                    'context' => 'danger',
+                    'title'   => 'anomaly.module.configuration::form.section.configuration',
+                    'fields'  => array_map(
                         function ($slug) {
                             return 'configuration_' . $slug;
                         },

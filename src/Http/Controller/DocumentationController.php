@@ -6,6 +6,7 @@ use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\DocumentationModule\Project\ProjectDocumentation;
 use Anomaly\DocumentationModule\Project\ProjectTranslator;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
+use Anomaly\Streams\Platform\Support\Authorizer;
 use Anomaly\Streams\Platform\Support\Template;
 use Michelf\Markdown;
 
@@ -39,6 +40,7 @@ class DocumentationController extends PublicController
         ProjectDocumentation $documentation,
         DocumentationTranslator $translator,
         DocumentationReader $reader,
+        Authorizer $authorizer,
         Template $template,
         Markdown $markdown,
         $project,
@@ -46,6 +48,10 @@ class DocumentationController extends PublicController
         $page = null
     ) {
         $project = $projects->findBySlug($project);
+
+        if (!$authorizer->authorize('anomaly.module.users::*')) {
+            abort(404);
+        }
 
         /**
          * Get the real reference from
