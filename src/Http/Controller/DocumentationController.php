@@ -75,6 +75,13 @@ class DocumentationController extends PublicController
         $structure = $reader->read($structure);
 
         /**
+         * Add our meta information.
+         */
+        $this->template->set('meta_title', $project->getName());
+        $this->breadcrumbs->add('anomaly.module.documentation::breadcrumb.documentation', 'documentation');
+        $this->breadcrumbs->add($project->getName(), $this->request->fullUrl());
+
+        /**
          * Get the content of the doc
          * and parse / render it.
          */

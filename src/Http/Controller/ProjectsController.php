@@ -27,6 +27,9 @@ class ProjectsController extends PublicController
     {
         $projects = $projects->enabled();
 
+        $this->template->set('meta_title', trans('anomaly.module.documentation::breadcrumb.documentation'));
+        $this->breadcrumbs->add('anomaly.module.documentation::breadcrumb.documentation', $this->request->fullUrl());
+
         return $this->view->make('anomaly.module.documentation::projects/index', compact('projects'));
     }
 
