@@ -29,7 +29,8 @@ class ProjectTableBuilder extends TableBuilder
      * @var array
      */
     protected $buttons = [
-        'edit'
+        'edit',
+        'view'
     ];
 
     /**

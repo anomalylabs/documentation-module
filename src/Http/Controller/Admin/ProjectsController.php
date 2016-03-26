@@ -5,6 +5,7 @@ use Anomaly\DocumentationModule\Documentation\Form\DocumentationFormBuilder;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\DocumentationModule\Project\Form\ProjectFormBuilder;
+use Anomaly\DocumentationModule\Project\ProjectDocumentation;
 use Anomaly\DocumentationModule\Project\Table\ProjectTableBuilder;
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
@@ -75,10 +76,10 @@ class ProjectsController extends AdminController
     /**
      * Edit an existing entry.
      *
-     * @param DocumentationFormBuilder   $form
+     * @param DocumentationFormBuilder $form
      * @param ProjectRepositoryInterface $projects
-     * @param ProjectFormBuilder         $project
-     * @param ConfigurationFormBuilder   $configuration
+     * @param ProjectFormBuilder $project
+     * @param ConfigurationFormBuilder $configuration
      * @param                            $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -95,8 +96,29 @@ class ProjectsController extends AdminController
         $configuration->setEntry($this->request->get('documentation'));
 
         $form->addForm('project', $project->setEntry($id));
-        $form->addForm('configuration', $configuration->setEntry($entry->getDocumentation()->getNamespace())->setScope($entry->getSlug()));
+        $form->addForm(
+            'configuration',
+            $configuration->setEntry($entry->getDocumentation()->getNamespace())->setScope($entry->getSlug())
+        );
 
         return $form->render();
+    }
+
+    /**
+     * View a project documentation.
+     *
+     * @param ProjectRepositoryInterface $projects
+     * @param                            $id
+     */
+    public function view(ProjectRepositoryInterface $projects, ProjectDocumentation $documentation, $id)
+    {
+        /* @var ProjectInterface $project */
+        $project = $projects->find($id);
+
+        $structure = $documentation->structure($project, array_values($project->getVersions())[0]);
+
+        return $this->redirect->to(
+            'documentation/' . $project->getSlug() . '/' . array_keys(array_shift($structure)['documentation'])[0]
+        );
     }
 }
