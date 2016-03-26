@@ -20,7 +20,11 @@ class ProjectTableBuilder extends TableBuilder
      */
     protected $columns = [
         'name',
-        'entry.documentation.title'
+        'entry.documentation.title',
+        [
+            'heading' => 'Status',
+            'value'   => 'entry.status_label'
+        ]
     ];
 
     /**
@@ -30,7 +34,9 @@ class ProjectTableBuilder extends TableBuilder
      */
     protected $buttons = [
         'edit',
-        'view'
+        'view' => [
+            'target' => '_blank'
+        ]
     ];
 
     /**

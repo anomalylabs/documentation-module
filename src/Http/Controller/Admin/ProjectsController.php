@@ -76,10 +76,10 @@ class ProjectsController extends AdminController
     /**
      * Edit an existing entry.
      *
-     * @param DocumentationFormBuilder $form
+     * @param DocumentationFormBuilder   $form
      * @param ProjectRepositoryInterface $projects
-     * @param ProjectFormBuilder $project
-     * @param ConfigurationFormBuilder $configuration
+     * @param ProjectFormBuilder         $project
+     * @param ConfigurationFormBuilder   $configuration
      * @param                            $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -95,7 +95,12 @@ class ProjectsController extends AdminController
 
         $configuration->setEntry($this->request->get('documentation'));
 
-        $form->addForm('project', $project->setEntry($id));
+        $form->addForm(
+            'project',
+            $project
+                ->setEntry($id)
+                ->setDocumentation($entry->getDocumentation())
+        );
         $form->addForm(
             'configuration',
             $configuration->setEntry($entry->getDocumentation()->getNamespace())->setScope($entry->getSlug())

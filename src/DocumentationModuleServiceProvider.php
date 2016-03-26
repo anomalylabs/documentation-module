@@ -24,6 +24,8 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
         'admin/documentation/create'                => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@create',
         'admin/documentation/edit/{id}'             => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@edit',
         'admin/documentation/view/{id}'             => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@view',
+        'documentation'                             => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@index',
+        'documentation/{project}'                   => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
         'documentation/{project}/{version}/{page?}' => 'Anomaly\DocumentationModule\Http\Controller\DocumentationController@view',
     ];
 

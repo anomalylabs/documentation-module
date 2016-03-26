@@ -37,7 +37,7 @@ class ProjectFormBuilder extends FormBuilder
      */
     public function onSaving()
     {
-        $entry  = $this->getFormEntry();
+        $entry         = $this->getFormEntry();
         $documentation = $this->getDocumentation();
 
         $entry->documentation = $documentation->getNamespace();

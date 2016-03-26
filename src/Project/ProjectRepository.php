@@ -33,6 +33,16 @@ class ProjectRepository extends EntryRepository implements ProjectRepositoryInte
     }
 
     /**
+     * Return only enabled projects.
+     *
+     * @return ProjectCollection
+     */
+    public function enabled()
+    {
+        return $this->model->where('enabled', true)->get();
+    }
+
+    /**
      * Find a project by it's slug.
      *
      * @param $slug

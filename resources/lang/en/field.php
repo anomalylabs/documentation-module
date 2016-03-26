@@ -25,5 +25,12 @@ return [
     ],
     'documentation' => [
         'name' => 'Documentation'
+    ],
+    'status'        => [
+        'name'   => 'Status',
+        'option' => [
+            'live'  => 'Live',
+            'draft' => 'Draft'
+        ]
     ]
 ];

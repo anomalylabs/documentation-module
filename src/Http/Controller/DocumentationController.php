@@ -81,7 +81,7 @@ class DocumentationController extends PublicController
         $content = $template->render($markdown->transform($content), compact('project', 'composer'));
 
         return $this->view->make(
-            'anomaly.module.documentation::view',
+            'anomaly.module.documentation::documentation/view',
             compact(
                 'project',
                 'composer',
