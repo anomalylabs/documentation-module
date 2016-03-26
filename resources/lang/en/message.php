@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'choose_documentation' => 'What VCS does this project use?',
+    'choose_documentation' => 'What kind of project is this?',
     'live'                 => 'Live',
     'draft'                => 'Draft'
 ];
