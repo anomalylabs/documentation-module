@@ -57,7 +57,7 @@ class DocumentationController extends PublicController
          * Get the real reference from
          * the version or default to master.
          */
-        $reference = $page ? $project->reference($version) : array_values($project->getVersions())[0];
+        $reference = $page ? $project->reference($version) : array_get(array_values($project->getVersions()), 0);
 
         /**
          * Grab all of the information, structure and

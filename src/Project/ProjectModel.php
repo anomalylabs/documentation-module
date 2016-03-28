@@ -20,12 +20,15 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
      * Return the reference for a version.
      *
      * @param        $version
-     * @param string $default
      * @return string
      */
-    public function reference($version, $default = 'master')
+    public function reference($version)
     {
-        return array_get($this->getVersions(), $version, 'master');
+        if (!$version) {
+            return null;
+        }
+
+        return array_get($this->getVersions(), $version);
     }
 
     /**
@@ -65,7 +68,11 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
      */
     public function getVersions()
     {
-        $lines = explode("\n", $this->versions);
+        $lines = array_filter(explode("\n", $this->versions));
+
+        if (!$lines) {
+            return [];
+        }
 
         return array_combine(
             array_map(

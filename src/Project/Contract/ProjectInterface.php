@@ -19,10 +19,9 @@ interface ProjectInterface extends EntryInterface
      * Return the reference for a version.
      *
      * @param        $version
-     * @param string $default
      * @return string
      */
-    public function reference($version, $default = 'master');
+    public function reference($version);
 
     /**
      * Get the slug.
