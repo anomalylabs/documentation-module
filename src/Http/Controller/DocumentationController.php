@@ -54,10 +54,21 @@ class DocumentationController extends PublicController
         }
 
         /**
+         * Get the version based on the page presence.
+         */
+        $version = $page ? $version : $page;
+
+        /**
+         * Determine the page.
+         */
+        $page = $this->request->segment(4, $this->request->segment(3));
+
+        /**
          * Get the real reference from
          * the version or default to master.
          */
-        $reference = $page ? $project->reference($version) : array_get(array_values($project->getVersions()), 0);
+
+        $reference = $version ? $project->reference($version) : array_get(array_values($project->getVersions()), 0);
 
         /**
          * Grab all of the information, structure and
@@ -65,7 +76,7 @@ class DocumentationController extends PublicController
          */
         $composer  = $documentation->composer($project, $reference);
         $structure = $documentation->structure($project, $reference);
-        $content   = $documentation->content($project, $reference, basename($page ?: $version));
+        $content   = $documentation->content($project, $reference, $page ?: $version);
 
         /**
          * Read the structure input

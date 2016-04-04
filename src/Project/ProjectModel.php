@@ -74,6 +74,10 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
             return [];
         }
 
+        if (!$lines) {
+            return [];
+        }
+
         return array_combine(
             array_map(
                 function ($line) {
