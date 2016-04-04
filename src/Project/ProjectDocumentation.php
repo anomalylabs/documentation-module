@@ -110,7 +110,7 @@ class ProjectDocumentation
 
         return $this->cache->remember(
             $documentation->getNamespace($project->getSlug() . '.content'),
-            $this->config->get('anomaly.module.documentation::config.cache', 0),
+            $this->config->get('anomaly.module.documentation::config.cache', 60),
             function () use ($documentation, $project, $version, $page) {
                 return $documentation->content($project, $version, $page);
             }
