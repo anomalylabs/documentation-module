@@ -88,6 +88,9 @@ class DocumentationController extends PublicController
         /**
          * Add our meta information.
          */
+        $this->template->set('content', $content);
+        $this->template->set('project', $project);
+        $this->template->set('documentation', $structure);
         $this->template->set('meta_title', $project->getName());
         $this->breadcrumbs->add('anomaly.module.documentation::breadcrumb.documentation', 'documentation');
         $this->breadcrumbs->add($project->getName(), $this->request->fullUrl());
