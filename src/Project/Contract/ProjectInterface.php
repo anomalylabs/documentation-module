@@ -45,6 +45,13 @@ interface ProjectInterface extends EntryInterface
     public function isEnabled();
 
     /**
+     * Return the latest reference.
+     *
+     * @return string|null
+     */
+    public function getLatest();
+
+    /**
      * Get the versions.
      *
      * @return array

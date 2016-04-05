@@ -60,6 +60,7 @@ class DocumentationTranslator
             }
 
             foreach ($section['pages'] as &$page) {
+
                 if (isset($page['title'][$locale])) {
                     $page['title'] = $page['title'][$locale];
                 } else {

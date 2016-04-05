@@ -1,6 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Http\Controller;
 
-use Anomaly\DocumentationModule\Documentation\DocumentationReader;
+use Anomaly\DocumentationModule\Documentation\DocumentationInput;
 use Anomaly\DocumentationModule\Documentation\DocumentationTranslator;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\DocumentationModule\Project\ProjectDocumentation;
@@ -26,20 +26,19 @@ class DocumentationController extends PublicController
      *
      * @param ProjectRepositoryInterface   $projects
      * @param ProjectDocumentation         $documentation
-     * @param ProjectTranslator            $translator
+     * @param DocumentationInput           $input
+     * @param Authorizer                   $authorizer
      * @param Template                     $template
      * @param Markdown                     $markdown
      * @param                              $project
      * @param                              $version
      * @param                              $page
      * @return \Illuminate\Contracts\View\View|mixed|object
-     * @internal param GithubDocumentationExtension $extension
      */
     public function view(
         ProjectRepositoryInterface $projects,
         ProjectDocumentation $documentation,
-        DocumentationTranslator $translator,
-        DocumentationReader $reader,
+        DocumentationInput $input,
         Authorizer $authorizer,
         Template $template,
         Markdown $markdown,
@@ -68,7 +67,7 @@ class DocumentationController extends PublicController
          * the version or default to master.
          */
 
-        $reference = $version ? $project->reference($version) : array_get(array_values($project->getVersions()), 0);
+        $reference = $project->reference($version) ?: $project->getLatest();
 
         /**
          * Grab all of the information, structure and
@@ -82,16 +81,14 @@ class DocumentationController extends PublicController
          * Read the structure input
          * and prepare it for the view.
          */
-        $structure = $translator->translate($structure);
-        $structure = $reader->read($structure);
+        $structure = $input->read($structure);
 
         /**
          * Add our meta information.
          */
-        $this->template->set('content', $content);
         $this->template->set('project', $project);
-        $this->template->set('documentation', $structure);
         $this->template->set('meta_title', $project->getName());
+        $this->template->set('documentation', compact('structure', 'content'));
         $this->breadcrumbs->add('anomaly.module.documentation::breadcrumb.documentation', 'documentation');
         $this->breadcrumbs->add($project->getName(), $this->request->fullUrl());
 

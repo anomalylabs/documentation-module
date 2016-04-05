@@ -1,17 +1,9 @@
-<?php namespace Anomaly\DocumentationModule\Documentation;
+<?php namespace Anomaly\DocumentationModule\Documentation\Guesser;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 
-/**
- * Class DocumentationReader
- *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\DocumentationModule\Project
- */
-class DocumentationReader
+class CurrentGuesser
 {
 
     /**
@@ -29,7 +21,7 @@ class DocumentationReader
     protected $request;
 
     /**
-     * Create a new DocumentationReader instance.
+     * Create a new DocumentationInput instance.
      *
      * @param Route   $route
      * @param Request $request
@@ -46,18 +38,21 @@ class DocumentationReader
      * @param array $structure
      * @return array
      */
-    public function read(array $structure)
+    public function guess(array $structure)
     {
         $parameters = $this->route->parameters();
 
         $current = array_pop($parameters);
 
-        foreach ($structure as &$section) {
-            foreach ($section['pages'] as $slug => &$documentation) {
+        foreach ($structure as $slug => &$section) {
 
-                $documentation['current'] = ($current == $slug);
+            $section['slug'] = $slug;
 
-                $documentation['path'] = '/documentation/' . implode('/', $parameters) . '/' . $slug;
+            foreach ($section['pages'] as $page => &$documentation) {
+
+                $documentation['slug']    = $page;
+                $documentation['current'] = ($current == $page);
+                $documentation['path']    = '/documentation/' . implode('/', $parameters) . '/' . $page;
             }
         }
 
