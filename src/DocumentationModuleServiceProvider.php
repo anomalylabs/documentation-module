@@ -14,6 +14,15 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
 {
 
     /**
+     * The addon plugins.
+     *
+     * @var array
+     */
+    protected $plugins = [
+        'Anomaly\DocumentationModule\DocumentationModulePlugin'
+    ];
+
+    /**
      * The addon routes.
      *
      * @var array

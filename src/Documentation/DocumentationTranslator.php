@@ -59,11 +59,11 @@ class DocumentationTranslator
                 $section['title'] = $section['title'][$fallback];
             }
 
-            foreach ($section['documentation'] as &$documentation) {
-                if (isset($documentation['title'][$locale])) {
-                    $documentation['title'] = $documentation['title'][$locale];
+            foreach ($section['pages'] as &$page) {
+                if (isset($page['title'][$locale])) {
+                    $page['title'] = $page['title'][$locale];
                 } else {
-                    $documentation['title'] = $documentation['title'][$fallback];
+                    $page['title'] = $page['title'][$fallback];
                 }
             }
         }

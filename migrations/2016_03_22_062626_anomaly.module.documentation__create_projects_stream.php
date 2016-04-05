@@ -21,7 +21,8 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
         'slug'         => 'projects',
         'title_column' => 'name',
         'translatable' => true,
-        'trashable'    => true
+        'trashable'    => true,
+        'sortable'     => true
     ];
 
     /**
@@ -45,7 +46,9 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
             'required' => true
         ],
         'enabled',
-        'versions'
+        'versions'      => [
+            'required' => true
+        ]
     ];
 
 }

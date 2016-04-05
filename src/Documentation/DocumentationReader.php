@@ -53,7 +53,7 @@ class DocumentationReader
         $current = array_pop($parameters);
 
         foreach ($structure as &$section) {
-            foreach ($section['documentation'] as $slug => &$documentation) {
+            foreach ($section['pages'] as $slug => &$documentation) {
 
                 $documentation['current'] = ($current == $slug);
 
