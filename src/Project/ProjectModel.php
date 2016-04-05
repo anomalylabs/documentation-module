@@ -62,16 +62,6 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     }
 
     /**
-     * Return the latest reference.
-     *
-     * @return string|null
-     */
-    public function getLatest()
-    {
-        return $this->latest;
-    }
-
-    /**
      * Get the versions.
      *
      * @return array

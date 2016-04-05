@@ -17,11 +17,6 @@ return [
         'name'         => 'Versions',
         'instructions' => 'Enter versions below in a <strong>version: reference</strong> format. Enter each option on a new line.',
     ],
-    'latest'        => [
-        'name'         => 'Latest',
-        'instructions' => 'What is the latest reference for the project?',
-        'placeholder'  => 'master'
-    ],
     'enabled'       => [
         'name'         => 'Enabled',
         'label'        => 'Is this project enabled?',

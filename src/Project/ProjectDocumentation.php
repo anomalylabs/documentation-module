@@ -60,7 +60,7 @@ class ProjectDocumentation
         }
 
         return $this->cache->remember(
-            $documentation->getNamespace($project->getSlug() . '.structure'),
+            $documentation->getNamespace($project->getSlug() . '.structure.' . $version),
             $this->config->get('anomaly.module.documentation::config.cache', 60),
             function () use ($documentation, $project, $version) {
                 return $documentation->structure($project, $version);
@@ -84,7 +84,7 @@ class ProjectDocumentation
         }
 
         return $this->cache->remember(
-            $documentation->getNamespace($project->getSlug() . '.composer'),
+            $documentation->getNamespace($project->getSlug() . '.composer.' . $version),
             $this->config->get('anomaly.module.documentation::config.cache', 60),
             function () use ($documentation, $project, $version) {
                 return $documentation->composer($project, $version);
@@ -109,7 +109,7 @@ class ProjectDocumentation
         }
 
         return $this->cache->remember(
-            $documentation->getNamespace($project->getSlug() . '.content'),
+            $documentation->getNamespace($project->getSlug() . '.content.' . $page),
             $this->config->get('anomaly.module.documentation::config.cache', 60),
             function () use ($documentation, $project, $version, $page) {
                 return $documentation->content($project, $version, $page);

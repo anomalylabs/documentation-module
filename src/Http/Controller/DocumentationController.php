@@ -67,7 +67,7 @@ class DocumentationController extends PublicController
          * the version or default to master.
          */
 
-        $reference = $project->reference($version) ?: $project->getLatest();
+        $reference = $project->reference($version);
 
         /**
          * Grab all of the information, structure and

@@ -46,8 +46,7 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
             'required' => true
         ],
         'enabled',
-        'versions',
-        'latest'
+        'versions'
     ];
 
 }
