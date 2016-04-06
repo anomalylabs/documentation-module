@@ -42,12 +42,23 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
     ];
 
     /**
+     * The addon bindings.
+     *
+     * @var array
+     */
+    protected $bindings = [
+        'Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel'   => 'Anomaly\DocumentationModule\Project\ProjectModel',
+        'Anomaly\Streams\Platform\Model\Documentation\DocumentationCategoriesEntryModel' => 'Anomaly\DocumentationModule\Category\CategoryModel'
+    ];
+
+    /**
      * The addon singletons.
      *
      * @var array
      */
     protected $singletons = [
-        'Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface' => 'Anomaly\DocumentationModule\Project\ProjectRepository'
+        'Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface'   => 'Anomaly\DocumentationModule\Project\ProjectRepository',
+        'Anomaly\DocumentationModule\Category\Contract\CategoryRepositoryInterface' => 'Anomaly\DocumentationModule\Category\CategoryRepository'
     ];
 
 }
