@@ -42,6 +42,16 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     }
 
     /**
+     * Get the home page.
+     *
+     * @return string|null
+     */
+    public function getHome()
+    {
+        return $this->home;
+    }
+
+    /**
      * Get the name.
      *
      * @return string

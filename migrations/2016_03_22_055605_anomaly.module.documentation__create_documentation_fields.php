@@ -29,6 +29,7 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
         'description'   => 'anomaly.field_type.textarea',
         'enabled'       => 'anomaly.field_type.boolean',
         'versions'      => 'anomaly.field_type.textarea',
+        'home'          => 'anomaly.field_type.text',
         'documentation' => [
             'type'   => 'anomaly.field_type.addon',
             'config' => [

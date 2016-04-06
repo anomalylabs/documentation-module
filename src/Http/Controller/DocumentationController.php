@@ -1,10 +1,8 @@
 <?php namespace Anomaly\DocumentationModule\Http\Controller;
 
 use Anomaly\DocumentationModule\Documentation\DocumentationInput;
-use Anomaly\DocumentationModule\Documentation\DocumentationTranslator;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\DocumentationModule\Project\ProjectDocumentation;
-use Anomaly\DocumentationModule\Project\ProjectTranslator;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\Streams\Platform\Support\Authorizer;
 use Anomaly\Streams\Platform\Support\Template;

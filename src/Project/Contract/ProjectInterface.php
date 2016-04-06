@@ -31,6 +31,13 @@ interface ProjectInterface extends EntryInterface
     public function getSlug();
 
     /**
+     * Get the home page.
+     *
+     * @return string|null
+     */
+    public function getHome();
+
+    /**
      * Get the name.
      *
      * @return string

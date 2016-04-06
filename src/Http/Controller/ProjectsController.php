@@ -4,8 +4,6 @@ use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\DocumentationModule\Project\ProjectDocumentation;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
-use Anomaly\Streams\Platform\Support\Authorizer;
-use Anomaly\Streams\Platform\Support\Template;
 
 /**
  * Class ProjectsController
@@ -47,7 +45,9 @@ class ProjectsController extends PublicController
         $structure = $documentation->structure($project, array_get(array_values($project->getVersions()), 0));
 
         return $this->redirect->to(
-            'documentation/' . $project->getSlug() . '/' . array_keys(array_shift($structure)['pages'])[0]
+            'documentation/' . $project->getSlug() . '/' . $project->getHome() ?: array_keys(
+                array_shift($structure)['pages']
+            )[0]
         );
     }
 }

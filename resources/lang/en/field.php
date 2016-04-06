@@ -17,6 +17,12 @@ return [
         'name'         => 'Versions',
         'instructions' => 'Enter versions below in a <strong>version: reference</strong> format. Enter each option on a new line.',
     ],
+    'home'          => [
+        'name'         => 'Home',
+        'label'        => 'Home Page',
+        'instructions' => 'Specify the home page of the documentation.',
+        'warning'      => 'If not specified, the first page of the first section will be used.'
+    ],
     'enabled'       => [
         'name'         => 'Enabled',
         'label'        => 'Is this project enabled?',
