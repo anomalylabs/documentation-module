@@ -90,12 +90,14 @@ class ProjectDocumentation
             return $this->input->read($documentation->structure($project, $version));
         }
 
-        return $this->cache->remember(
-            $documentation->getNamespace($project->getSlug() . '.structure.' . $version),
-            $this->config->get('anomaly.module.documentation::config.cache', 60),
-            function () use ($documentation, $project, $version) {
-                return $this->input->read($documentation->structure($project, $version));
-            }
+        return $this->input->read(
+            $this->cache->remember(
+                $documentation->getNamespace($project->getSlug() . '.structure.' . $version),
+                $this->config->get('anomaly.module.documentation::config.cache', 60),
+                function () use ($documentation, $project, $version) {
+                    return $documentation->structure($project, $version);
+                }
+            )
         );
     }
 
