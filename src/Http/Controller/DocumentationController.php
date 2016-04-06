@@ -74,12 +74,7 @@ class DocumentationController extends PublicController
         $composer  = $documentation->composer($project, $reference);
         $structure = $documentation->structure($project, $reference);
         $content   = $documentation->content($project, $reference, $page ?: $version);
-
-        /**
-         * Read the structure input
-         * and prepare it for the view.
-         */
-        $structure = $input->read($structure);
+        $page      = $documentation->page($project, $reference);
 
         /**
          * Add our meta information.
@@ -88,7 +83,8 @@ class DocumentationController extends PublicController
         $this->template->set('meta_title', $project->getName());
         $this->template->set('documentation', compact('structure', 'content'));
         $this->breadcrumbs->add('anomaly.module.documentation::breadcrumb.documentation', 'documentation');
-        $this->breadcrumbs->add($project->getName(), $this->request->fullUrl());
+        $this->breadcrumbs->add($project->getName(), 'documentation/' . $project->getSlug());
+        $this->breadcrumbs->add($page->title, $this->request->fullUrl());
 
         /**
          * Get the content of the doc

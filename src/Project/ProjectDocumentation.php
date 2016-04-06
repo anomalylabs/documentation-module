@@ -1,5 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Project;
 
+use Anomaly\DocumentationModule\Documentation\DocumentationInput;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Illuminate\Contracts\Cache\Repository as Cache;
 use Illuminate\Contracts\Config\Repository as Config;
@@ -17,6 +18,13 @@ class ProjectDocumentation
 {
 
     use DispatchesJobs;
+
+    /**
+     * The documentation input reader.
+     *
+     * @var DocumentationInput
+     */
+    protected $input;
 
     /**
      * The cache repository.
@@ -38,10 +46,33 @@ class ProjectDocumentation
      * @param Cache  $cache
      * @param Config $config
      */
-    public function __construct(Cache $cache, Config $config)
+    public function __construct(DocumentationInput $input, Cache $cache, Config $config)
     {
+        $this->input  = $input;
         $this->cache  = $cache;
         $this->config = $config;
+    }
+
+    /**
+     * Return the current page composer object.
+     *
+     * @param ProjectInterface $project
+     * @param                  $version
+     * @return \stdClass|null
+     */
+    public function page(ProjectInterface $project, $version)
+    {
+        $structure = $this->structure($project, $version);
+
+        foreach ($structure as $section) {
+            foreach ($section['pages'] as $page) {
+                if (array_get($page, 'current')) {
+                    return (object)$page;
+                }
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -56,14 +87,14 @@ class ProjectDocumentation
         $documentation = $project->getDocumentation();
 
         if ($this->config->get('app.debug')) {
-            return $documentation->structure($project, $version);
+            return $this->input->read($documentation->structure($project, $version));
         }
 
         return $this->cache->remember(
             $documentation->getNamespace($project->getSlug() . '.structure.' . $version),
             $this->config->get('anomaly.module.documentation::config.cache', 60),
             function () use ($documentation, $project, $version) {
-                return $documentation->structure($project, $version);
+                return $this->input->read($documentation->structure($project, $version));
             }
         );
     }

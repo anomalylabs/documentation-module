@@ -45,9 +45,9 @@ class ProjectsController extends PublicController
         $structure = $documentation->structure($project, array_get(array_values($project->getVersions()), 0));
 
         return $this->redirect->to(
-            'documentation/' . $project->getSlug() . '/' . $project->getHome() ?: array_keys(
+            'documentation/' . $project->getSlug() . '/' . ($project->getHome() ?: array_keys(
                 array_shift($structure)['pages']
-            )[0]
+            )[0])
         );
     }
 }

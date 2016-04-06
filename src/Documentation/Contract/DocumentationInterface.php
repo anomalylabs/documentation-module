@@ -18,7 +18,7 @@ interface DocumentationInterface
      *
      * @param ProjectInterface $project
      * @param                  $reference
-     * @return \stdClass
+     * @return array
      */
     public function structure(ProjectInterface $project, $reference);
 
