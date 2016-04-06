@@ -36,6 +36,12 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
                 'type'   => 'extensions',
                 'search' => 'anomaly.module.documentation::documentation.*'
             ]
+        ],
+        'category'      => [
+            'type'   => 'anomaly.field_type.relationship',
+            'config' => [
+                'related' => 'Anomaly\DocumentationModule\Category\CategoryModel'
+            ]
         ]
     ];
 }
