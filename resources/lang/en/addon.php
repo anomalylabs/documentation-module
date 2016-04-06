@@ -5,6 +5,7 @@ return [
     'name'        => 'Documentation Module',
     'description' => 'An API documentation utility for VCS projects.',
     'section'     => [
-        'projects' => 'Projects'
+        'projects'   => 'Projects',
+        'categories' => 'Categories'
     ]
 ];

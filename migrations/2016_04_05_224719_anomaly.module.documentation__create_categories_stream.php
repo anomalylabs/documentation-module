@@ -3,13 +3,13 @@
 use Anomaly\Streams\Platform\Database\Migration\Migration;
 
 /**
- * Class AnomalyModuleDocumentationCreateProjectsStream
+ * Class AnomalyModuleDocumentationCreateCategoriesStream
  *
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
  */
-class AnomalyModuleDocumentationCreateProjectsStream extends Migration
+class AnomalyModuleDocumentationCreateCategoriesStream extends Migration
 {
 
     /**
@@ -18,7 +18,7 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
      * @var array
      */
     protected $stream = [
-        'slug'         => 'projects',
+        'slug'         => 'categories',
         'title_column' => 'name',
         'translatable' => true,
         'trashable'    => true,
@@ -31,24 +31,17 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
      * @var array
      */
     protected $assignments = [
-        'name'          => [
+        'name'        => [
             'required'     => true,
             'translatable' => true
         ],
-        'slug'          => [
+        'slug'        => [
             'required' => true,
             'unique'   => true
         ],
-        'description'   => [
+        'description' => [
             'translatable' => true
-        ],
-        'documentation' => [
-            'required' => true
-        ],
-        'category',
-        'enabled',
-        'versions',
-        'home'
+        ]
     ];
 
 }

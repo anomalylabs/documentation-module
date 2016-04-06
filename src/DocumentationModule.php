@@ -19,13 +19,18 @@ class DocumentationModule extends Module
      * @var array
      */
     protected $sections = [
-        'projects' => [
+        'projects'   => [
             'buttons' => [
                 'new_project' => [
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
                     'href'        => 'admin/documentation/choose'
                 ]
+            ]
+        ],
+        'categories' => [
+            'buttons' => [
+                'new_category'
             ]
         ]
     ];

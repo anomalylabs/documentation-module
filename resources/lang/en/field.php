@@ -13,6 +13,10 @@ return [
         'name'         => 'Description',
         'instructions' => 'Briefly describe this project.',
     ],
+    'category'      => [
+        'name'         => 'Category',
+        'instructions' => 'Specify the project category.',
+    ],
     'versions'      => [
         'name'         => 'Versions',
         'instructions' => 'Enter versions below in a <strong>version: reference</strong> format. Enter each option on a new line.',
