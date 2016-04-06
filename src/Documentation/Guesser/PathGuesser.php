@@ -3,14 +3,14 @@
 use Illuminate\Routing\Route;
 
 /**
- * Class CurrentGuesser
+ * Class PathGuesser
  *
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\DocumentationModule\Documentation\Guesser
  */
-class CurrentGuesser
+class PathGuesser
 {
 
     /**
@@ -40,11 +40,11 @@ class CurrentGuesser
     {
         $parameters = $this->route->parameters();
 
-        $current = array_pop($parameters);
+        array_pop($parameters);
 
         foreach ($structure as &$section) {
             foreach ($section['pages'] as $page => &$documentation) {
-                $documentation['current'] = ($current == $page);
+                $documentation['path'] = '/documentation/' . implode('/', $parameters) . '/' . $page;
             }
         }
 

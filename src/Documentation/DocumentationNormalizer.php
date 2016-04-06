@@ -40,7 +40,7 @@ class DocumentationNormalizer
     {
         $fallback = $this->config->get('app.fallback_locale');
 
-        foreach ($structure as &$section) {
+        foreach ($structure as $slug => &$section) {
 
             if (!is_array($section['title'])) {
                 $section['title'] = [
@@ -48,7 +48,9 @@ class DocumentationNormalizer
                 ];
             }
 
-            foreach ($section['pages'] as &$page) {
+            $section['slug'] = $slug;
+
+            foreach ($section['pages'] as $slug => &$page) {
 
                 if (is_string($page)) {
                     $page = [
@@ -61,6 +63,8 @@ class DocumentationNormalizer
                         $fallback => $page['title']
                     ];
                 }
+
+                $page['slug'] = $slug;
             }
         }
 

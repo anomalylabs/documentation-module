@@ -98,7 +98,8 @@ class DocumentationController extends PublicController
                 'project',
                 'composer',
                 'structure',
-                'content'
+                'content',
+                'page'
             )
         );
     }
