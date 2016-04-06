@@ -1,10 +1,8 @@
 <?php namespace Anomaly\DocumentationModule\Http\Controller;
 
-use Anomaly\DocumentationModule\Documentation\DocumentationInput;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\DocumentationModule\Project\ProjectDocumentation;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
-use Anomaly\Streams\Platform\Support\Authorizer;
 use Anomaly\Streams\Platform\Support\Template;
 use Michelf\Markdown;
 
@@ -20,24 +18,20 @@ class DocumentationController extends PublicController
 {
 
     /**
-     * Render a documentation page.
+     * View a documentation page.
      *
-     * @param ProjectRepositoryInterface   $projects
-     * @param ProjectDocumentation         $documentation
-     * @param DocumentationInput           $input
-     * @param Authorizer                   $authorizer
-     * @param Template                     $template
-     * @param Markdown                     $markdown
-     * @param                              $project
-     * @param                              $version
-     * @param                              $page
-     * @return \Illuminate\Contracts\View\View|mixed|object
+     * @param ProjectRepositoryInterface $projects
+     * @param ProjectDocumentation       $documentation
+     * @param Template                   $template
+     * @param Markdown                   $markdown
+     * @param                            $project
+     * @param                            $version
+     * @param null                       $page
+     * @return \Illuminate\Contracts\View\View|mixed
      */
     public function view(
         ProjectRepositoryInterface $projects,
         ProjectDocumentation $documentation,
-        DocumentationInput $input,
-        Authorizer $authorizer,
         Template $template,
         Markdown $markdown,
         $project,
@@ -45,10 +39,6 @@ class DocumentationController extends PublicController
         $page = null
     ) {
         $project = $projects->findBySlug($project);
-
-        if (!$authorizer->authorize('anomaly.module.users::*')) {
-            abort(404);
-        }
 
         /**
          * Get the version based on the page presence.
