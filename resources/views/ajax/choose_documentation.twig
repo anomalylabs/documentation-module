@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <button class="close" data-dismiss="modal">
+        <span>&times;</span>
+    </button>
+    <h4 class="modal-title">{{ trans('module::message.choose_documentation') }}</h4>
+</div>
+
+<div class="modal-body">
+    {% if not documentations.isEmpty() %}
+        <ul class="nav nav-pills nav-stacked">
+            {% for documentation in documentations %}
+                <li class="nav-item">
+                    <a href="{{ url_to('admin/documentation/create?documentation=' ~ documentation.namespace) }}" class="nav-link">
+                        <strong>{{ trans(documentation.getTitle()) }}</strong>
+                        <br>
+                        <small>{{ trans(documentation.getDescription()) }}</small>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {{ trans('streams::message.no_results') }}
+    {% endif %}
+</div>

@@ -1,0 +1,9 @@
+{% extends layout('documentation') %}
+
+{% block content %}
+    <ul>
+        {% for project in projects %}
+            <li>{{ html_link('documentation/' ~ project.slug, project.name) }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

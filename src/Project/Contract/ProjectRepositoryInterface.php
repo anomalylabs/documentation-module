@@ -1,5 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Project\Contract;
 
+use Anomaly\DocumentationModule\Project\ProjectCollection;
 use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
 
 /**
@@ -13,4 +14,18 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
 interface ProjectRepositoryInterface extends EntryRepositoryInterface
 {
 
+    /**
+     * Return only enabled projects.
+     *
+     * @return ProjectCollection
+     */
+    public function enabled();
+
+    /**
+     * Find a project by it's slug.
+     *
+     * @param $slug
+     * @return ProjectInterface|null
+     */
+    public function findBySlug($slug);
 }

@@ -1,5 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Project;
 
+use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\Streams\Platform\Entry\EntryRepository;
 
@@ -29,5 +30,26 @@ class ProjectRepository extends EntryRepository implements ProjectRepositoryInte
     public function __construct(ProjectModel $model)
     {
         $this->model = $model;
+    }
+
+    /**
+     * Return only enabled projects.
+     *
+     * @return ProjectCollection
+     */
+    public function enabled()
+    {
+        return $this->model->where('enabled', true)->get();
+    }
+
+    /**
+     * Find a project by it's slug.
+     *
+     * @param $slug
+     * @return ProjectInterface|null
+     */
+    public function findBySlug($slug)
+    {
+        return $this->model->where('slug', $slug)->first();
     }
 }

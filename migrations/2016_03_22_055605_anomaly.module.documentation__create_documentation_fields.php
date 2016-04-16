@@ -18,14 +18,30 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
      * @var array
      */
     protected $fields = [
-        'name'        => 'anomaly.field_type.text',
-        'slug'        => [
+        'name'          => 'anomaly.field_type.text',
+        'slug'          => [
             'type'   => 'anomaly.field_type.slug',
             'config' => [
                 'slugify' => 'name',
                 'type'    => '-'
             ]
         ],
-        'description' => 'anomaly.field_type.textarea'
+        'description'   => 'anomaly.field_type.textarea',
+        'enabled'       => 'anomaly.field_type.boolean',
+        'versions'      => 'anomaly.field_type.textarea',
+        'home'          => 'anomaly.field_type.text',
+        'documentation' => [
+            'type'   => 'anomaly.field_type.addon',
+            'config' => [
+                'type'   => 'extensions',
+                'search' => 'anomaly.module.documentation::documentation.*'
+            ]
+        ],
+        'category'      => [
+            'type'   => 'anomaly.field_type.relationship',
+            'config' => [
+                'related' => 'Anomaly\DocumentationModule\Category\CategoryModel'
+            ]
+        ]
     ];
 }

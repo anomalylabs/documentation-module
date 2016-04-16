@@ -1,5 +1,7 @@
 <?php namespace Anomaly\DocumentationModule\Project\Contract;
 
+use Anomaly\DocumentationModule\Documentation\Contract\DocumentationInterface;
+use Anomaly\Streams\Platform\Addon\Extension\Extension;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 
 /**
@@ -13,4 +15,53 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 interface ProjectInterface extends EntryInterface
 {
 
+    /**
+     * Return the reference for a version.
+     *
+     * @param        $version
+     * @return string
+     */
+    public function reference($version);
+
+    /**
+     * Get the slug.
+     *
+     * @return string
+     */
+    public function getSlug();
+
+    /**
+     * Get the home page.
+     *
+     * @return string|null
+     */
+    public function getHome();
+
+    /**
+     * Get the name.
+     *
+     * @return string
+     */
+    public function getName();
+
+    /**
+     * Get the enabled flag.
+     *
+     * @return bool
+     */
+    public function isEnabled();
+
+    /**
+     * Get the versions.
+     *
+     * @return array
+     */
+    public function getVersions();
+
+    /**
+     * Get the documentation.
+     *
+     * @return Extension|DocumentationInterface
+     */
+    public function getDocumentation();
 }
