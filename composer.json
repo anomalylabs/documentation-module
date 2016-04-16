@@ -1,6 +1,6 @@
 {
     "name": "anomaly/documentation-module",
-    "description": "An API documentation utility for VCS projects.",
+    "description": "A project documentation utility for VCS projects.",
     "type": "streams-addon",
     "keywords": [
         "documentation module",
