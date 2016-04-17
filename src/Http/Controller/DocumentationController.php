@@ -61,9 +61,14 @@ class DocumentationController extends PublicController
          * Grab all of the information, structure and
          * page content for this project / doc we need.
          */
-        $composer  = $documentation->composer($project, $reference);
+        try {
+            $content = $documentation->content($project, $reference, $page ?: $version);
+        } catch (\ErrorException $e) {
+            return $this->redirect->to('documentation/' . $project->getSlug());
+        }
+
         $structure = $documentation->structure($project, $reference);
-        $content   = $documentation->content($project, $reference, $page ?: $version);
+        $composer  = $documentation->composer($project, $reference);
         $page      = $documentation->page($project, $reference);
 
         /**
