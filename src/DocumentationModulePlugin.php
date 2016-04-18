@@ -1,8 +1,7 @@
 <?php namespace Anomaly\DocumentationModule;
 
-use Anomaly\Streams\Platform\Addon\Module\Module;
+use Anomaly\DocumentationModule\Plugin\CodeTokenParser;
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
-use Anomaly\Streams\Platform\Support\Decorator;
 
 /**
  * Class DocumentationModulePlugin
@@ -16,6 +15,18 @@ class DocumentationModulePlugin extends Plugin
 {
 
     /**
+     * Get the token parsers.
+     *
+     * @return array
+     */
+    public function getTokenParsers()
+    {
+        return [
+            new CodeTokenParser()
+        ];
+    }
+
+    /**
      * Get the functions.
      *
      * @return array
@@ -24,9 +35,9 @@ class DocumentationModulePlugin extends Plugin
     {
         return [
             new \Twig_SimpleFunction(
-                'documentation',
-                function () {
-                    return (new Decorator())->decorate('Test');
+                'code',
+                function ($language, $code) {
+                    return '<pre><code class="language-' . $language . '">' . $code . '</code></pre>';
                 },
                 [
                     'is_safe' => ['html']
