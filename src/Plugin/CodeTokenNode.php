@@ -13,6 +13,11 @@ use Twig_Compiler;
 class CodeTokenNode extends \Twig_Node
 {
 
+    /**
+     * Compile the node.
+     *
+     * @param Twig_Compiler $compiler
+     */
     public function compile(Twig_Compiler $compiler)
     {
         $compiler
