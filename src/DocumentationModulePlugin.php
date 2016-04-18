@@ -37,7 +37,7 @@ class DocumentationModulePlugin extends Plugin
             new \Twig_SimpleFunction(
                 'code',
                 function ($language, $code) {
-                    return '<pre><code class="language-' . $language . '">' . $code . '</code></pre>';
+                    return '<code class="language-' . $language . '">' . $code . '</code>';
                 },
                 [
                     'is_safe' => ['html']
