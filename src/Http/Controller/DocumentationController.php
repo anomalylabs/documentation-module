@@ -85,7 +85,7 @@ class DocumentationController extends PublicController
          * Get the content of the doc
          * and parse / render it.
          */
-        $content = $markdown->transform($template->render($content, compact('project', 'composer')));
+        $content = $template->render($markdown->transform($content), compact('project', 'composer'));
 
         return $this->view->make(
             'anomaly.module.documentation::documentation/view',
