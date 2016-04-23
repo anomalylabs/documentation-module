@@ -63,7 +63,7 @@ class DocumentationController extends PublicController
          */
         try {
             $content = $documentation->content($project, $reference, $page ?: $version);
-        } catch (\ErrorException $e) {
+        } catch (\RuntimeException $e) {
             return $this->redirect->to('documentation/' . $project->getSlug());
         }
 
