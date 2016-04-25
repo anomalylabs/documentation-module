@@ -28,8 +28,18 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
         'admin/documentation/categories/create'      => 'Anomaly\DocumentationModule\Http\Controller\Admin\CategoriesController@create',
         'admin/documentation/categories/edit/{id}'   => 'Anomaly\DocumentationModule\Http\Controller\Admin\CategoriesController@edit',
         'documentation'                              => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@index',
-        'documentation/{project}'                    => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
-        'documentation/{project}/{version?}/{page?}' => 'Anomaly\DocumentationModule\Http\Controller\DocumentationController@view',
+        'documentation/{project}'                    => [
+            'uses'        => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
+            'constraints' => [
+                'project' => '^[a-z0-9-]+$'
+            ]
+        ],
+        'documentation/{project}/{version?}/{page?}' => [
+            'uses'        => 'Anomaly\DocumentationModule\Http\Controller\DocumentationController@view',
+            'constraints' => [
+                'project' => '^[a-z0-9-]+$'
+            ]
+        ]
     ];
 
     /**

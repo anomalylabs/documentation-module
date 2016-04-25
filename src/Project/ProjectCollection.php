@@ -1,5 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Project;
 
+use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\Streams\Platform\Entry\EntryCollection;
 
 /**
@@ -13,4 +14,19 @@ use Anomaly\Streams\Platform\Entry\EntryCollection;
 class ProjectCollection extends EntryCollection
 {
 
+    /**
+     * Return only enabled projects.
+     *
+     * @return ProjectCollection
+     */
+    public function enabled()
+    {
+        return $this->filter(
+            function ($project) {
+
+                /* @var ProjectInterface $project */
+                return $project->isEnabled();
+            }
+        );
+    }
 }
