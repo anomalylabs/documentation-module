@@ -8,6 +8,8 @@ use Anomaly\DocumentationModule\Type\Contract\TypeRepositoryInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\Streams\Platform\Support\Authorizer;
+use Illuminate\Routing\Redirector;
 
 /**
  * Class PagesController
@@ -95,5 +97,48 @@ class PagesController extends AdminController
     public function edit(PageFormBuilder $form, $id)
     {
         return $form->render($id);
+    }
+
+    /**
+     * Redirect to a page's URL.
+     *
+     * @param PageRepositoryInterface $pages
+     * @param Redirector              $redirect
+     * @param                         $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function view(PageRepositoryInterface $pages, Redirector $redirect, $id)
+    {
+        /* @var PageInterface $page */
+        $page = $pages->find($id);
+
+        if (!$page->isEnabled()) {
+            return $redirect->to('documentation/preview/' . $page->getStrId());
+        }
+
+        if ($page->isHome()) {
+            return $redirect->to('PAGE');
+        }
+
+        return $redirect->to($page->getPath());
+    }
+
+    /**
+     * Delete a page and go back.
+     *
+     * @param PageRepositoryInterface $pages
+     * @param Authorizer              $authorizer
+     * @param                         $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete(PageRepositoryInterface $pages, Authorizer $authorizer, $id)
+    {
+        $authorizer->authorize('anomaly.module.documentation::pages.delete');
+
+        $pages->delete($page = $pages->find($id));
+
+        $page->entry->delete();
+
+        return $this->redirect->back();
     }
 }

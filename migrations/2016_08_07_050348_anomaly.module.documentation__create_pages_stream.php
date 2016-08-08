@@ -31,22 +31,44 @@ class AnomalyModuleDocumentationCreatePagesStream extends Migration
      * @var array
      */
     protected $assignments = [
-        'title'   => [
-            'translatable' => true,
-            'required'     => true,
+        'str_id'           => [
+            'required' => true
         ],
-        'slug'    => [
+        'title'            => [
+            'translatable' => true,
+            'required'     => true
+        ],
+        'slug'             => [
             'required' => true,
-            'unique'   => true,
             'config'   => [
                 'slugify' => 'title',
                 'type'    => '-',
             ]
         ],
-        'version' => [
+        'path'             => [
+            'required' => true
+        ],
+        'type'             => [
+            'required' => true
+        ],
+        'entry',
+        'parent',
+        'enabled',
+        'home',
+        'meta_title'       => [
+            'translatable' => true
+        ],
+        'meta_description' => [
+            'translatable' => true
+        ],
+        'meta_keywords'    => [
+            'translatable' => true
+        ],
+        'theme_layout',
+        'allowed_roles',
+        'version'          => [
             'required' => true,
         ],
-        'parent',
     ];
 
 }

@@ -18,56 +18,60 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
      * @var array
      */
     protected $fields = [
-        'name'         => [
-            'type' => 'anomaly.field_type.text',
+        'str_id'           => 'anomaly.field_type.text',
+        'name'             => 'anomaly.field_type.text',
+        'title'            => 'anomaly.field_type.text',
+        'slug'             => 'anomaly.field_type.slug',
+        'path'             => 'anomaly.field_type.text',
+        'image'            => 'anomaly.field_type.file',
+        'description'      => 'anomaly.field_type.textarea',
+        'enabled'          => [
+            'type'   => 'anomaly.field_type.boolean',
+            'config' => [
+                'default_value' => true,
+            ],
         ],
-        'title'        => [
-            'type' => 'anomaly.field_type.text',
-        ],
-        'slug'         => [
-            'type' => 'anomaly.field_type.slug',
-        ],
-        'description'  => [
-            'type' => 'anomaly.field_type.textarea',
-        ],
-        'enabled'      => [
-            'type' => 'anomaly.field_type.boolean',
-        ],
-        'image'        => [
-            'type' => 'anomaly.field_type.file',
-        ],
-        'parent'       => [
+        'parent'           => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
                 'related' => 'Anomaly\DocumentationModule\Page\PageModel'
             ]
         ],
-        'project'      => [
+        'project'          => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
                 'related' => 'Anomaly\DocumentationModule\Project\ProjectModel'
             ]
         ],
-        'version'      => [
+        'version'          => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
                 'related' => 'Anomaly\DocumentationModule\Version\VersionModel'
             ]
         ],
-        'theme_layout' => [
+        'theme_layout'     => [
             'type'   => 'anomaly.field_type.select',
             'config' => [
                 'default_value' => 'theme::layouts/default.twig',
                 'handler'       => 'layouts',
             ]
         ],
-        'layout'       => [
+        'layout'           => [
             'type'   => 'anomaly.field_type.editor',
             'config' => [
                 'default_value' => '<h1>{{ project.name }}</h1>',
                 'mode'          => 'twig'
             ]
         ],
+        'home'             => [
+            'type'   => 'anomaly.field_type.boolean',
+            'config' => [
+                'default_value' => false,
+            ]
+        ],
+        'meta_title'       => 'anomaly.field_type.text',
+        'meta_description' => 'anomaly.field_type.textarea',
+        'meta_keywords'    => 'anomaly.field_type.tags',
     ];
 
 }
