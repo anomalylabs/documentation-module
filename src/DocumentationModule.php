@@ -51,8 +51,20 @@ class DocumentationModule extends Module
             ]
         ],
         'types'    => [
-            'buttons' => [
+            'buttons'  => [
                 'new_type'
+            ],
+            'sections' => [
+                'assignments' => [
+                    'href'    => 'admin/documentation/types/assignments/{request.route.parameters.type}',
+                    'buttons' => [
+                        'assign_fields' => [
+                            'data-toggle' => 'modal',
+                            'data-target' => '#modal',
+                            'href'        => 'admin/documentation/types/assignments/{request.route.parameters.type}/choose',
+                        ]
+                    ]
+                ]
             ]
         ],
         'fields'   => [

@@ -1,8 +1,10 @@
 <?php namespace Anomaly\DocumentationModule\Type;
 
 use Anomaly\DocumentationModule\Page\PageCollection;
+use Anomaly\DocumentationModule\Type\Command\GetEntryStream;
 use Anomaly\DocumentationModule\Type\Contract\TypeInterface;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationTypesEntryModel;
+use Anomaly\Streams\Platform\Stream\Contract\StreamInterface;
 
 /**
  * Class TypeModel
@@ -43,6 +45,28 @@ class TypeModel extends DocumentationTypesEntryModel implements TypeInterface
     public function getDescription()
     {
         return $this->direction;
+    }
+
+    /**
+     * Get the related entry stream.
+     *
+     * @return StreamInterface
+     */
+    public function getEntryStream()
+    {
+        return $this->dispatch(new GetEntryStream($this));
+    }
+
+    /**
+     * Get the related entry model name.
+     *
+     * @return string
+     */
+    public function getEntryModelName()
+    {
+        $stream = $this->getEntryStream();
+
+        return $stream->getEntryModelName();
     }
 
     /**

@@ -13,4 +13,11 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryRepositoryInterface;
 interface VersionRepositoryInterface extends EntryRepositoryInterface
 {
 
+    /**
+     * Find a version by it's slug.
+     *
+     * @param $slug
+     * @return VersionInterface|null
+     */
+    public function findBySlug($slug);
 }

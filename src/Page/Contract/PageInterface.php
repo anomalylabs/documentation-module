@@ -1,6 +1,7 @@
 <?php namespace Anomaly\DocumentationModule\Page\Contract;
 
 use Anomaly\DocumentationModule\Page\PageCollection;
+use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -64,6 +65,20 @@ interface PageInterface extends EntryInterface
      * @return BelongsTo
      */
     public function parent();
+
+    /**
+     * Get the version.
+     *
+     * @return VersionInterface|null
+     */
+    public function getVersion();
+
+    /**
+     * Return the version relation.
+     *
+     * @return BelongsTo
+     */
+    public function version();
 
     /**
      * Get the related children pages.

@@ -2,29 +2,16 @@
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
+/**
+ * Class TypeTableBuilder
+ *
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @package       Anomaly\DocumentationModule\Type\Table
+ */
 class TypeTableBuilder extends TableBuilder
 {
-
-    /**
-     * The table views.
-     *
-     * @var array|string
-     */
-    protected $views = [];
-
-    /**
-     * The table filters.
-     *
-     * @var array|string
-     */
-    protected $filters = [];
-
-    /**
-     * The table columns.
-     *
-     * @var array|string
-     */
-    protected $columns = [];
 
     /**
      * The table buttons.
@@ -32,7 +19,8 @@ class TypeTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $buttons = [
-        'edit'
+        'edit',
+        'assignments',
     ];
 
     /**
@@ -43,19 +31,4 @@ class TypeTableBuilder extends TableBuilder
     protected $actions = [
         'delete'
     ];
-
-    /**
-     * The table options.
-     *
-     * @var array
-     */
-    protected $options = [];
-
-    /**
-     * The table assets.
-     *
-     * @var array
-     */
-    protected $assets = [];
-
 }

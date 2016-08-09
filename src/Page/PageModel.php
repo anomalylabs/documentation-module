@@ -1,6 +1,9 @@
 <?php namespace Anomaly\DocumentationModule\Page;
 
 use Anomaly\DocumentationModule\Page\Contract\PageInterface;
+use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
+use Anomaly\DocumentationModule\Version\VersionCollection;
+use Anomaly\DocumentationModule\Version\VersionModel;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationPagesEntryModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -73,6 +76,16 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * Get the version.
+     *
+     * @return VersionInterface|null
+     */
+    public function getVersion()
+    {
+        return $this->version;
     }
 
     /**

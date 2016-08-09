@@ -35,8 +35,10 @@ class PageFormBuilder extends FormBuilder
      * @var array
      */
     protected $skips = [
+        'parent',
+        'path',
+        'str_id',
         'version',
-        'parent'
     ];
 
     /**

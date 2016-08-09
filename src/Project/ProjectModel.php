@@ -1,6 +1,7 @@
 <?php namespace Anomaly\DocumentationModule\Project;
 
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
+use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\VersionCollection;
 use Anomaly\DocumentationModule\Version\VersionModel;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel;
@@ -18,6 +19,16 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
 {
 
     /**
+     * Get the slug.
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Get the related versions.
      *
      * @return VersionCollection
@@ -28,12 +39,25 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     }
 
     /**
+     * Get the latest version.
+     *
+     * @return VersionInterface|null
+     */
+    public function getLatestVersion()
+    {
+        $versions = $this->getVersions();
+
+        return $versions->first();
+    }
+
+    /**
      * Return the versions relation.
      *
      * @return HasMany
      */
     public function versions()
     {
-        return $this->hasMany(VersionModel::class, 'project_id');
+        return $this->hasMany(VersionModel::class, 'project_id')
+            ->orderBy('sort_order', 'ASC');
     }
 }

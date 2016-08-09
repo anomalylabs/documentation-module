@@ -1,5 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Project\Contract;
 
+use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\VersionCollection;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,11 +17,25 @@ interface ProjectInterface extends EntryInterface
 {
 
     /**
+     * Get the slug.
+     *
+     * @return string
+     */
+    public function getSlug();
+
+    /**
      * Get the related versions.
      *
      * @return VersionCollection
      */
     public function getVersions();
+
+    /**
+     * Get the latest version.
+     *
+     * @return VersionInterface|null
+     */
+    public function getLatestVersion();
 
     /**
      * Return the versions relation.

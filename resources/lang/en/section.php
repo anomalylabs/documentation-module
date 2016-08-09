@@ -1,19 +1,22 @@
 <?php
 
 return [
-    'projects' => [
+    'projects'    => [
         'title' => 'Projects',
     ],
-    'versions' => [
+    'versions'    => [
         'title' => 'Versions',
     ],
-    'pages'    => [
+    'pages'       => [
         'title' => 'Pages',
     ],
-    'types'    => [
+    'types'       => [
         'title' => 'Types',
     ],
-    'fields'   => [
+    'fields'      => [
         'title' => 'Fields',
-    ]
+    ],
+    'assignments' => [
+        'title' => 'Assignments',
+    ],
 ];
