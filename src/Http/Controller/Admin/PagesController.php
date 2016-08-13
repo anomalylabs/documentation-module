@@ -9,7 +9,6 @@ use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\Streams\Platform\Support\Authorizer;
-use Illuminate\Routing\Redirector;
 
 /**
  * Class PagesController
@@ -91,36 +90,29 @@ class PagesController extends AdminController
      * Edit an existing entry.
      *
      * @param PageFormBuilder $form
-     * @param                 $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(PageFormBuilder $form, $id)
+    public function edit(PageFormBuilder $form)
     {
-        return $form->render($id);
+        return $form->render($this->route->parameter('id'));
     }
 
     /**
      * Redirect to a page's URL.
      *
      * @param PageRepositoryInterface $pages
-     * @param Redirector              $redirect
-     * @param                         $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function view(PageRepositoryInterface $pages, Redirector $redirect, $id)
+    public function view(PageRepositoryInterface $pages)
     {
         /* @var PageInterface $page */
-        $page = $pages->find($id);
+        $page = $pages->find($this->route->parameter('id'));
 
         if (!$page->isEnabled()) {
-            return $redirect->to('documentation/preview/' . $page->getStrId());
+            return $this->redirect->to('documentation/preview/' . $page->getStrId());
         }
 
-        if ($page->isHome()) {
-            return $redirect->to('PAGE');
-        }
-
-        return $redirect->to($page->getPath());
+        return $this->redirect->to($page->route('view'));
     }
 
     /**
@@ -128,14 +120,13 @@ class PagesController extends AdminController
      *
      * @param PageRepositoryInterface $pages
      * @param Authorizer              $authorizer
-     * @param                         $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete(PageRepositoryInterface $pages, Authorizer $authorizer, $id)
+    public function delete(PageRepositoryInterface $pages, Authorizer $authorizer)
     {
         $authorizer->authorize('anomaly.module.documentation::pages.delete');
 
-        $pages->delete($page = $pages->find($id));
+        $pages->delete($page = $pages->find($this->route->parameter('id')));
 
         $page->entry->delete();
 

@@ -39,6 +39,19 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     }
 
     /**
+     * Get the related version by name.
+     *
+     * @param $name
+     * @return VersionInterface|null
+     */
+    public function getVersion($name)
+    {
+        $versions = $this->getVersions();
+
+        return $versions->findBy('name', $name);
+    }
+
+    /**
      * Get the latest version.
      *
      * @return VersionInterface|null

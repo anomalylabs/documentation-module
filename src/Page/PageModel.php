@@ -1,11 +1,12 @@
 <?php namespace Anomaly\DocumentationModule\Page;
 
 use Anomaly\DocumentationModule\Page\Contract\PageInterface;
+use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
+use Anomaly\DocumentationModule\Type\Contract\TypeInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
-use Anomaly\DocumentationModule\Version\VersionCollection;
-use Anomaly\DocumentationModule\Version\VersionModel;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationPagesEntryModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Response;
 
 /**
  * Class PageModel
@@ -17,6 +18,34 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class PageModel extends DocumentationPagesEntryModel implements PageInterface
 {
+
+    /**
+     * The active flag.
+     *
+     * @var bool
+     */
+    protected $active = false;
+
+    /**
+     * The current flag.
+     *
+     * @var bool
+     */
+    protected $current = false;
+
+    /**
+     * The page's content.
+     *
+     * @var null|string
+     */
+    protected $content = null;
+
+    /**
+     * The page's response.
+     *
+     * @var null|Response
+     */
+    protected $response = null;
 
     /**
      * Get the path.
@@ -89,6 +118,18 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     }
 
     /**
+     * Get the related version.
+     *
+     * @return ProjectInterface
+     */
+    public function getProject()
+    {
+        $version = $this->getVersion();
+
+        return $version->getProject();
+    }
+
+    /**
      * Get the related children pages.
      *
      * @return PageCollection
@@ -107,5 +148,141 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     {
         return $this->hasMany('Anomaly\DocumentationModule\Page\PageModel', 'parent_id', 'id')
             ->orderBy('sort_order', 'ASC');
+    }
+
+    /**
+     * Get the meta title.
+     *
+     * @return string
+     */
+    public function getMetaTitle()
+    {
+        if (!$this->meta_title) {
+            return $this->getTitle();
+        }
+
+        return $this->meta_title;
+    }
+
+    /**
+     * Get the meta keywords.
+     *
+     * @return array
+     */
+    public function getMetaKeywords()
+    {
+        return $this->meta_keywords;
+    }
+
+    /**
+     * Get the meta description.
+     *
+     * @return string
+     */
+    public function getMetaDescription()
+    {
+        return $this->meta_description;
+    }
+
+    /**
+     * Get the content.
+     *
+     * @return null|string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set the content.
+     *
+     * @param $content
+     * @return $this
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get the response.
+     *
+     * @return Response|null
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * Set the response.
+     *
+     * @param $response
+     * @return $this
+     */
+    public function setResponse(Response $response)
+    {
+        $this->response = $response;
+
+        return $this;
+    }
+
+    /**
+     * Get the current flag.
+     *
+     * @return bool
+     */
+    public function isCurrent()
+    {
+        return $this->current;
+    }
+
+    /**
+     * Set the current flag.
+     *
+     * @param $current
+     * @return $this
+     */
+    public function setCurrent($current)
+    {
+        $this->current = $current;
+
+        return $this;
+    }
+
+    /**
+     * Get the active flag.
+     *
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set the active flag.
+     *
+     * @param $active
+     * @return $this
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get the type.
+     *
+     * @return TypeInterface
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

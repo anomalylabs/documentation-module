@@ -31,6 +31,14 @@ interface ProjectInterface extends EntryInterface
     public function getVersions();
 
     /**
+     * Get the related version by name.
+     *
+     * @param $name
+     * @return VersionInterface|null
+     */
+    public function getVersion($name);
+
+    /**
      * Get the latest version.
      *
      * @return VersionInterface|null
