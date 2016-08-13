@@ -58,7 +58,7 @@ class VersionModel extends DocumentationVersionsEntryModel implements VersionInt
     {
         $pages = $this->getPages();
 
-        return $pages->home();
+        return $pages->home() ?: $pages->first();
     }
 
     /**

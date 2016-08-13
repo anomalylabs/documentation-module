@@ -31,7 +31,15 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
-        'documentation/{project}/{version?}/{path?}'             => [
+        'documentation/{project}'                                => [
+            'as'   => 'anomaly.module.documentation::projects.view',
+            'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
+        ],
+        'documentation/{project}/{version}'                      => [
+            'as'   => 'anomaly.module.documentation::versions.view',
+            'uses' => 'Anomaly\DocumentationModule\Http\Controller\VersionsController@view',
+        ],
+        'documentation/{project}/{version}/{path}'               => [
             'as'          => 'anomaly.module.documentation::pages.view',
             'uses'        => 'Anomaly\DocumentationModule\Http\Controller\PagesController@view',
             'constraints' => [

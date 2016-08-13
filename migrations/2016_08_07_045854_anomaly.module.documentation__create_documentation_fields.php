@@ -31,6 +31,12 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
                 'default_value' => true,
             ],
         ],
+        'type'             => [
+            'type'   => 'anomaly.field_type.relationship',
+            'config' => [
+                'related' => 'Anomaly\DocumentationModule\Type\TypeModel'
+            ]
+        ],
         'parent'           => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
