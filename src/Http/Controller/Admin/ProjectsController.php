@@ -1,10 +1,19 @@
 <?php namespace Anomaly\DocumentationModule\Http\Controller\Admin;
 
+use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\DocumentationModule\Project\Form\ProjectFormBuilder;
 use Anomaly\DocumentationModule\Project\Table\ProjectTableBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
+/**
+ * Class ProjectsController
+ *
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @package       Anomaly\DocumentationModule\Http\Controller\Admin
+ */
 class ProjectsController extends AdminController
 {
 
@@ -56,5 +65,25 @@ class ProjectsController extends AdminController
     public function edit(ProjectFormBuilder $form, $id)
     {
         return $form->render($id);
+    }
+
+    /**
+     * Redirect to the view for a project.
+     *
+     * @param ProjectRepositoryInterface $projects
+     * @param                            $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function view(ProjectRepositoryInterface $projects, $id)
+    {
+        /* @var ProjectInterface $project */
+        $project = $projects->find($id);
+
+        return $this->redirect->route(
+            'anomaly.module.documentation::projects.view',
+            [
+                'project' => $project->getSlug()
+            ]
+        );
     }
 }

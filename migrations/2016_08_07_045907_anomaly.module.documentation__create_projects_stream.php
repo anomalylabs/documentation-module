@@ -43,11 +43,11 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
                 'type'    => '-',
             ]
         ],
-        'image',
         'description' => [
             'translatable' => true,
         ],
         'enabled',
+        'allowed_roles',
     ];
 
 }

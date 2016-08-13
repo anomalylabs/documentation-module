@@ -1,9 +1,12 @@
 <?php namespace Anomaly\DocumentationModule\Http\Controller\Admin;
 
+use Anomaly\DocumentationModule\Entry\Form\EntryFormBuilder;
 use Anomaly\DocumentationModule\Page\Contract\PageInterface;
 use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
+use Anomaly\DocumentationModule\Page\Form\PageEntryFormBuilder;
 use Anomaly\DocumentationModule\Page\Form\PageFormBuilder;
 use Anomaly\DocumentationModule\Page\Tree\PageTreeBuilder;
+use Anomaly\DocumentationModule\Type\Contract\TypeInterface;
 use Anomaly\DocumentationModule\Type\Contract\TypeRepositoryInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionRepositoryInterface;
@@ -68,20 +71,33 @@ class PagesController extends AdminController
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(
-        PageFormBuilder $form,
+        PageEntryFormBuilder $form,
+        EntryFormBuilder $entry,
+        PageFormBuilder $page,
         VersionRepositoryInterface $versions,
         PageRepositoryInterface $pages,
+        TypeRepositoryInterface $types,
         $version
     ) {
         /* @var PageInterface $parent */
         if ($parent = $pages->find($this->request->get('parent'))) {
-            $form->setParent($parent);
+            $page->setParent($parent);
         }
 
         /* @var VersionInterface $version */
         $version = $versions->find($version);
 
-        $form->setVersion($version);
+        $page->setVersion($version);
+
+        /* @var TypeInterface $type */
+        $type = $types->find($this->request->get('type'));
+
+        $page->setType($type);
+
+        $entry->setModel($type->getEntryModelName());
+
+        $form->addForm('entry', $entry);
+        $form->addForm('page', $page);
 
         return $form->render();
     }

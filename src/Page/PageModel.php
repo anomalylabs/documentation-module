@@ -4,6 +4,7 @@ use Anomaly\DocumentationModule\Page\Contract\PageInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Type\Contract\TypeInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
+use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationPagesEntryModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Response;
@@ -284,5 +285,25 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Get the related entry.
+     *
+     * @return null|EntryInterface
+     */
+    public function getEntry()
+    {
+        return $this->entry;
+    }
+
+    /**
+     * Get the related entry ID.
+     *
+     * @return null|int
+     */
+    public function getEntryId()
+    {
+        return $this->entry_id;
     }
 }

@@ -7,6 +7,7 @@ use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\Response;
 
 /**
@@ -198,4 +199,25 @@ interface PageInterface extends EntryInterface
      * @return BelongsTo
      */
     public function type();
+
+    /**
+     * Get the related entry.
+     *
+     * @return null|EntryInterface
+     */
+    public function getEntry();
+
+    /**
+     * Get the related entry ID.
+     *
+     * @return null|int
+     */
+    public function getEntryId();
+
+    /**
+     * Return the entry relationship.
+     *
+     * @return MorphTo
+     */
+    public function entry();
 }

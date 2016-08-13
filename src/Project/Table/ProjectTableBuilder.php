@@ -14,6 +14,16 @@ class ProjectTableBuilder extends TableBuilder
 {
 
     /**
+     * The table columns.
+     *
+     * @var array
+     */
+    protected $columns = [
+        'name',
+        'description',
+    ];
+
+    /**
      * The table buttons.
      *
      * @var array|string
@@ -24,6 +34,9 @@ class ProjectTableBuilder extends TableBuilder
             'icon' => 'code-fork',
             'type' => 'primary',
         ],
+        'view'     => [
+            'target' => '_blank'
+        ]
     ];
 
     /**

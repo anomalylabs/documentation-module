@@ -31,6 +31,10 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
+        'documentation'                                          => [
+            'as'   => 'anomaly.module.documentation::projects.index',
+            'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@index',
+        ],
         'documentation/{project}'                                => [
             'as'   => 'anomaly.module.documentation::projects.view',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',

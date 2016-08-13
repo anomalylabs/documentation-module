@@ -23,8 +23,11 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
         'title'            => 'anomaly.field_type.text',
         'slug'             => 'anomaly.field_type.slug',
         'path'             => 'anomaly.field_type.text',
-        'image'            => 'anomaly.field_type.file',
         'description'      => 'anomaly.field_type.textarea',
+        'meta_title'       => 'anomaly.field_type.text',
+        'meta_description' => 'anomaly.field_type.textarea',
+        'meta_keywords'    => 'anomaly.field_type.tags',
+        'entry'            => 'anomaly.field_type.polymorphic',
         'enabled'          => [
             'type'   => 'anomaly.field_type.boolean',
             'config' => [
@@ -75,9 +78,12 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
                 'default_value' => false,
             ]
         ],
-        'meta_title'       => 'anomaly.field_type.text',
-        'meta_description' => 'anomaly.field_type.textarea',
-        'meta_keywords'    => 'anomaly.field_type.tags',
+        'allowed_roles'    => [
+            'type'   => 'anomaly.field_type.multiple',
+            'config' => [
+                'related' => 'Anomaly\UsersModule\Role\RoleModel'
+            ]
+        ],
     ];
 
 }

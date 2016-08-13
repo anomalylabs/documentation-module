@@ -14,6 +14,16 @@ class VersionTableBuilder extends TableBuilder
 {
 
     /**
+     * The table columns.
+     *
+     * @var array
+     */
+    protected $columns = [
+        'name',
+        'entry.enabled.label'
+    ];
+
+    /**
      * The table buttons.
      *
      * @var array|string

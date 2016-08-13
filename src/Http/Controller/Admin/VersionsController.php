@@ -50,12 +50,19 @@ class VersionsController extends AdminController
     /**
      * Create a new entry.
      *
-     * @param VersionFormBuilder $form
+     * @param VersionFormBuilder         $form
+     * @param ProjectRepositoryInterface $projects
+     * @param                            $project
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(VersionFormBuilder $form)
+    public function create(VersionFormBuilder $form, ProjectRepositoryInterface $projects, $project)
     {
-        return $form->render();
+        /* @var ProjectInterface $project */
+        $project = $projects->find($project);
+
+        return $form
+            ->setProject($project)
+            ->render();
     }
 
     /**

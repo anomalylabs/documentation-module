@@ -2,6 +2,7 @@
 
 use Anomaly\DocumentationModule\Page\Contract\PageInterface;
 use Anomaly\Streams\Platform\Entry\EntryPresenter;
+use Anomaly\Streams\Platform\Support\Decorator;
 
 /**
  * Class PagePresenter
@@ -45,4 +46,21 @@ class PagePresenter extends EntryPresenter
         );
     }
 
+    /**
+     * Catch calls to fields on
+     * the page's related entry.
+     *
+     * @param string $key
+     * @return mixed
+     */
+    public function __get($key)
+    {
+        $entry = $this->object->getEntry();
+
+        if ($entry && $entry->hasField($key)) {
+            return (New Decorator())->decorate($entry)->{$key};
+        }
+
+        return parent::__get($key);
+    }
 }

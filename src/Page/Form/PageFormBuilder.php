@@ -1,6 +1,7 @@
 <?php namespace Anomaly\DocumentationModule\Page\Form;
 
 use Anomaly\DocumentationModule\Page\Contract\PageInterface;
+use Anomaly\DocumentationModule\Type\Contract\TypeInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
@@ -14,6 +15,13 @@ use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
  */
 class PageFormBuilder extends FormBuilder
 {
+
+    /**
+     * The type instance.
+     *
+     * @var TypeInterface
+     */
+    protected $type = null;
 
     /**
      * The parent page.
@@ -35,9 +43,11 @@ class PageFormBuilder extends FormBuilder
      * @var array
      */
     protected $skips = [
+        'entry',
         'parent',
         'path',
         'str_id',
+        'type',
         'version',
     ];
 
@@ -50,6 +60,10 @@ class PageFormBuilder extends FormBuilder
     {
         if (!$this->getVersion() && !$this->getEntry()) {
             throw new \Exception('The $version parameter is required when creating a page.');
+        }
+
+        if (!$this->getType() && !$this->getEntry()) {
+            throw new \Exception('The $type parameter is required when creating a page.');
         }
     }
 
@@ -65,9 +79,36 @@ class PageFormBuilder extends FormBuilder
             $entry->version_id = $version->getId();
         }
 
+        if (!$entry->type_id && $type = $this->getType()) {
+            $entry->type_id = $type->getId();
+        }
+
         if ($parent) {
             $entry->parent_id = $parent->getId();
         }
+    }
+
+    /**
+     * Get the type.
+     *
+     * @return null|TypeInterface
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set the type.
+     *
+     * @param TypeInterface $type
+     * @return $this
+     */
+    public function setType(TypeInterface $type)
+    {
+        $this->type = $type;
+
+        return $this;
     }
 
     /**
