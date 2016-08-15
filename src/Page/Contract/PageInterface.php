@@ -194,6 +194,13 @@ interface PageInterface extends EntryInterface
     public function getType();
 
     /**
+     * Get the type entry model name.
+     *
+     * @return string
+     */
+    public function getTypeEntryModelName();
+
+    /**
      * Return the type relation.
      *
      * @return BelongsTo

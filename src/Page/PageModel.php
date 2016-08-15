@@ -288,6 +288,18 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     }
 
     /**
+     * Get the type entry model name.
+     *
+     * @return string
+     */
+    public function getTypeEntryModelName()
+    {
+        $type = $this->getType();
+
+        return $type->getEntryModelName();
+    }
+
+    /**
      * Get the related entry.
      *
      * @return null|EntryInterface

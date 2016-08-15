@@ -105,12 +105,25 @@ class PagesController extends AdminController
     /**
      * Edit an existing entry.
      *
-     * @param PageFormBuilder $form
+     * @param PageEntryFormBuilder    $form
+     * @param EntryFormBuilder        $entry
+     * @param PageFormBuilder         $page
+     * @param PageRepositoryInterface $pages
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(PageFormBuilder $form)
-    {
-        return $form->render($this->route->parameter('id'));
+    public function edit(
+        PageEntryFormBuilder $form,
+        EntryFormBuilder $entry,
+        PageFormBuilder $page,
+        PageRepositoryInterface $pages
+    ) {
+        /* @var PageInterface $row */
+        $row = $pages->find($this->route->parameter('id'));
+
+        $form->addForm('entry', $entry->setEntry($row->getEntry()));
+        $form->addForm('page', $page->setEntry($row));
+
+        return $form->render();
     }
 
     /**
