@@ -70,4 +70,20 @@ class VersionModel extends DocumentationVersionsEntryModel implements VersionInt
     {
         return $this->hasMany(PageModel::class, 'version_id');
     }
+
+    /**
+     * Return the routable data.
+     *
+     * @return array
+     */
+    public function toRoutable()
+    {
+        $routable = parent::toRoutable();
+
+        $project = $this->getProject();
+
+        $routable['project'] = $project->getSlug();
+
+        return $routable;
+    }
 }

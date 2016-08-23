@@ -18,12 +18,11 @@ class ProjectsController extends PublicController
      * Return the home page of a project.
      *
      * @param ProjectRepositoryInterface $projects
-     * @param                            $project
      * @return string
      */
-    public function view(ProjectRepositoryInterface $projects, $project)
+    public function view(ProjectRepositoryInterface $projects)
     {
-        if (!$project = $projects->findBySlug($project)) {
+        if (!$project = $projects->findBySlug($this->route->getParameter('slug'))) {
             abort(404);
         }
 

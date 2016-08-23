@@ -1,6 +1,5 @@
 <?php namespace Anomaly\DocumentationModule\Page;
 
-use Anomaly\DocumentationModule\Page\Contract\PageInterface;
 use Anomaly\Streams\Platform\Entry\EntryRouter;
 
 /**
@@ -14,29 +13,4 @@ use Anomaly\Streams\Platform\Entry\EntryRouter;
 class PageRouter extends EntryRouter
 {
 
-    /**
-     * The router entry.
-     *
-     * @var PageInterface
-     */
-    protected $entry;
-
-    /**
-     * Return the view path.
-     *
-     * @return mixed|null|string
-     */
-    public function view()
-    {
-        $version = $this->entry->getVersion();
-        $project = $this->entry->getProject();
-
-        $variables = [
-            'project' => $project->getSlug(),
-            'version' => $version->getName(),
-            'path'    => ltrim($this->entry->getPath(), '/'),
-        ];
-
-        return $this->url->make('anomaly.module.documentation::pages.view', $variables);
-    }
 }

@@ -318,4 +318,23 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     {
         return $this->entry_id;
     }
+
+    /**
+     * Return the routable data.
+     *
+     * @return array
+     */
+    public function toRoutable()
+    {
+        $routable = parent::toRoutable();
+
+        $version = $this->getVersion();
+        $project = $this->getProject();
+
+        $routable['project'] = $project->getSlug();
+        $routable['version'] = $version->getName();
+        $routable['path']    = ltrim($this->getPath(), '/');
+
+        return $routable;
+    }
 }

@@ -1,7 +1,10 @@
 <?php namespace Anomaly\DocumentationModule\Page;
 
+use Anomaly\DocumentationModule\Command\AddDocumentationBreadcrumb;
 use Anomaly\DocumentationModule\Page\Contract\PageInterface;
+use Anomaly\DocumentationModule\Project\Command\AddProjectBreadcrumb;
 use Anomaly\Streams\Platform\Ui\Breadcrumb\BreadcrumbCollection;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class PageBreadcrumb
@@ -13,6 +16,8 @@ use Anomaly\Streams\Platform\Ui\Breadcrumb\BreadcrumbCollection;
  */
 class PageBreadcrumb
 {
+
+    use DispatchesJobs;
 
     /**
      * The breadcrumb collection.
@@ -43,6 +48,9 @@ class PageBreadcrumb
         ];
 
         $this->loadParent($page, $breadcrumbs);
+
+        $this->dispatch(new AddDocumentationBreadcrumb());
+        $this->dispatch(new AddProjectBreadcrumb($page->getProject()));
 
         foreach (array_reverse($breadcrumbs) as $key => $url) {
             $this->breadcrumbs->add($key, $url);
