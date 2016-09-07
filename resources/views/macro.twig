@@ -6,7 +6,7 @@
             {{ page.current ? options.get('current_class', 'current') }}
             {{ options.item_class }}">
 
-            <a href="{{ url(page.path) }}" class="{{ options.link_class }}">
+            <a href="{{ page.route('view') }}" class="{{ options.link_class }}">
                 {{ page.title }}
             </a>
 

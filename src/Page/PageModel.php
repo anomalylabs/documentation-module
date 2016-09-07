@@ -15,7 +15,6 @@ use Illuminate\Http\Response;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\DocumentationModule\Page
  */
 class PageModel extends DocumentationPagesEntryModel implements PageInterface
 {
@@ -106,6 +105,16 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * Get the parent ID.
+     *
+     * @return int|null
+     */
+    public function getParentId()
+    {
+        return $this->parent_id;
     }
 
     /**
@@ -320,13 +329,29 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     }
 
     /**
+     * Return the page as an array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        $array = parent::toArray();
+
+        if ($entry = $this->getEntry()) {
+            $array = array_merge($array, $entry->toArray());
+        }
+
+        return $array;
+    }
+
+    /**
      * Return the routable data.
      *
      * @return array
      */
-    public function toRoutable()
+    public function toRoutableArray()
     {
-        $routable = parent::toRoutable();
+        $routable = parent::toRoutableArray();
 
         $version = $this->getVersion();
         $project = $this->getProject();

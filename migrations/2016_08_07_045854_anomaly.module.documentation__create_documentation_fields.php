@@ -78,12 +78,6 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
                 'default_value' => false,
             ]
         ],
-        'allowed_roles'    => [
-            'type'   => 'anomaly.field_type.multiple',
-            'config' => [
-                'related' => 'Anomaly\UsersModule\Role\RoleModel'
-            ]
-        ],
     ];
 
 }

@@ -1,7 +1,10 @@
 <?php namespace Anomaly\DocumentationModule\Http\Controller;
 
+use Anomaly\DocumentationModule\Command\AddDocumentationBreadcrumb;
+use Anomaly\DocumentationModule\Command\SetDocumentationMetaTitle;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
+use Illuminate\Http\Response;
 
 /**
  * Class ProjectsController
@@ -9,15 +12,26 @@ use Anomaly\Streams\Platform\Http\Controller\PublicController;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\DocumentationModule\Http\Controller
  */
 class ProjectsController extends PublicController
 {
+    /**
+     * Return an index of existing projects.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $this->dispatch(new SetDocumentationMetaTitle());
+        $this->dispatch(new AddDocumentationBreadcrumb());
+
+        return $this->view->make('anomaly.module.documentation::projects/index');
+    }
 
     /**
      * Return the home page of a project.
      *
-     * @param ProjectRepositoryInterface $projects
+     * @param  ProjectRepositoryInterface $projects
      * @return string
      */
     public function view(ProjectRepositoryInterface $projects)

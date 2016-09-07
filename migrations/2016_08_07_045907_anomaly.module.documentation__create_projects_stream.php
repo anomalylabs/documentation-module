@@ -18,11 +18,12 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
      * @var array
      */
     protected $stream = [
-        'slug'         => 'projects',
-        'title_column' => 'name',
-        'translatable' => true,
-        'trashable'    => true,
-        'sortable'     => true,
+        'slug'           => 'projects',
+        'title_column'   => 'name',
+        'translatable'   => true,
+        'searchable'     => true,
+        'trashable'      => true,
+        'sortable'       => true,
     ];
 
     /**
@@ -41,13 +42,11 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
             'config'   => [
                 'slugify' => 'name',
                 'type'    => '-',
-            ]
+            ],
         ],
         'description' => [
             'translatable' => true,
         ],
         'enabled',
-        'allowed_roles',
     ];
-
 }

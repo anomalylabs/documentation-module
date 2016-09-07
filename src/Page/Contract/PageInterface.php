@@ -64,6 +64,13 @@ interface PageInterface extends EntryInterface
     public function getParent();
 
     /**
+     * Get the parent ID.
+     *
+     * @return int|null
+     */
+    public function getParentId();
+
+    /**
      * Return the parent relation.
      *
      * @return BelongsTo

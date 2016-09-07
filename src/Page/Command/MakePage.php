@@ -52,7 +52,7 @@ class MakePage implements SelfHandling
         PageAuthorizer $authorizer,
         PageBreadcrumb $breadcrumb
     ) {
-        //$authorizer->authorize($this->page);
+        $authorizer->authorize($this->page);
         $breadcrumb->make($this->page);
         $loader->load($this->page);
 

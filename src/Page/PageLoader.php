@@ -38,9 +38,9 @@ class PageLoader
      */
     public function load(PageInterface $page)
     {
-        $this->template->set('page', $page
-        );
+        $this->template->set('page', $page);
         $this->template->set('title', $page->getTitle());
+        $this->template->set('version', $page->getVersion());
         $this->template->set('meta_title', $page->getMetaTitle());
         $this->template->set('meta_keywords', $page->getMetaKeywords());
         $this->template->set('meta_description', $page->getMetaDescription());

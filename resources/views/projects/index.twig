@@ -1,0 +1,7 @@
+{% extends layout('documentation') %}
+
+{% block content %}
+    {% for project in entries('documentation', 'projects').enabled().get() %}
+        {{ html_link(project.route('view'), project.title) }}
+    {% endfor %}
+{% endblock %}

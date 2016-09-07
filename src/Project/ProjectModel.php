@@ -29,6 +29,16 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     }
 
     /**
+     * Get the enabled flag.
+     *
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
      * Get the related versions.
      *
      * @return VersionCollection

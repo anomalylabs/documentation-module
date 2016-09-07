@@ -1,6 +1,18 @@
 <?php namespace Anomaly\DocumentationModule;
 
+use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
+use Anomaly\DocumentationModule\Page\PageModel;
+use Anomaly\DocumentationModule\Page\PageRepository;
+use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
+use Anomaly\DocumentationModule\Project\ProjectModel;
+use Anomaly\DocumentationModule\Project\ProjectRepository;
+use Anomaly\DocumentationModule\Type\Contract\TypeRepositoryInterface;
+use Anomaly\DocumentationModule\Type\TypeRepository;
+use Anomaly\DocumentationModule\Version\Contract\VersionRepositoryInterface;
+use Anomaly\DocumentationModule\Version\VersionRepository;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
+use Anomaly\Streams\Platform\Model\Documentation\DocumentationPagesEntryModel;
+use Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel;
 
 /**
  * Class DocumentationModuleServiceProvider
@@ -8,10 +20,28 @@ use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\DocumentationModule
  */
 class DocumentationModuleServiceProvider extends AddonServiceProvider
 {
+
+    /**
+     * The addon plugins.
+     *
+     * @var array
+     */
+    protected $plugins = [
+        DocumentationModulePlugin::class,
+    ];
+
+    /**
+     * The addon bindings.
+     *
+     * @var array
+     */
+    protected $bindings = [
+        DocumentationPagesEntryModel::class    => PageModel::class,
+        DocumentationProjectsEntryModel::class => ProjectModel::class,
+    ];
 
     /**
      * The addon singletons.
@@ -19,10 +49,10 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $singletons = [
-        'Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface'       => 'Anomaly\DocumentationModule\Page\PageRepository',
-        'Anomaly\DocumentationModule\Type\Contract\TypeRepositoryInterface'       => 'Anomaly\DocumentationModule\Type\TypeRepository',
-        'Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface' => 'Anomaly\DocumentationModule\Project\ProjectRepository',
-        'Anomaly\DocumentationModule\Version\Contract\VersionRepositoryInterface' => 'Anomaly\DocumentationModule\Version\VersionRepository',
+        PageRepositoryInterface::class    => PageRepository::class,
+        TypeRepositoryInterface::class    => TypeRepository::class,
+        VersionRepositoryInterface::class => VersionRepository::class,
+        ProjectRepositoryInterface::class => ProjectRepository::class,
     ];
 
     /**

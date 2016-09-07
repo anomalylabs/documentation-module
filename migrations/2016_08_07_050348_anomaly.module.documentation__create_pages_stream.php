@@ -21,6 +21,7 @@ class AnomalyModuleDocumentationCreatePagesStream extends Migration
         'slug'         => 'pages',
         'title_column' => 'title',
         'translatable' => true,
+        'searchable'   => true,
         'trashable'    => true,
         'sortable'     => true,
     ];
@@ -43,7 +44,7 @@ class AnomalyModuleDocumentationCreatePagesStream extends Migration
             'config'   => [
                 'slugify' => 'title',
                 'type'    => '-',
-            ]
+            ],
         ],
         'path'             => [
             'required' => true,
@@ -71,5 +72,4 @@ class AnomalyModuleDocumentationCreatePagesStream extends Migration
             'required' => true,
         ],
     ];
-
 }

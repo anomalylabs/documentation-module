@@ -36,8 +36,8 @@ class AnomalyModuleDocumentationCreateTypesStream extends Migration
             'required'     => true,
             'unique'       => true,
             'config'       => [
-                'max' => 50
-            ]
+                'max' => 50,
+            ],
         ],
         'slug'         => [
             'required' => true,
@@ -45,18 +45,17 @@ class AnomalyModuleDocumentationCreateTypesStream extends Migration
             'config'   => [
                 'slugify' => 'name',
                 'type'    => '_',
-                'max'     => 50
-            ]
+                'max'     => 50,
+            ],
         ],
         'description'  => [
-            'translatable' => true
+            'translatable' => true,
         ],
         'theme_layout' => [
-            'required' => true
+            'required' => true,
         ],
         'layout'       => [
-            'required' => true
+            'required' => true,
         ],
     ];
-
 }

@@ -14,6 +14,15 @@ class DocumentationModule extends Module
 {
 
     /**
+     * The addon plugins.
+     *
+     * @var array
+     */
+    protected $plugins = [
+        DocumentationModulePlugin::class,
+    ];
+
+    /**
      * The module sections.
      *
      * @var array
@@ -21,7 +30,7 @@ class DocumentationModule extends Module
     protected $sections = [
         'projects' => [
             'buttons'  => [
-                'new_project'
+                'new_project',
             ],
             'sections' => [
                 'versions' => [
@@ -32,9 +41,9 @@ class DocumentationModule extends Module
 
                     'buttons' => [
                         'new_version',
-                    ]
+                    ],
                 ],
-            ]
+            ],
         ],
         'pages'    => [
             'data-toggle' => 'modal',
@@ -46,13 +55,13 @@ class DocumentationModule extends Module
                 'new_page' => [
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
-                    'href'        => 'admin/documentation/pages/{request.route.parameters.version}/choose'
-                ]
-            ]
+                    'href'        => 'admin/documentation/pages/{request.route.parameters.version}/choose',
+                ],
+            ],
         ],
         'types'    => [
             'buttons'  => [
-                'new_type'
+                'new_type',
             ],
             'sections' => [
                 'assignments' => [
@@ -62,10 +71,10 @@ class DocumentationModule extends Module
                             'data-toggle' => 'modal',
                             'data-target' => '#modal',
                             'href'        => 'admin/documentation/types/assignments/{request.route.parameters.type}/choose',
-                        ]
-                    ]
-                ]
-            ]
+                        ],
+                    ],
+                ],
+            ],
         ],
         'fields'   => [
             'buttons' => [
@@ -73,8 +82,8 @@ class DocumentationModule extends Module
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
                     'href'        => 'admin/documentation/fields/choose',
-                ]
-            ]
-        ]
+                ],
+            ],
+        ],
     ];
 }

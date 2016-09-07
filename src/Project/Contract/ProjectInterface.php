@@ -24,6 +24,13 @@ interface ProjectInterface extends EntryInterface
     public function getSlug();
 
     /**
+     * Get the enabled flag.
+     *
+     * @return bool
+     */
+    public function isEnabled();
+
+    /**
      * Get the related versions.
      *
      * @return VersionCollection

@@ -18,9 +18,11 @@ class PagesController extends PublicController
 {
 
     /**
+     * View an existing page.
+     *
      * @param ProjectRepositoryInterface $projects
      * @param PageRepositoryInterface    $pages
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response|null
      */
     public function view(ProjectRepositoryInterface $projects, PageRepositoryInterface $pages)
     {
