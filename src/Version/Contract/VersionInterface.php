@@ -26,6 +26,13 @@ interface VersionInterface extends EntryInterface
     public function getName();
 
     /**
+     * Get the enabled flag.
+     *
+     * @return bool
+     */
+    public function isEnabled();
+
+    /**
      * Get the project.
      *
      * @return ProjectInterface

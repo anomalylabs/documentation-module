@@ -9,6 +9,7 @@ use Illuminate\View\Factory;
 
 class RenderNavigation
 {
+
     use DispatchesJobs;
 
     /**
@@ -31,15 +32,16 @@ class RenderNavigation
     /**
      * Handle the command.
      *
-     * @param  PageRepositoryInterface $pages
-     * @return null|PageInterface
+     * @param Factory $view
+     * @return PageInterface|null
      */
-    public function handle(PageRepositoryInterface $pages, Factory $view)
+    public function handle(Factory $view)
     {
         $options = $this->options;
 
+        $pages = $this->dispatch(new GetPages($options));
+
         /* @var PageCollection $pages */
-        $pages = $pages->sorted();
         $pages = $pages->enabled();
 
         $this->dispatch(new SetCurrentPage($pages));

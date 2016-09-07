@@ -1,6 +1,8 @@
 <?php namespace Anomaly\DocumentationModule\Version\Table;
 
+use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class VersionTableBuilder
@@ -14,13 +16,20 @@ class VersionTableBuilder extends TableBuilder
 {
 
     /**
+     * The project instance.
+     *
+     * @var null|ProjectInterface
+     */
+    protected $project = null;
+
+    /**
      * The table columns.
      *
      * @var array
      */
     protected $columns = [
         'name',
-        'entry.enabled.label'
+        'entry.enabled.label',
     ];
 
     /**
@@ -34,7 +43,7 @@ class VersionTableBuilder extends TableBuilder
             'icon' => 'file',
             'type' => 'primary',
             'href' => 'admin/documentation/pages/{entry.id}',
-        ]
+        ],
     ];
 
     /**
@@ -45,4 +54,39 @@ class VersionTableBuilder extends TableBuilder
     protected $actions = [
         'delete',
     ];
+
+    /**
+     * Fired just before querying.
+     *
+     * @param Builder $query
+     */
+    public function onQuerying(Builder $query)
+    {
+        if ($project = $this->getProject()) {
+            $query->where('project_id', $project->getId());
+        }
+    }
+
+    /**
+     * Get the project.
+     *
+     * @return ProjectInterface|null
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * Set the project.
+     *
+     * @param ProjectInterface $project
+     * @return $this
+     */
+    public function setProject(ProjectInterface $project)
+    {
+        $this->project = $project;
+
+        return $this;
+    }
 }

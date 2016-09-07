@@ -1,5 +1,7 @@
 <?php namespace Anomaly\DocumentationModule\Project;
 
+use Anomaly\DocumentationModule\Page\PageCollection;
+use Anomaly\DocumentationModule\Page\PageModel;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\VersionCollection;
@@ -39,6 +41,26 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     }
 
     /**
+     * Get the related pages.
+     *
+     * @return PageCollection
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
+
+    /**
+     * Return the pages relation.
+     *
+     * @return HasMany
+     */
+    public function pages()
+    {
+        return $this->hasMany(PageModel::class, 'project_id');
+    }
+
+    /**
      * Get the related versions.
      *
      * @return VersionCollection
@@ -70,7 +92,9 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     {
         $versions = $this->getVersions();
 
-        return $versions->first();
+        return $versions
+            ->enabled()
+            ->first();
     }
 
     /**

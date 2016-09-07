@@ -30,6 +30,16 @@ class VersionModel extends DocumentationVersionsEntryModel implements VersionInt
     }
 
     /**
+     * Get the enabled flag.
+     *
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
      * Get the project.
      *
      * @return ProjectInterface
@@ -76,9 +86,9 @@ class VersionModel extends DocumentationVersionsEntryModel implements VersionInt
      *
      * @return array
      */
-    public function toRoutable()
+    public function toRoutableArray()
     {
-        $routable = parent::toRoutable();
+        $routable = parent::toRoutableArray();
 
         $project = $this->getProject();
 

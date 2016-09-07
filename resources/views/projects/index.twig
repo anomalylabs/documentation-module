@@ -1,7 +1,11 @@
 {% extends layout('documentation') %}
 
 {% block content %}
-    {% for project in entries('documentation', 'projects').enabled().get() %}
-        {{ html_link(project.route('view'), project.title) }}
+    {% for project in entries('documentation', 'projects').enabled(true).get() %}
+        <h3>
+            {{ html_link(project.route('view'), project.title) }}
+            <br>
+            <small>{{ project.description }}</small>
+        </h3>
     {% endfor %}
 {% endblock %}

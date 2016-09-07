@@ -1,5 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Project\Contract;
 
+use Anomaly\DocumentationModule\Page\PageCollection;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\VersionCollection;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
@@ -29,6 +30,20 @@ interface ProjectInterface extends EntryInterface
      * @return bool
      */
     public function isEnabled();
+
+    /**
+     * Get the related pages.
+     *
+     * @return PageCollection
+     */
+    public function getPages();
+
+    /**
+     * Return the pages relation.
+     *
+     * @return HasMany
+     */
+    public function pages();
 
     /**
      * Get the related versions.

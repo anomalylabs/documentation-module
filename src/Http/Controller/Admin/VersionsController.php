@@ -20,12 +20,15 @@ class VersionsController extends AdminController
     /**
      * Display an index of existing entries.
      *
-     * @param VersionTableBuilder $table
+     * @param ProjectRepositoryInterface $projects
+     * @param VersionTableBuilder        $table
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(VersionTableBuilder $table)
+    public function index(ProjectRepositoryInterface $projects, VersionTableBuilder $table)
     {
-        return $table->render();
+        $project = $projects->find($this->route->getParameter('project'));
+
+        return $table->setProject($project)->render();
     }
 
     /**
@@ -55,10 +58,10 @@ class VersionsController extends AdminController
      * @param                            $project
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(VersionFormBuilder $form, ProjectRepositoryInterface $projects, $project)
+    public function create(VersionFormBuilder $form, ProjectRepositoryInterface $projects)
     {
         /* @var ProjectInterface $project */
-        $project = $projects->find($project);
+        $project = $projects->find($this->route->getParameter('project'));
 
         return $form
             ->setProject($project)
@@ -69,11 +72,10 @@ class VersionsController extends AdminController
      * Edit an existing entry.
      *
      * @param VersionFormBuilder $form
-     * @param                    $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(VersionFormBuilder $form, $id)
+    public function edit(VersionFormBuilder $form)
     {
-        return $form->render($id);
+        return $form->render($this->route->getParameter('id'));
     }
 }
