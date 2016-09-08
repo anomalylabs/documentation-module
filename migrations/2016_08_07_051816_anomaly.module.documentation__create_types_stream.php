@@ -51,9 +51,6 @@ class AnomalyModuleDocumentationCreateTypesStream extends Migration
         'description'  => [
             'translatable' => true,
         ],
-        'theme_layout' => [
-            'required' => true,
-        ],
         'layout'       => [
             'required' => true,
         ],

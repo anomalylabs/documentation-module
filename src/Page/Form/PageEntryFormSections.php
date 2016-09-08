@@ -26,8 +26,8 @@ class PageEntryFormSections
                 'general' => [
                     'fields' => [
                         'page_title',
-                        'page_slug'
-                    ]
+                        'page_slug',
+                    ],
                 ],
                 'fields'  => [
                     'fields' => function (PageEntryFormBuilder $builder) {
@@ -42,22 +42,21 @@ class PageEntryFormSections
                                 }
                             )
                         );
-                    }
+                    },
                 ],
                 'seo'     => [
                     'fields' => [
                         'page_meta_title',
                         'page_meta_keywords',
-                        'page_meta_description'
-                    ]
+                        'page_meta_description',
+                    ],
                 ],
                 'options' => [
                     'fields' => [
-                        'page_theme_layout',
                         'page_enabled',
-                        'page_home'
-                    ]
-                ]
+                        'page_home',
+                    ],
+                ],
             ]
         );
     }

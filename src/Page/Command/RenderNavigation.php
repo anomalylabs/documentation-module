@@ -56,7 +56,7 @@ class RenderNavigation
         }
 
         return $view->make(
-            $options->get('view', 'anomaly.module.documentation::structure'),
+            $options->get('view', 'anomaly.module.documentation::pages/structure'),
             compact('pages', 'options')
         )->render();
     }

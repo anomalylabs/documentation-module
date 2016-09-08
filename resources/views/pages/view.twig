@@ -1,0 +1,39 @@
+{% extends layout('documentation') %}
+
+{% block content %}
+    <div class="row">
+
+        <div class="col-lg-3">
+
+            <div class="dropdown">
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    {{ version.name }}
+
+                    {% if project.versions.count() > 1 %}
+                        <span class="caret"></span>
+                    {% endif %}
+                </a>
+                {% if project.versions.count() > 1 %}
+                    <ul class="dropdown-menu">
+                        {% for version in project.versions.enabled %}
+                            <li class="{{ version.id == template.version.id ? 'active' }}">
+                                <a href="{{ version.route('view') }}">
+                                    {{ version.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <br>
+
+            {{ documentation()|raw }}
+        </div>
+
+        <div class="col-lg-9">
+            {{ content|raw }}
+        </div>
+
+    </div>
+{% endblock %}

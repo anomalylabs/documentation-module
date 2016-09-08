@@ -41,10 +41,12 @@ class PageResponse
         if (!$page->getResponse()) {
             $page->setResponse(
                 $this->response->view(
-                    'anomaly.module.documentation::page',
+                    'anomaly.module.documentation::pages/view',
                     [
                         'page'    => $page,
-                        'content' => $page->getContent()
+                        'project' => $page->getProject(),
+                        'version' => $page->getVersion(),
+                        'content' => $page->getContent(),
                     ]
                 )
             );

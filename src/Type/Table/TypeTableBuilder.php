@@ -14,6 +14,16 @@ class TypeTableBuilder extends TableBuilder
 {
 
     /**
+     * The table columns.
+     *
+     * @var array
+     */
+    protected $columns = [
+        'name',
+        'description',
+    ];
+
+    /**
      * The table buttons.
      *
      * @var array|string
@@ -29,6 +39,6 @@ class TypeTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $actions = [
-        'delete'
+        'delete',
     ];
 }

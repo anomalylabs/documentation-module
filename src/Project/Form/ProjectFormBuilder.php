@@ -24,13 +24,12 @@ class ProjectFormBuilder extends FormBuilder
                 'name',
                 'slug',
                 'description',
-            ]
+            ],
         ],
         'options' => [
             'fields' => [
                 'enabled',
-                'allowed_roles'
-            ]
+            ],
         ],
     ];
 }
