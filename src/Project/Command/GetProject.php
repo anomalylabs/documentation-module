@@ -38,7 +38,7 @@ class GetProject
      * Handle the command.
      *
      * @param  ProjectRepositoryInterface $projects
-     * @param  ViewTemplate            $template
+     * @param  ViewTemplate               $template
      * @return ProjectInterface|EloquentModel|null
      */
     public function handle(ProjectRepositoryInterface $projects, ViewTemplate $template)

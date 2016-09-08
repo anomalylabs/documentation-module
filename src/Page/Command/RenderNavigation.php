@@ -1,7 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Page\Command;
 
 use Anomaly\DocumentationModule\Page\Contract\PageInterface;
-use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
 use Anomaly\DocumentationModule\Page\PageCollection;
 use Anomaly\Streams\Platform\Support\Collection;
 use Illuminate\Foundation\Bus\DispatchesJobs;

@@ -33,7 +33,7 @@ class TypesController extends AdminController
      * Edit an existing entry.
      *
      * @param TypeFormBuilder $form
-     * @param        $id
+     * @param                 $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(TypeFormBuilder $form, $id)

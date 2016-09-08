@@ -38,7 +38,7 @@ class GetVersion
      * Handle the command.
      *
      * @param  VersionRepositoryInterface $versions
-     * @param  ViewTemplate            $template
+     * @param  ViewTemplate               $template
      * @return VersionInterface|EloquentModel|null
      */
     public function handle(VersionRepositoryInterface $versions, ViewTemplate $template)

@@ -39,7 +39,7 @@ class PagePresenter extends EntryPresenter
                         'pages',
                         $this->object->getVersion()->getId(),
                         'edit',
-                        $this->object->getId()
+                        $this->object->getId(),
                     ]
                 )
             )

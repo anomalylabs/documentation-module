@@ -1,7 +1,5 @@
 <?php namespace Anomaly\DocumentationModule\Command;
 
-use Anomaly\Streams\Platform\Routing\UrlGenerator;
-use Anomaly\Streams\Platform\Ui\Breadcrumb\BreadcrumbCollection;
 use Anomaly\Streams\Platform\View\ViewTemplate;
 
 

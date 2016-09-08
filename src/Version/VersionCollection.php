@@ -13,10 +13,12 @@ class VersionCollection extends EntryCollection
      */
     public function enabled()
     {
-        return $this->filter(function($version) {
+        return $this->filter(
+            function ($version) {
 
-            /* @var VersionInterface $version */
-            return $version->isEnabled();
-        });
+                /* @var VersionInterface $version */
+                return $version->isEnabled();
+            }
+        );
     }
 }

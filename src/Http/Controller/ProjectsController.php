@@ -15,6 +15,7 @@ use Illuminate\Http\Response;
  */
 class ProjectsController extends PublicController
 {
+
     /**
      * Return an index of existing projects.
      *

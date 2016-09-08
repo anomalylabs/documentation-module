@@ -27,7 +27,7 @@ class VersionFormBuilder extends FormBuilder
      * @var array
      */
     protected $skips = [
-        'project'
+        'project',
     ];
 
     /**
@@ -39,18 +39,6 @@ class VersionFormBuilder extends FormBuilder
     {
         if (!$this->getProject() && !$this->getEntry()) {
             throw new \Exception('The $project parameter is required when creating a page.');
-        }
-    }
-
-    /**
-     * Fired just before saving the entry.
-     */
-    public function onSaving()
-    {
-        $entry = $this->getFormEntry();
-
-        if (!$entry->project_id && $project = $this->getProject()) {
-            $entry->project_id = $project->getId();
         }
     }
 
@@ -75,5 +63,17 @@ class VersionFormBuilder extends FormBuilder
         $this->project = $project;
 
         return $this;
+    }
+
+    /**
+     * Fired just before saving the entry.
+     */
+    public function onSaving()
+    {
+        $entry = $this->getFormEntry();
+
+        if (!$entry->project_id && $project = $this->getProject()) {
+            $entry->project_id = $project->getId();
+        }
     }
 }

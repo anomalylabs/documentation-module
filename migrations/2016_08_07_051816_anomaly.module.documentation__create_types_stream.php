@@ -31,7 +31,7 @@ class AnomalyModuleDocumentationCreateTypesStream extends Migration
      * @var array
      */
     protected $assignments = [
-        'name'         => [
+        'name'        => [
             'translatable' => true,
             'required'     => true,
             'unique'       => true,
@@ -39,7 +39,7 @@ class AnomalyModuleDocumentationCreateTypesStream extends Migration
                 'max' => 50,
             ],
         ],
-        'slug'         => [
+        'slug'        => [
             'required' => true,
             'unique'   => true,
             'config'   => [
@@ -48,10 +48,10 @@ class AnomalyModuleDocumentationCreateTypesStream extends Migration
                 'max'     => 50,
             ],
         ],
-        'description'  => [
+        'description' => [
             'translatable' => true,
         ],
-        'layout'       => [
+        'layout'      => [
             'required' => true,
         ],
     ];

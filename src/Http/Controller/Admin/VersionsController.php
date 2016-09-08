@@ -45,7 +45,7 @@ class VersionsController extends AdminController
         return $this->view->make(
             'module::admin/versions/choose',
             [
-                'versions' => $project->getVersions()
+                'versions' => $project->getVersions(),
             ]
         );
     }

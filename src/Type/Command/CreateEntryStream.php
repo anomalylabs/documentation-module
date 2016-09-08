@@ -3,7 +3,6 @@
 use Anomaly\DocumentationModule\Type\Contract\TypeInterface;
 use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
 use Illuminate\Config\Repository;
-
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
@@ -48,14 +47,14 @@ class CreateEntryStream
             [
                 $config->get('app.fallback_locale') => [
                     'name'        => $this->type->getName(),
-                    'description' => $this->type->getDescription()
+                    'description' => $this->type->getDescription(),
                 ],
                 'slug'                              => $this->type->getSlug() . '_pages',
                 'namespace'                         => 'documentation',
                 'locked'                            => false,
                 'translatable'                      => true,
                 'trashable'                         => true,
-                'hidden'                            => true
+                'hidden'                            => true,
             ]
         );
     }

@@ -45,7 +45,7 @@ class PageCollection extends EntryCollection
             }
         );
     }
-    
+
     /**
      * Find a page by it's path.
      *

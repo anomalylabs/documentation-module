@@ -32,14 +32,14 @@ class PageTreeBuilder extends TreeBuilder
             'data-toggle' => 'modal',
             'data-target' => '#modal',
             'text'        => 'anomaly.module.documentation::button.create_child_page',
-            'href'        => 'admin/documentation/pages/{request.route.parameters.version}/choose?parent={entry.id}'
+            'href'        => 'admin/documentation/pages/{request.route.parameters.version}/choose?parent={entry.id}',
         ],
         'view'   => [
-            'target' => '_blank'
+            'target' => '_blank',
         ],
         'prompt' => [
-            'href' => 'admin/documentation/pages/delete/{entry.id}'
-        ]
+            'href' => 'admin/documentation/pages/delete/{entry.id}',
+        ],
     ];
 
     /**

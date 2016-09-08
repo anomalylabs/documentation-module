@@ -35,8 +35,8 @@ class ProjectTableBuilder extends TableBuilder
             'type' => 'primary',
         ],
         'view'     => [
-            'target' => '_blank'
-        ]
+            'target' => '_blank',
+        ],
     ];
 
     /**

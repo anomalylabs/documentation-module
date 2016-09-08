@@ -39,7 +39,7 @@ class ProjectsController extends AdminController
         return $this->view->make(
             'module::admin/projects/choose',
             [
-                'projects' => $projects->all()
+                'projects' => $projects->all(),
             ]
         );
     }
@@ -82,7 +82,7 @@ class ProjectsController extends AdminController
         return $this->redirect->route(
             'anomaly.module.documentation::projects.view',
             [
-                'project' => $project->getSlug()
+                'project' => $project->getSlug(),
             ]
         );
     }

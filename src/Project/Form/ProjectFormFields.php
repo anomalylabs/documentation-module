@@ -25,9 +25,9 @@ class ProjectFormFields
                 '*',
                 'slug' => [
                     'config' => [
-                        'prefix' => $url->route('anomaly.module.documentation::projects.index') . '/test'
-                    ]
-                ]
+                        'prefix' => $url->route('anomaly.module.documentation::projects.index') . '/',
+                    ],
+                ],
             ]
         );
     }
