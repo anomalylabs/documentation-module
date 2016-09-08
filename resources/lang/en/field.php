@@ -27,11 +27,6 @@ return [
     'layout'           => [
         'name' => 'Layout',
     ],
-    'allowed_roles'    => [
-        'name'         => 'Allowed Roles',
-        'instructions' => 'Specify which user roles can access this project.',
-        'warning'      => 'If no roles are specified then everyone can access this project.',
-    ],
     'enabled'          => [
         'name'         => 'Enabled',
         'label'        => [
