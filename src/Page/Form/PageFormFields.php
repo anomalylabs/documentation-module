@@ -19,7 +19,7 @@ class PageFormFields
         $version = $builder->getVersion();
 
         /* @var PageInterface $entry */
-        if ($entry = $builder->getFormEntry()) {
+        if (!$version && $entry = $builder->getFormEntry()) {
             $version = $entry->getVersion();
         }
 

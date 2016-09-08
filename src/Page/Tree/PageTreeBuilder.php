@@ -23,15 +23,6 @@ class PageTreeBuilder extends TreeBuilder
     protected $version = null;
 
     /**
-     * The tree segments.
-     *
-     * @var array
-     */
-    protected $segments = [
-        'entry.edit_link'
-    ];
-
-    /**
      * The tree buttons.
      *
      * @var array

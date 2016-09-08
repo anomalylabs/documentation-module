@@ -61,7 +61,7 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
         'layout'           => [
             'type'   => 'anomaly.field_type.editor',
             'config' => [
-                'default_value' => '<h1>{{ project.name }}</h1>',
+                'default_value' => '{{ page.content.render|raw }}',
                 'mode'          => 'twig',
             ],
         ],
@@ -69,6 +69,13 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
             'type'   => 'anomaly.field_type.boolean',
             'config' => [
                 'default_value' => false,
+            ],
+        ],
+        'content'          => [
+            'type'   => 'anomaly.field_type.wysiwyg',
+            'locked' => false, // For seeding
+            'en'     => [
+                'name' => 'Content',
             ],
         ],
     ];
