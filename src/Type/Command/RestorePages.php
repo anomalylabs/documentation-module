@@ -2,7 +2,7 @@
 
 use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
 use Anomaly\DocumentationModule\Type\Contract\TypeInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class RestorePages
@@ -12,7 +12,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\DocumentationModule\Type\Command
  */
-class RestorePages implements SelfHandling
+class RestorePages
 {
 
     /**

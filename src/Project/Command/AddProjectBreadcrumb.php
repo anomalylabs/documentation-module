@@ -2,7 +2,7 @@
 
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\Streams\Platform\Ui\Breadcrumb\BreadcrumbCollection;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class AddProjectBreadcrumb
@@ -12,7 +12,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\DocumentationModule\Project\Command
  */
-class AddProjectBreadcrumb implements SelfHandling
+class AddProjectBreadcrumb
 {
 
     /**

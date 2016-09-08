@@ -2,7 +2,7 @@
 
 use Anomaly\Streams\Platform\Routing\UrlGenerator;
 use Anomaly\Streams\Platform\Ui\Breadcrumb\BreadcrumbCollection;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class AddDocumentationBreadcrumb
@@ -12,7 +12,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\DocumentationModule\Command
  */
-class AddDocumentationBreadcrumb implements SelfHandling
+class AddDocumentationBreadcrumb
 {
 
     /**

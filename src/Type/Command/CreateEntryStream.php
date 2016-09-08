@@ -3,7 +3,7 @@
 use Anomaly\DocumentationModule\Type\Contract\TypeInterface;
 use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
 use Illuminate\Config\Repository;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
@@ -14,7 +14,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\DocumentationModule\Type\Command
  */
-class CreateEntryStream implements SelfHandling
+class CreateEntryStream
 {
 
     use DispatchesJobs;

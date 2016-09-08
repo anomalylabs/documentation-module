@@ -3,7 +3,7 @@
 use Anomaly\Streams\Platform\Routing\UrlGenerator;
 use Anomaly\Streams\Platform\Ui\Breadcrumb\BreadcrumbCollection;
 use Anomaly\Streams\Platform\View\ViewTemplate;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class SetDocumentationMetaTitle
@@ -13,7 +13,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\DocumentationModule\Command
  */
-class SetDocumentationMetaTitle implements SelfHandling
+class SetDocumentationMetaTitle
 {
 
     /**

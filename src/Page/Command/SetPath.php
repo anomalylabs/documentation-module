@@ -1,7 +1,7 @@
 <?php namespace Anomaly\DocumentationModule\Page\Command;
 
 use Anomaly\DocumentationModule\Page\Contract\PageInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class SetPath
@@ -11,7 +11,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\DocumentationModule\Page\Command
  */
-class SetPath implements SelfHandling
+class SetPath
 {
 
     /**

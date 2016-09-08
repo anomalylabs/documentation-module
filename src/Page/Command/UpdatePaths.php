@@ -2,7 +2,7 @@
 
 use Anomaly\DocumentationModule\Page\Contract\PageInterface;
 use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class UpdatePaths
@@ -12,7 +12,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\DocumentationModule\Page\Command
  */
-class UpdatePaths implements SelfHandling
+class UpdatePaths
 {
 
     /**
