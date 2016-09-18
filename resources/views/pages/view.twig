@@ -1,5 +1,18 @@
 {% extends layout('documentation') %}
 
 {% block content %}
-    {{ content|raw }}
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3">
+                {{ documentation() }}
+            </div>
+
+            <div class="col-lg-9">
+                {{ content|raw }}
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
