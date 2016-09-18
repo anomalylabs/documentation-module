@@ -2,14 +2,23 @@
 
 {% block content %}
     <div class="container">
+        <div class="list-group">
 
-        {% for project in entries('documentation', 'projects').enabled(true).get() %}
-            <h3>
-                {{ html_link(project.route('view'), project.title) }}
-                <br>
-                <small>{{ project.description }}</small>
-            </h3>
-        {% endfor %}
+            {% for project in entries('documentation', 'projects').enabled(true).get() %}
+                <a href="{{ project.route('view') }}" class="list-group-item">
 
+                    <h4 class="list-group-item-heading">
+                        {{ project.title }}
+                    </h4>
+                    <p class="list-group-item-text">
+                        {{ project.description }}
+                    </p>
+
+                    <div class="clearfix"></div>
+
+                </a>
+            {% endfor %}
+
+        </div>
     </div>
 {% endblock %}
