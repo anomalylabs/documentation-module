@@ -4,21 +4,55 @@
     <div class="container">
         <div class="list-group">
 
-            {% for project in entries('documentation', 'projects').enabled(true).get() %}
-                <a href="{{ project.route('view') }}" class="list-group-item">
+            <form>
+                <input name="q" class="form-control" value="{{ request_get('q') }}" placeholder="Search...">
+            </form>
 
-                    <h4 class="list-group-item-heading">
-                        {{ project.title }}
-                    </h4>
+            <br>
 
-                    <p class="list-group-item-text">
-                        {{ project.description }}
-                    </p>
+            {% if request_get('q') %}
 
-                    <div class="clearfix"></div>
+                {% set pages = entries('documentation', 'pages').search(request_get('q')).take(50).get() %}
 
-                </a>
-            {% endfor %}
+                {% for page in pages.enabled() %}
+                    <a href="{{ page.route('view') }}" class="list-group-item">
+
+                        <h4 class="list-group-item-heading">
+                            {{ page.project.title }} > {{ page.title }}
+                            <br>
+                            <small>{{ url(page.path) }}</small>
+                        </h4>
+
+                        <p class="list-group-item-text">
+                            {{ page.meta_description }}
+                        </p>
+
+                        <div class="clearfix"></div>
+
+                    </a>
+                {% endfor %}
+
+            {% else %}
+
+                {% set projects = entries('documentation', 'projects').get() %}
+
+                {% for project in projects.enabled() %}
+                    <a href="{{ project.route('view') }}" class="list-group-item">
+
+                        <h4 class="list-group-item-heading">
+                            {{ project.title }}
+                        </h4>
+
+                        <p class="list-group-item-text">
+                            {{ project.description }}
+                        </p>
+
+                        <div class="clearfix"></div>
+
+                    </a>
+                {% endfor %}
+
+            {% endif %}
 
         </div>
     </div>
