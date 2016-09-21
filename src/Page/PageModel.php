@@ -338,7 +338,7 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
         $array = parent::toArray();
 
         if ($entry = $this->getEntry()) {
-            $array = array_merge($array, $entry->toArray());
+            $array = array_merge($entry->toArray(), $array);
         }
 
         return $array;
