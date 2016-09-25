@@ -41,10 +41,8 @@ class GetRealPath
             } else {
                 return $parent->getPath() . '/' . $this->section->getSlug();
             }
-        } elseif ($this->section->isHome()) {
-            return '/';
         } else {
-            return '/' . $this->section->getSlug();
+            return $this->section->getSlug();
         }
     }
 }

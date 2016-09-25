@@ -2,12 +2,27 @@
 
 {% block content %}
 
+    <h1>{{ project.title }}</h1>
+
+    <hr>
+    
     {% for section in version.sections %}
         <div class="section">
 
-            <h{{ section.level }}>{{ section.title }}</h{{ section.level }}>
+            <h{{ section.level + 1 }}>
+
+                {% if section.level > 1 %}
+                    <a name="{{ section.path }}" href="#{{ section.path }}" style="text-decoration: none;">
+                        {{ icon('link') }}
+                    </a>
+                {% endif %}
+
+                {{ section.title }}
+
+            </h{{ section.level + 1 }}>
 
             {{ section.make.content|raw }}
+
         </div>
     {% endfor %}
 

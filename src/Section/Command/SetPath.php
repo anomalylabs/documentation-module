@@ -42,7 +42,7 @@ class SetPath
             if ($parent = $this->section->getParent()) {
                 $path = $parent->getPath() . '/' . $this->section->getSlug();
             } else {
-                $path = '/' . $this->section->getSlug();
+                $path = $this->section->getSlug();
             }
         }
 
