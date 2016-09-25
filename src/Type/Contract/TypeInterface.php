@@ -1,6 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Type\Contract;
 
-use Anomaly\DocumentationModule\Page\PageCollection;
+use Anomaly\DocumentationModule\Section\SectionCollection;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Stream\Contract\StreamInterface;
 
@@ -51,16 +51,16 @@ interface TypeInterface extends EntryInterface
     public function getEntryModelName();
 
     /**
-     * Get the related pages.
+     * Get the related sections.
      *
-     * @return PageCollection
+     * @return SectionCollection
      */
-    public function getPages();
+    public function getSections();
 
     /**
-     * Return the page relationship.
+     * Return the section relationship.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pages();
+    public function sections();
 }

@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'pages'             => 'Pages',
+    'sections'             => 'Sections',
     'versions'          => 'Versions',
     'new_type'          => 'New Type',
-    'new_page'          => 'New Page',
+    'new_section'          => 'New Section',
     'new_project'       => 'New Project',
     'new_version'       => 'New Version',
-    'create_child_page' => 'Create Child Page',
+    'create_child_section' => 'Create Child Section',
 ];

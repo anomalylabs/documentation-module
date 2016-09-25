@@ -39,10 +39,10 @@ class VersionTableBuilder extends TableBuilder
      */
     protected $buttons = [
         'edit',
-        'pages' => [
+        'sections' => [
             'icon' => 'file',
             'type' => 'primary',
-            'href' => 'admin/documentation/pages/{entry.id}',
+            'href' => 'admin/documentation/sections/{entry.id}',
         ],
     ];
 

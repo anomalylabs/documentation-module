@@ -9,7 +9,7 @@
     <ul class="nav nav-pills nav-stacked">
         {% for type in types %}
             <li class="nav-item">
-                <a href="{{ url_to('admin/documentation/pages/' ~ version.id ~ '/create?type=' ~ type.id ~ '&parent=' ~ request_get('parent')) }}"
+                <a href="{{ url_to('admin/documentation/sections/' ~ version.id ~ '/create?type=' ~ type.id ~ '&parent=' ~ request_get('parent')) }}"
                    class="nav-link">
                     <strong>{{ type.name }}</strong>
                     <br>

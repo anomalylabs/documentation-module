@@ -1,0 +1,22 @@
+{% macro links(sections, collection, options, depth) %}
+    {% for section in sections %}
+        <{{ options.link_tag ?: 'li' }} class="
+        {{ section.children.isEmpty() ? '' : (options.dropdown_class ?: 'dropdown') }}
+        {{ section.active ? options.get('active_class', 'active') }}
+        {{ section.current ? options.get('current_class', 'current') }}
+        {{ options.item_class }}">
+
+        <a href="{{ section.route('view') }}" class="{{ options.link_class }}">
+            {{ section.title }}
+        </a>
+
+        {% if not section.children.isEmpty() %}
+            {% if depth+1 <= options.get('depth', 999) %}
+                <{{ options.child_list_tag ?: options.list_tag ?: 'ul' }} class="{{ options.child_list_class }}">
+                {{ _self.links(section.children, collection, options, depth+1) }}
+                </{{ options.child_list_tag ?: options.list_tag ?: 'ul' }}>
+            {% endif %}
+        {% endif %}
+        </{{ options.link_tag ?: 'li' }}>
+    {% endfor %}
+{% endmacro %}

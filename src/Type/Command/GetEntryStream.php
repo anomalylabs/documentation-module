@@ -40,6 +40,6 @@ class GetEntryStream
      */
     public function handle(StreamRepositoryInterface $streams)
     {
-        return $streams->findBySlugAndNamespace($this->type->getSlug() . '_pages', 'documentation');
+        return $streams->findBySlugAndNamespace($this->type->getSlug() . '_sections', 'documentation');
     }
 }

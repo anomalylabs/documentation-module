@@ -1,0 +1,5 @@
+{% import options.get('macro', 'anomaly.module.documentation::sections/macro') as macro %}
+
+<{{ options.list_tag ?: 'ul' }} class="{{ options.list_class }}">
+{{ macro.links(options.parent ? sections.children(options.parent) : sections.top(), sections, options, 1) }}
+</{{ options.list_tag ?: 'ul' }}>

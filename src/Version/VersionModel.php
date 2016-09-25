@@ -1,8 +1,8 @@
 <?php namespace Anomaly\DocumentationModule\Version;
 
-use Anomaly\DocumentationModule\Page\Contract\PageInterface;
-use Anomaly\DocumentationModule\Page\PageCollection;
-use Anomaly\DocumentationModule\Page\PageModel;
+use Anomaly\DocumentationModule\Section\Contract\SectionInterface;
+use Anomaly\DocumentationModule\Section\SectionCollection;
+use Anomaly\DocumentationModule\Section\SectionModel;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationVersionsEntryModel;
@@ -50,35 +50,35 @@ class VersionModel extends DocumentationVersionsEntryModel implements VersionInt
     }
 
     /**
-     * Get the pages.
+     * Get the sections.
      *
-     * @return PageCollection
+     * @return SectionCollection
      */
-    public function getPages()
+    public function getSections()
     {
-        return $this->pages;
+        return $this->sections;
     }
 
     /**
-     * Get the home page.
+     * Get the home section.
      *
-     * @return PageInterface|null
+     * @return SectionInterface|null
      */
-    public function getHomePage()
+    public function getHomeSection()
     {
-        $pages = $this->getPages();
+        $sections = $this->getSections();
 
-        return $pages->home() ?: $pages->first();
+        return $sections->home() ?: $sections->first();
     }
 
     /**
-     * Return the related pages.
+     * Return the related sections.
      *
      * @return HasMany
      */
-    public function pages()
+    public function sections()
     {
-        return $this->hasMany(PageModel::class, 'version_id');
+        return $this->hasMany(SectionModel::class, 'version_id');
     }
 
     /**

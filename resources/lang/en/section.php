@@ -9,13 +9,13 @@ return [
         'title'       => 'Versions',
         'description' => 'Manage the versions available for your project.',
     ],
-    'pages'       => [
-        'title'       => 'Pages',
-        'description' => 'Manage the documentation pages for your project.',
+    'sections'       => [
+        'title'       => 'Sections',
+        'description' => 'Manage the documentation sections for your project.',
     ],
     'types'       => [
         'title'       => 'Types',
-        'description' => 'Manage the page types for your documentation pages.',
+        'description' => 'Manage the section types for your documentation sections.',
     ],
     'fields'      => [
         'title'       => 'Fields',

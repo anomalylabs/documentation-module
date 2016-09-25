@@ -45,17 +45,17 @@ class DocumentationModule extends Module
                 ],
             ],
         ],
-        'pages'    => [
+        'sections'    => [
             'data-toggle' => 'modal',
             'data-target' => '#modal',
-            'permalink'   => 'admin/documentation/pages/{request.route.parameters.version}',
+            'permalink'   => 'admin/documentation/sections/{request.route.parameters.version}',
             'href'        => 'admin/documentation/choose',
 
             'buttons' => [
-                'new_page' => [
+                'new_section' => [
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
-                    'href'        => 'admin/documentation/pages/{request.route.parameters.version}/choose',
+                    'href'        => 'admin/documentation/sections/{request.route.parameters.version}/choose',
                 ],
             ],
         ],

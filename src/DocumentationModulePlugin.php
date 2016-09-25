@@ -1,6 +1,6 @@
 <?php namespace Anomaly\DocumentationModule;
 
-use Anomaly\DocumentationModule\Page\Command\RenderNavigation;
+use Anomaly\DocumentationModule\Section\Command\RenderNavigation;
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
 use Anomaly\Streams\Platform\Addon\Plugin\PluginCriteria;
 use Anomaly\Streams\Platform\Support\Collection;

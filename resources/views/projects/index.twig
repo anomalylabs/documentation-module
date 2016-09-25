@@ -12,19 +12,19 @@
 
             {% if request_get('q') %}
 
-                {% set pages = entries('documentation', 'pages').search(request_get('q')).take(50).get() %}
+                {% set sections = entries('documentation', 'sections').search(request_get('q')).take(50).get() %}
 
-                {% for page in pages.enabled() %}
-                    <a href="{{ page.route('view') }}" class="list-group-item">
+                {% for section in sections.enabled() %}
+                    <a href="{{ section.route('view') }}" class="list-group-item">
 
                         <h4 class="list-group-item-heading">
-                            {{ page.project.title }} > {{ page.title }}
+                            {{ section.project.title }} > {{ section.title }}
                             <br>
-                            <small>{{ page.path }}</small>
+                            <small>{{ section.path }}</small>
                         </h4>
 
                         <p class="list-group-item-text">
-                            {{ page.meta_description }}
+                            {{ section.meta_description }}
                         </p>
 
                         <div class="clearfix"></div>

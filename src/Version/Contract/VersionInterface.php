@@ -1,7 +1,7 @@
 <?php namespace Anomaly\DocumentationModule\Version\Contract;
 
-use Anomaly\DocumentationModule\Page\Contract\PageInterface;
-use Anomaly\DocumentationModule\Page\PageCollection;
+use Anomaly\DocumentationModule\Section\Contract\SectionInterface;
+use Anomaly\DocumentationModule\Section\SectionCollection;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -47,23 +47,23 @@ interface VersionInterface extends EntryInterface
     public function project();
 
     /**
-     * Get the pages.
+     * Get the sections.
      *
-     * @return PageCollection
+     * @return SectionCollection
      */
-    public function getPages();
+    public function getSections();
 
     /**
-     * Get the home page.
+     * Get the home section.
      *
-     * @return PageInterface|null
+     * @return SectionInterface|null
      */
-    public function getHomePage();
+    public function getHomeSection();
 
     /**
-     * Return the related pages.
+     * Return the related sections.
      *
      * @return HasMany
      */
-    public function pages();
+    public function sections();
 }

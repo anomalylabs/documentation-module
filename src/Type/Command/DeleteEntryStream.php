@@ -43,6 +43,6 @@ class DeleteEntryStream
             return;
         }
 
-        $streams->delete($streams->findBySlugAndNamespace($this->type->getSlug() . '_pages', 'documentation'));
+        $streams->delete($streams->findBySlugAndNamespace($this->type->getSlug() . '_sections', 'documentation'));
     }
 }

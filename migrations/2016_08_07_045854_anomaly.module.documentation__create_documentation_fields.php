@@ -43,7 +43,7 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
         'parent'           => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
-                'related' => 'Anomaly\DocumentationModule\Page\PageModel',
+                'related' => 'Anomaly\DocumentationModule\Section\SectionModel',
             ],
         ],
         'project'          => [
@@ -61,7 +61,7 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
         'layout'           => [
             'type'   => 'anomaly.field_type.editor',
             'config' => [
-                'default_value' => '{{ page.content.render|raw }}',
+                'default_value' => '{{ section.content.render|raw }}',
                 'mode'          => 'twig',
             ],
         ],

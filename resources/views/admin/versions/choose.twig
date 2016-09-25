@@ -9,7 +9,7 @@
     <ul class="nav nav-pills nav-stacked">
         {% for version in versions %}
             <li class="nav-item">
-                <a href="{{ url_to('admin/documentation/pages/' ~ version.id) }}"
+                <a href="{{ url_to('admin/documentation/sections/' ~ version.id) }}"
                    class="nav-link">
                     <strong>{{ version.name }}</strong>
                     <br>

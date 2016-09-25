@@ -38,12 +38,12 @@ class VersionFormBuilder extends FormBuilder
     public function onReady()
     {
         if (!$this->getProject() && !$this->getEntry()) {
-            throw new \Exception('The $project parameter is required when creating a page.');
+            throw new \Exception('The $project parameter is required when creating a section.');
         }
     }
 
     /**
-     * Get the project page.
+     * Get the project section.
      *
      * @return null|ProjectInterface
      */
@@ -53,7 +53,7 @@ class VersionFormBuilder extends FormBuilder
     }
 
     /**
-     * Set the project page.
+     * Set the project section.
      *
      * @param ProjectInterface $project
      * @return $this

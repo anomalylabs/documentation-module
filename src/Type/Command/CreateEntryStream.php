@@ -49,7 +49,7 @@ class CreateEntryStream
                     'name'        => $this->type->getName(),
                     'description' => $this->type->getDescription(),
                 ],
-                'slug'                              => $this->type->getSlug() . '_pages',
+                'slug'                              => $this->type->getSlug() . '_sections',
                 'namespace'                         => 'documentation',
                 'locked'                            => false,
                 'translatable'                      => true,

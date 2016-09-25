@@ -2,8 +2,8 @@
 
 use Anomaly\DocumentationModule\Type\Command\CreateEntryStream;
 use Anomaly\DocumentationModule\Type\Command\DeleteEntryStream;
-use Anomaly\DocumentationModule\Type\Command\DeletePages;
-use Anomaly\DocumentationModule\Type\Command\RestorePages;
+use Anomaly\DocumentationModule\Type\Command\DeleteSections;
+use Anomaly\DocumentationModule\Type\Command\RestoreSections;
 use Anomaly\DocumentationModule\Type\Contract\TypeInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Entry\EntryObserver;
@@ -38,7 +38,7 @@ class TypeObserver extends EntryObserver
      */
     public function deleted(EntryInterface $entry)
     {
-        $this->commands->dispatch(new DeletePages($entry));
+        $this->commands->dispatch(new DeleteSections($entry));
         $this->commands->dispatch(new DeleteEntryStream($entry));
 
         parent::deleted($entry);
@@ -51,7 +51,7 @@ class TypeObserver extends EntryObserver
      */
     public function restored(EntryInterface $entry)
     {
-        $this->commands->dispatch(new RestorePages($entry));
+        $this->commands->dispatch(new RestoreSections($entry));
 
         parent::restored($entry);
     }

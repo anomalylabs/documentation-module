@@ -1,7 +1,7 @@
 <?php namespace Anomaly\DocumentationModule\Project;
 
-use Anomaly\DocumentationModule\Page\PageCollection;
-use Anomaly\DocumentationModule\Page\PageModel;
+use Anomaly\DocumentationModule\Section\SectionCollection;
+use Anomaly\DocumentationModule\Section\SectionModel;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\VersionCollection;
@@ -41,23 +41,23 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     }
 
     /**
-     * Get the related pages.
+     * Get the related sections.
      *
-     * @return PageCollection
+     * @return SectionCollection
      */
-    public function getPages()
+    public function getSections()
     {
-        return $this->pages;
+        return $this->sections;
     }
 
     /**
-     * Return the pages relation.
+     * Return the sections relation.
      *
      * @return HasMany
      */
-    public function pages()
+    public function sections()
     {
-        return $this->hasMany(PageModel::class, 'project_id');
+        return $this->hasMany(SectionModel::class, 'project_id');
     }
 
     /**

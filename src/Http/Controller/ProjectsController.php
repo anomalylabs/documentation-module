@@ -30,7 +30,7 @@ class ProjectsController extends PublicController
     }
 
     /**
-     * Return the home page of a project.
+     * Return the home section of a project.
      *
      * @param  ProjectRepositoryInterface $projects
      * @return string
@@ -41,14 +41,17 @@ class ProjectsController extends PublicController
             abort(404);
         }
 
-        if (!$latest = $project->getLatestVersion()) {
+        $versions = $project->getVersions();
+
+        $version = $versions->findByName($this->route->getParameter('version'));
+
+        if (!$version && !$version = $project->getLatestVersion()) {
             abort(404);
         }
 
-        if (!$home = $latest->getHomePage()) {
-            abort(404);
-        }
-
-        return $this->redirect->to($home->route('view'));
+        return $this->view->make(
+            'anomaly.module.documentation::projects/view',
+            compact('project', 'version')
+        );
     }
 }

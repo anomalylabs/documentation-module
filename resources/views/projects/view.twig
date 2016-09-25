@@ -1,0 +1,14 @@
+{% extends "theme::layouts/default" %}
+
+{% block content %}
+
+    {% for section in version.sections %}
+        <div class="section">
+
+            <h{{ section.level }}>{{ section.title }}</h{{ section.level }}>
+
+            {{ section.make.content|raw }}
+        </div>
+    {% endfor %}
+
+{% endblock %}

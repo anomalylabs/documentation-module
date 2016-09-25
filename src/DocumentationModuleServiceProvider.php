@@ -1,18 +1,18 @@
 <?php namespace Anomaly\DocumentationModule;
 
-use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
-use Anomaly\DocumentationModule\Page\PageModel;
-use Anomaly\DocumentationModule\Page\PageRepository;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\DocumentationModule\Project\ProjectModel;
 use Anomaly\DocumentationModule\Project\ProjectRepository;
+use Anomaly\DocumentationModule\Section\Contract\SectionRepositoryInterface;
+use Anomaly\DocumentationModule\Section\SectionModel;
+use Anomaly\DocumentationModule\Section\SectionRepository;
 use Anomaly\DocumentationModule\Type\Contract\TypeRepositoryInterface;
 use Anomaly\DocumentationModule\Type\TypeRepository;
 use Anomaly\DocumentationModule\Version\Contract\VersionRepositoryInterface;
 use Anomaly\DocumentationModule\Version\VersionRepository;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
-use Anomaly\Streams\Platform\Model\Documentation\DocumentationPagesEntryModel;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel;
+use Anomaly\Streams\Platform\Model\Documentation\DocumentationSectionsEntryModel;
 
 /**
  * Class DocumentationModuleServiceProvider
@@ -39,7 +39,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $bindings = [
-        DocumentationPagesEntryModel::class    => PageModel::class,
+        DocumentationSectionsEntryModel::class => SectionModel::class,
         DocumentationProjectsEntryModel::class => ProjectModel::class,
     ];
 
@@ -49,7 +49,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $singletons = [
-        PageRepositoryInterface::class    => PageRepository::class,
+        SectionRepositoryInterface::class => SectionRepository::class,
         TypeRepositoryInterface::class    => TypeRepository::class,
         VersionRepositoryInterface::class => VersionRepository::class,
         ProjectRepositoryInterface::class => ProjectRepository::class,
@@ -71,14 +71,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
         ],
         'documentation/{project}/{name}'                         => [
             'as'   => 'anomaly.module.documentation::versions.view',
-            'uses' => 'Anomaly\DocumentationModule\Http\Controller\VersionsController@view',
-        ],
-        'documentation/{project}/{version}/{path}'               => [
-            'as'          => 'anomaly.module.documentation::pages.view',
-            'uses'        => 'Anomaly\DocumentationModule\Http\Controller\PagesController@view',
-            'constraints' => [
-                'path' => '(.*)',
-            ],
+            'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@version',
         ],
         'admin/documentation/fields'                             => 'Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController@index',
         'admin/documentation/fields/choose'                      => 'Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController@choose',

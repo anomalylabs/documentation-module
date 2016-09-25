@@ -1,6 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Type;
 
-use Anomaly\DocumentationModule\Page\PageCollection;
+use Anomaly\DocumentationModule\Section\SectionCollection;
 use Anomaly\DocumentationModule\Type\Command\GetEntryStream;
 use Anomaly\DocumentationModule\Type\Contract\TypeInterface;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationTypesEntryModel;
@@ -70,22 +70,22 @@ class TypeModel extends DocumentationTypesEntryModel implements TypeInterface
     }
 
     /**
-     * Get the related pages.
+     * Get the related sections.
      *
-     * @return PageCollection
+     * @return SectionCollection
      */
-    public function getPages()
+    public function getSections()
     {
-        return $this->pages;
+        return $this->sections;
     }
 
     /**
-     * Return the page relationship.
+     * Return the section relationship.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pages()
+    public function sections()
     {
-        return $this->hasMany('Anomaly\DocumentationModule\Page\PageModel', 'type_id');
+        return $this->hasMany('Anomaly\DocumentationModule\Section\SectionModel', 'type_id');
     }
 }
