@@ -60,6 +60,9 @@ class ProjectsController extends PublicController
             abort(404);
         }
 
+        $this->dispatch(new AddDocumentationBreadcrumb());
+        $this->breadcrumbs->add($project->getTitle(), $this->request->path());
+
         $versions = $project->getVersions();
 
         $version = $versions->findByName($this->route->getParameter('name'));
