@@ -35,15 +35,34 @@ class ProjectsController extends PublicController
      * @param  ProjectRepositoryInterface $projects
      * @return string
      */
-    public function view(ProjectRepositoryInterface $projects)
+    public function version(ProjectRepositoryInterface $projects)
     {
         if (!$project = $projects->findBySlug($this->route->getParameter('slug'))) {
             abort(404);
         }
 
+        if (!$latest = $project->getLatestVersion()) {
+            abort(404);
+        }
+
+        return $this->redirect->to($latest->route('view'));
+    }
+
+    /**
+     * Return the project documentation for a version.
+     *
+     * @param  ProjectRepositoryInterface $projects
+     * @return string
+     */
+    public function view(ProjectRepositoryInterface $projects)
+    {
+        if (!$project = $projects->findBySlug($this->route->getParameter('project'))) {
+            abort(404);
+        }
+
         $versions = $project->getVersions();
 
-        $version = $versions->findByName($this->route->getParameter('version'));
+        $version = $versions->findByName($this->route->getParameter('name'));
 
         if (!$version && !$version = $project->getLatestVersion()) {
             abort(404);
