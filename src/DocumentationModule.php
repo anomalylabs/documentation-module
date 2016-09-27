@@ -3,12 +3,12 @@
 use Anomaly\Streams\Platform\Addon\Module\Module;
 
 /**
+ * /**
  * Class DocumentationModule
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\DocumentationModule
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class DocumentationModule extends Module
 {
@@ -31,9 +31,12 @@ class DocumentationModule extends Module
         'projects' => [
             'buttons'  => [
                 'new_project',
+                'assignments' => [
+                    'href' => 'admin/documentation/projects/assignments',
+                ],
             ],
             'sections' => [
-                'versions' => [
+                'versions'            => [
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
                     'permalink'   => 'admin/documentation/versions/{request.route.parameters.project}',
@@ -43,9 +46,19 @@ class DocumentationModule extends Module
                         'new_version',
                     ],
                 ],
+                'project_assignments' => [
+                    'href'    => 'admin/documentation/projects/assignments',
+                    'buttons' => [
+                        'assign_fields' => [
+                            'data-toggle' => 'modal',
+                            'data-target' => '#modal',
+                            'href'        => 'admin/documentation/projects/assignments/choose',
+                        ],
+                    ],
+                ],
             ],
         ],
-        'sections'    => [
+        'sections' => [
             'data-toggle' => 'modal',
             'data-target' => '#modal',
             'permalink'   => 'admin/documentation/sections/{request.route.parameters.version}',

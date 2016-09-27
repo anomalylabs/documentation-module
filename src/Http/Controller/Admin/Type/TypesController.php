@@ -1,9 +1,16 @@
-<?php namespace Anomaly\DocumentationModule\Http\Controller\Admin;
+<?php namespace Anomaly\DocumentationModule\Http\Controller\Admin\Type;
 
 use Anomaly\DocumentationModule\Type\Form\TypeFormBuilder;
 use Anomaly\DocumentationModule\Type\Table\TypeTableBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
+/**
+ * Class TypesController
+ *
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
+ */
 class TypesController extends AdminController
 {
 

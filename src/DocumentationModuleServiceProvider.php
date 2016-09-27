@@ -77,9 +77,9 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
         'admin/documentation/fields/choose'                      => 'Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController@choose',
         'admin/documentation/fields/create'                      => 'Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController@create',
         'admin/documentation/fields/edit/{id}'                   => 'Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController@edit',
-        'admin/documentation/types/assignments/{type}'           => 'Anomaly\DocumentationModule\Http\Controller\Admin\AssignmentsController@index',
-        'admin/documentation/types/assignments/{type}/choose'    => 'Anomaly\DocumentationModule\Http\Controller\Admin\AssignmentsController@choose',
-        'admin/documentation/types/assignments/{type}/create'    => 'Anomaly\DocumentationModule\Http\Controller\Admin\AssignmentsController@create',
-        'admin/documentation/types/assignments/{type}/edit/{id}' => 'Anomaly\DocumentationModule\Http\Controller\Admin\AssignmentsController@edit',
+        'admin/documentation/types/assignments/{type}'           => 'Anomaly\DocumentationModule\Http\Controller\Admin\Type\AssignmentsController@index',
+        'admin/documentation/types/assignments/{type}/choose'    => 'Anomaly\DocumentationModule\Http\Controller\Admin\Type\AssignmentsController@choose',
+        'admin/documentation/types/assignments/{type}/create'    => 'Anomaly\DocumentationModule\Http\Controller\Admin\Type\AssignmentsController@create',
+        'admin/documentation/types/assignments/{type}/edit/{id}' => 'Anomaly\DocumentationModule\Http\Controller\Admin\Type\AssignmentsController@edit',
     ];
 }

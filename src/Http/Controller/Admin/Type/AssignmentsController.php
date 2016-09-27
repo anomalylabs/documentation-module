@@ -1,4 +1,4 @@
-<?php namespace Anomaly\DocumentationModule\Http\Controller\Admin;
+<?php namespace Anomaly\DocumentationModule\Http\Controller\Admin\Type;
 
 use Anomaly\DocumentationModule\Type\Contract\TypeInterface;
 use Anomaly\DocumentationModule\Type\Contract\TypeRepositoryInterface;
@@ -10,10 +10,9 @@ use Anomaly\Streams\Platform\Http\Controller\AdminController;
 /**
  * Class AssignmentsController
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\DocumentationModule\Http\Controller\Admin
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class AssignmentsController extends AdminController
 {
