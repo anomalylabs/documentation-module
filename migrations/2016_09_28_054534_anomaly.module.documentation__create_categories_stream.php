@@ -22,6 +22,7 @@ class AnomalyModuleDocumentationCreateCategoriesStream extends Migration
         'title_column' => 'name',
         'translatable' => true,
         'searchable'   => true,
+        'sortable'     => true,
     ];
 
     /**

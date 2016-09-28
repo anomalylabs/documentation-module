@@ -14,12 +14,28 @@ class ProjectTableBuilder extends TableBuilder
 {
 
     /**
+     * The table filters.
+     *
+     * @var array
+     */
+    protected $filters = [
+        'search' => [
+            'fields' => [
+                'name',
+                'description',
+            ],
+        ],
+        'category',
+    ];
+
+    /**
      * The table columns.
      *
      * @var array
      */
     protected $columns = [
         'name',
+        'category',
         'description',
     ];
 
