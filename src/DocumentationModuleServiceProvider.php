@@ -73,6 +73,10 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
             'as'   => 'anomaly.module.documentation::versions.view',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
         ],
+        'documentation/{project}/{version}#{path}'               => [
+            'as'   => 'anomaly.module.documentation::sections.view',
+            'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
+        ],
         'admin/documentation/fields'                             => 'Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController@index',
         'admin/documentation/fields/choose'                      => 'Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController@choose',
         'admin/documentation/fields/create'                      => 'Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController@create',

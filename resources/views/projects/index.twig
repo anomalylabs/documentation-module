@@ -34,22 +34,36 @@
 
             {% else %}
 
-                {% set projects = entries('documentation', 'projects').get() %}
+                {% set row = entries('documentation', 'projects').get().chunk(3) %}
 
-                {% for project in projects.enabled() %}
-                    <a href="{{ project.route('view') }}" class="list-group-item">
+                {% for projects in row %}
+                    <div class="row">
+                        {% for project in projects %}
 
-                        <h4 class="list-group-item-heading">
-                            {{ project.title }}
-                        </h4>
+                            <div class="col-lg-4">
+                                <div class="panel panel-default text-center">
+                                    <div class="panel-body">
 
-                        <p class="list-group-item-text">
-                            {{ project.description }}
-                        </p>
+                                        <h3 class="panel-heading">
+                                            {{ project.title }}<br><small>Application</small>
+                                        </h3>
 
-                        <div class="clearfix"></div>
+                                        <p>
+                                            {{ project.description }}
+                                        </p>
 
-                    </a>
+                                        <br>
+
+                                        <a href="{{ project.route('view') }}" class="btn btn-sm btn-block btn-primary">
+                                            Documentation
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                    </div>
                 {% endfor %}
 
             {% endif %}

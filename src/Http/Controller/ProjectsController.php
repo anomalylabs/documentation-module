@@ -71,6 +71,8 @@ class ProjectsController extends PublicController
             abort(404);
         }
 
+        $this->template->put('version', $version);
+
         return $this->view->make(
             'anomaly.module.documentation::projects/view',
             compact('project', 'version')

@@ -2,28 +2,40 @@
 
 {% block content %}
 
-    <h1>{{ project.title }}</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                {{ documentation().depth(2)|raw }}
+            </div>
 
-    <hr>
+            <div class="col-lg-9">
 
-    {% for section in version.sections %}
-        <div class="section">
+                <h1>{{ project.title }}</h1>
 
-            <h{{ section.level + 1 }}>
+                <hr>
 
-                {% if section.level > 1 %}
-                    <a name="{{ section.path }}" href="#{{ section.path }}" style="text-decoration: none;">
-                        {{ icon('link') }}
-                    </a>
-                {% endif %}
+                {% for section in version.sections %}
+                    <div class="section">
 
-                {{ section.title }}
+                        <h{{ section.level + 1 }}>
 
-            </h{{ section.level + 1 }}>
+                            {% if section.level > 1 %}
+                                <a name="{{ section.path }}" href="#{{ section.path }}" style="text-decoration: none;">
+                                    {{ icon('link') }}
+                                </a>
+                            {% endif %}
 
-            {{ section.make.content|raw }}
+                            {{ section.title }}
 
+                        </h{{ section.level + 1 }}>
+
+                        {{ section.make.content|raw }}
+
+                    </div>
+                {% endfor %}
+
+            </div>
         </div>
-    {% endfor %}
+    </div>
 
 {% endblock %}

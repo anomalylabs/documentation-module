@@ -43,8 +43,6 @@ class RenderNavigation
         /* @var SectionCollection $sections */
         $sections = $sections->enabled();
 
-        $this->dispatch(new SetCurrentSection($sections));
-        $this->dispatch(new SetActiveSections($sections));
         $this->dispatch(new SetParentRelations($sections));
         $this->dispatch(new SetChildrenRelations($sections));
 
