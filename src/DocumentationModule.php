@@ -45,11 +45,6 @@ class DocumentationModule extends Module
                 ],
             ],
         ],
-        'categories' => [
-            'buttons' => [
-                'new_category',
-            ],
-        ],
         'sections'   => [
             'data-toggle' => 'modal',
             'data-target' => '#modal',
@@ -62,6 +57,11 @@ class DocumentationModule extends Module
                     'data-target' => '#modal',
                     'href'        => 'admin/documentation/sections/{request.route.parameters.version}/choose',
                 ],
+            ],
+        ],
+        'categories' => [
+            'buttons' => [
+                'new_category',
             ],
         ],
         'types'      => [
