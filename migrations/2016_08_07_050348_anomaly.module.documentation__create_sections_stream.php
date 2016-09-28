@@ -57,7 +57,6 @@ class AnomalyModuleDocumentationCreateSectionsStream extends Migration
         ],
         'parent',
         'enabled',
-        'home',
         'meta_title'       => [
             'translatable' => true,
         ],

@@ -53,11 +53,6 @@ return [
             'sections' => 'This section must be enabled before it can be viewed <strong>publicly</strong>.',
         ],
     ],
-    'home'             => [
-        'name'         => 'Home Section',
-        'label'        => 'Is this the home section?',
-        'instructions' => 'The home section is the default landing section for your project documentation.',
-    ],
     'meta_title'       => [
         'name'         => 'Meta Title',
         'instructions' => 'Specify the SEO title.',

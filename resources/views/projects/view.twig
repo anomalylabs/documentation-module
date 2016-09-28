@@ -3,6 +3,17 @@
 {% block content %}
 
     <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="jumbotron text-center">
+                    <h1>{{ project.title }}</h1>
+                </div>
+                
+            </div>
+        </div>
+
         <div class="row">
 
             <aside class="col-lg-3">
@@ -10,10 +21,6 @@
             </aside>
 
             <div class="col-lg-9">
-
-                <h1>{{ project.title }}</h1>
-
-                <hr>
 
                 {% for section in version.sections %}
                     <div class="section">
@@ -38,6 +45,7 @@
             </div>
 
         </div>
+
     </div>
 
 {% endblock %}

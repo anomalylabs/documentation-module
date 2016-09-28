@@ -65,12 +65,6 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
                 'mode'          => 'twig',
             ],
         ],
-        'home'             => [
-            'type'   => 'anomaly.field_type.boolean',
-            'config' => [
-                'default_value' => false,
-            ],
-        ],
         'content'          => [
             'type'   => 'anomaly.field_type.wysiwyg',
             'locked' => false, // For seeding
