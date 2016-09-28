@@ -4,6 +4,12 @@
     <div class="container">
         <div class="list-group">
 
+            {% for category in entries('documentation', 'categories').get() %}
+                <a href="{{ category.route('view') }}" class="btn btn-primary">{{ category.title }}</a>
+            {% endfor %}
+
+            <br><br>
+
             <form>
                 <input name="q" class="form-control" value="{{ request_get('q') }}" placeholder="Search...">
             </form>
@@ -14,12 +20,12 @@
 
                 {% set sections = entries('documentation', 'sections').search(request_get('q')).take(50).get() %}
 
-                {% if section.count() %}
+                {% if sections.count() %}
                     {% for section in sections.enabled() %}
                         <a href="{{ section.route('view') }}" class="list-group-item">
 
                             <h4 class="list-group-item-heading">
-                                {{ section.project.title }} > {{ section.title }}
+                                {{ section.project.title }} > {{ str_singular(category.title) }}
                                 <br>
                                 <small>{{ section.version.route('view') }}#{{ section.path }}</small>
                             </h4>
