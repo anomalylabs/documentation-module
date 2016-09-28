@@ -78,6 +78,12 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
                 'name' => 'Content',
             ],
         ],
+        'category'         => [
+            'type'   => 'anomaly.field_type.relationship',
+            'config' => [
+                'related' => 'Anomaly\DocumentationModule\Category\CategoryModel',
+            ],
+        ],
     ];
 
 }

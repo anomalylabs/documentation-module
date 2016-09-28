@@ -4,9 +4,10 @@ return [
     'name'             => [
         'name'         => 'Name',
         'instructions' => [
-            'projects' => 'What is the name of this project?',
-            'versions' => 'What is the version name?',
-            'types'    => 'Specify a short descriptive name for this section type.',
+            'projects'   => 'What is the name of this project?',
+            'versions'   => 'What is the version name?',
+            'types'      => 'Specify a short descriptive name for this section type.',
+            'categories' => 'Specify a short descriptive name for this category.',
         ],
         'placeholder'  => [
             'versions' => 'v3.1',
@@ -15,9 +16,10 @@ return [
     'slug'             => [
         'name'         => 'Slug',
         'instructions' => [
-            'projects' => 'The slug is used in building the project\'s URL.',
-            'sections'    => 'The slug is used in building the section\'s URL.',
-            'types'    => 'The slug is used in making the database table for sections of this type.',
+            'projects'   => 'The slug is used in building the project\'s URL.',
+            'sections'   => 'The slug is used in building the section\'s URL.',
+            'categories' => 'The slug is used in building the category\'s URL.',
+            'types'      => 'The slug is used in making the database table for sections of this type.',
         ],
     ],
     'title'            => [
@@ -27,8 +29,9 @@ return [
     'description'      => [
         'name'         => 'Description',
         'instructions' => [
-            'projects' => 'Briefly describe this project.',
-            'types'    => 'Briefly describe this section type.',
+            'projects'   => 'Briefly describe this project.',
+            'categories' => 'Briefly describe this category.',
+            'types'      => 'Briefly describe this section type.',
         ],
     ],
     'layout'           => [
@@ -40,14 +43,14 @@ return [
         'label'        => [
             'projects' => [
                 'projects' => 'Is this project enabled?',
-                'sections'    => 'Is this section enabled?',
+                'sections' => 'Is this section enabled?',
             ],
         ],
         'instructions' => 'If disabled, you can still access sections via a secure preview link.',
         'warning'      => [
             'projects' => 'This project must be enabled before it can be viewed <strong>publicly</strong>.',
             'versions' => 'This version must be enabled before it can be viewed <strong>publicly</strong>.',
-            'sections'    => 'This section must be enabled before it can be viewed <strong>publicly</strong>.',
+            'sections' => 'This section must be enabled before it can be viewed <strong>publicly</strong>.',
         ],
     ],
     'home'             => [
@@ -67,5 +70,9 @@ return [
     'meta_keywords'    => [
         'name'         => 'Meta Keywords',
         'instructions' => 'Specify the SEO keywords.',
+    ],
+    'category'         => [
+        'name'         => 'Category',
+        'instructions' => 'Specify the category to place this documentation in.',
     ],
 ];

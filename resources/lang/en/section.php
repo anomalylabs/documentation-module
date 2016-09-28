@@ -5,11 +5,15 @@ return [
         'title'       => 'Projects',
         'description' => 'Manage searchable, version controlled, project documentation.',
     ],
+    'categories'  => [
+        'title'       => 'Categories',
+        'description' => 'Manage grouped projects to make them easier to discover.',
+    ],
     'versions'    => [
         'title'       => 'Versions',
         'description' => 'Manage the versions available for your project.',
     ],
-    'sections'       => [
+    'sections'    => [
         'title'       => 'Sections',
         'description' => 'Manage the documentation sections for your project.',
     ],

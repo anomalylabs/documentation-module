@@ -1,5 +1,8 @@
 <?php namespace Anomaly\DocumentationModule;
 
+use Anomaly\DocumentationModule\Category\CategoryModel;
+use Anomaly\DocumentationModule\Category\CategoryRepository;
+use Anomaly\DocumentationModule\Category\Contract\CategoryRepositoryInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\DocumentationModule\Project\ProjectModel;
 use Anomaly\DocumentationModule\Project\ProjectRepository;
@@ -11,6 +14,7 @@ use Anomaly\DocumentationModule\Type\TypeRepository;
 use Anomaly\DocumentationModule\Version\Contract\VersionRepositoryInterface;
 use Anomaly\DocumentationModule\Version\VersionRepository;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
+use Anomaly\Streams\Platform\Model\Documentation\DocumentationCategoriesEntryModel;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationSectionsEntryModel;
 
@@ -39,8 +43,9 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $bindings = [
-        DocumentationSectionsEntryModel::class => SectionModel::class,
-        DocumentationProjectsEntryModel::class => ProjectModel::class,
+        DocumentationSectionsEntryModel::class   => SectionModel::class,
+        DocumentationProjectsEntryModel::class   => ProjectModel::class,
+        DocumentationCategoriesEntryModel::class => CategoryModel::class,
     ];
 
     /**
@@ -49,10 +54,11 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $singletons = [
-        SectionRepositoryInterface::class => SectionRepository::class,
-        TypeRepositoryInterface::class    => TypeRepository::class,
-        VersionRepositoryInterface::class => VersionRepository::class,
-        ProjectRepositoryInterface::class => ProjectRepository::class,
+        TypeRepositoryInterface::class     => TypeRepository::class,
+        SectionRepositoryInterface::class  => SectionRepository::class,
+        VersionRepositoryInterface::class  => VersionRepository::class,
+        ProjectRepositoryInterface::class  => ProjectRepository::class,
+        CategoryRepositoryInterface::class => CategoryRepository::class,
     ];
 
     /**
@@ -64,6 +70,10 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
         'documentation'                                          => [
             'as'   => 'anomaly.module.documentation::projects.index',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@index',
+        ],
+        'documentation/categories/{slug}'                        => [
+            'as'   => 'anomaly.module.documentation::categories.view',
+            'uses' => 'Anomaly\DocumentationModule\Http\Controller\CategoriesController@view',
         ],
         'documentation/{slug}'                                   => [
             'as'   => 'anomaly.module.documentation::projects.view',
@@ -81,9 +91,9 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
         'admin/documentation/fields/choose'                      => 'Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController@choose',
         'admin/documentation/fields/create'                      => 'Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController@create',
         'admin/documentation/fields/edit/{id}'                   => 'Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController@edit',
-        'admin/documentation/types/assignments/{type}'           => 'Anomaly\DocumentationModule\Http\Controller\Admin\Type\AssignmentsController@index',
-        'admin/documentation/types/assignments/{type}/choose'    => 'Anomaly\DocumentationModule\Http\Controller\Admin\Type\AssignmentsController@choose',
-        'admin/documentation/types/assignments/{type}/create'    => 'Anomaly\DocumentationModule\Http\Controller\Admin\Type\AssignmentsController@create',
-        'admin/documentation/types/assignments/{type}/edit/{id}' => 'Anomaly\DocumentationModule\Http\Controller\Admin\Type\AssignmentsController@edit',
+        'admin/documentation/types/assignments/{type}'           => 'Anomaly\DocumentationModule\Http\Controller\Admin\AssignmentsController@index',
+        'admin/documentation/types/assignments/{type}/choose'    => 'Anomaly\DocumentationModule\Http\Controller\Admin\AssignmentsController@choose',
+        'admin/documentation/types/assignments/{type}/create'    => 'Anomaly\DocumentationModule\Http\Controller\Admin\AssignmentsController@create',
+        'admin/documentation/types/assignments/{type}/edit/{id}' => 'Anomaly\DocumentationModule\Http\Controller\Admin\AssignmentsController@edit',
     ];
 }

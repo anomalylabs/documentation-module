@@ -1,4 +1,4 @@
-<?php namespace Anomaly\DocumentationModule\Http\Controller\Admin\Type;
+<?php namespace Anomaly\DocumentationModule\Http\Controller\Admin;
 
 use Anomaly\DocumentationModule\Type\Form\TypeFormBuilder;
 use Anomaly\DocumentationModule\Type\Table\TypeTableBuilder;

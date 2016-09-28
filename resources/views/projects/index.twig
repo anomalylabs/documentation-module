@@ -34,37 +34,9 @@
 
             {% else %}
 
-                {% set row = entries('documentation', 'projects').get().chunk(3) %}
+                {% set projects = entries('documentation', 'projects').get() %}
 
-                {% for projects in row %}
-                    <div class="row">
-                        {% for project in projects %}
-
-                            <div class="col-lg-4">
-                                <div class="panel panel-default text-center">
-                                    <div class="panel-body">
-
-                                        <h3 class="panel-heading">
-                                            {{ project.title }}<br><small>Application</small>
-                                        </h3>
-
-                                        <p>
-                                            {{ project.description }}
-                                        </p>
-
-                                        <br>
-
-                                        <a href="{{ project.route('view') }}" class="btn btn-sm btn-block btn-primary">
-                                            Documentation
-                                        </a>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        {% endfor %}
-                    </div>
-                {% endfor %}
+                {% include 'anomaly.module.documentation::partials/projects' with {'projects': projects} %}
 
             {% endif %}
 

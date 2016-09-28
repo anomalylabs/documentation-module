@@ -9,10 +9,9 @@ use Anomaly\Streams\Platform\Http\Controller\AdminController;
 /**
  * Class ProjectsController
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\DocumentationModule\Http\Controller\Admin
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class ProjectsController extends AdminController
 {

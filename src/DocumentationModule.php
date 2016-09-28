@@ -28,15 +28,12 @@ class DocumentationModule extends Module
      * @var array
      */
     protected $sections = [
-        'projects' => [
+        'projects'   => [
             'buttons'  => [
                 'new_project',
-                'assignments' => [
-                    'href' => 'admin/documentation/projects/assignments',
-                ],
             ],
             'sections' => [
-                'versions'            => [
+                'versions' => [
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
                     'permalink'   => 'admin/documentation/versions/{request.route.parameters.project}',
@@ -46,19 +43,14 @@ class DocumentationModule extends Module
                         'new_version',
                     ],
                 ],
-                'project_assignments' => [
-                    'href'    => 'admin/documentation/projects/assignments',
-                    'buttons' => [
-                        'assign_fields' => [
-                            'data-toggle' => 'modal',
-                            'data-target' => '#modal',
-                            'href'        => 'admin/documentation/projects/assignments/choose',
-                        ],
-                    ],
-                ],
             ],
         ],
-        'sections' => [
+        'categories' => [
+            'buttons' => [
+                'new_category',
+            ],
+        ],
+        'sections'   => [
             'data-toggle' => 'modal',
             'data-target' => '#modal',
             'permalink'   => 'admin/documentation/sections/{request.route.parameters.version}',
@@ -72,7 +64,7 @@ class DocumentationModule extends Module
                 ],
             ],
         ],
-        'types'    => [
+        'types'      => [
             'buttons'  => [
                 'new_type',
             ],
@@ -89,7 +81,7 @@ class DocumentationModule extends Module
                 ],
             ],
         ],
-        'fields'   => [
+        'fields'     => [
             'buttons' => [
                 'new_field' => [
                     'data-toggle' => 'modal',

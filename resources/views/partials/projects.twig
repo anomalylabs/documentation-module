@@ -1,0 +1,30 @@
+{% for row in projects.chunk(3) %}
+    <div class="row">
+        {% for project in row %}
+
+            <div class="col-lg-4">
+                <div class="panel panel-default text-center">
+                    <div class="panel-body">
+
+                        <h3 class="panel-heading">
+                            {{ project.title }}<br>
+                            <small>{{ project.category.name }}</small>
+                        </h3>
+
+                        <p>
+                            {{ project.description }}
+                        </p>
+
+                        <br>
+
+                        <a href="{{ project.route('view') }}" class="btn btn-sm btn-block btn-primary">
+                            Documentation
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+{% endfor %}
