@@ -20,13 +20,13 @@
 
                         <h{{ section.level + 1 }}>
 
+                            {{ section.title }}
+
                             {% if section.level > 1 %}
-                                <a name="{{ section.path }}" href="#{{ section.path }}" style="text-decoration: none;">
+                                <a class="permalink" name="{{ section.path }}" href="#{{ section.path }}" style="text-decoration: none;">
                                     {{ icon('link') }}
                                 </a>
                             {% endif %}
-
-                            {{ section.title }}
 
                         </h{{ section.level + 1 }}>
 
