@@ -29,6 +29,7 @@ class ProjectFormBuilder extends FormBuilder
         'options' => [
             'fields' => [
                 'category',
+                'tags',
                 'enabled',
             ],
         ],

@@ -54,7 +54,6 @@ class SectionEntryFormSections
                 'options' => [
                     'fields' => [
                         'section_enabled',
-                        'section_home',
                     ],
                 ],
             ]

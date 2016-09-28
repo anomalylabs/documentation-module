@@ -48,6 +48,7 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
             'translatable' => true,
         ],
         'category',
+        'tags',
         'enabled',
     ];
 }

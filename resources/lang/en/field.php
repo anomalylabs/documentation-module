@@ -70,4 +70,8 @@ return [
         'name'         => 'Category',
         'instructions' => 'Specify the category to place this documentation in.',
     ],
+    'tags'             => [
+        'name'         => 'Tags',
+        'instructions' => 'Specify any organizational tags to help group your project with others',
+    ],
 ];

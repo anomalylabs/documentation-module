@@ -284,19 +284,13 @@ class SectionModel extends DocumentationSectionsEntryModel implements SectionInt
      */
     public function toSearchableArray()
     {
-        $array = parent::toArray();
+        $array = parent::toSearchableArray();
 
         if ($entry = $this->getEntry()) {
-            $array = array_merge($entry->toArray(), $array);
+            $array = array_merge($entry->toSearchableArray(), $array);
         }
 
         unset($array['path']);
-
-        foreach ($array as $key => $value) {
-            if (is_array($value)) {
-                $array[$key] = implode(', ', $value);
-            }
-        }
 
         return $array;
     }

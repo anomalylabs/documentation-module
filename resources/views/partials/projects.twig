@@ -8,8 +8,14 @@
 
                         <h3 class="panel-heading">
                             {{ project.title }}<br>
-                            <small>{{ project.category.name }}</small>
+                            <small>{{ str_singular(project.category.name.value) }}</small>
                         </h3>
+
+                        <div class="tags">
+                            {% if project.tags.value %}
+                                {{ project.tags.labels('label-default label-sm')|join|raw }}
+                            {% endif %}
+                        </div>
 
                         <p>
                             {{ project.description }}
