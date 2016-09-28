@@ -1,12 +1,13 @@
-{% extends "theme::layouts/default" %}
+{% extends layout('documentation') %}
 
 {% block content %}
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+
+            <aside class="col-lg-3">
                 {{ documentation().depth(2)|raw }}
-            </div>
+            </aside>
 
             <div class="col-lg-9">
 
@@ -35,6 +36,7 @@
                 {% endfor %}
 
             </div>
+            
         </div>
     </div>
 
