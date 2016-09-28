@@ -1,8 +1,9 @@
 <?php namespace Anomaly\DocumentationModule\Project;
 
+use Anomaly\DocumentationModule\Category\Contract\CategoryInterface;
+use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Section\SectionCollection;
 use Anomaly\DocumentationModule\Section\SectionModel;
-use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\VersionCollection;
 use Anomaly\DocumentationModule\Version\VersionModel;
@@ -12,10 +13,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * Class ProjectModel
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\DocumentationModule\Project
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInterface
 {
@@ -106,5 +106,15 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     {
         return $this->hasMany(VersionModel::class, 'project_id')
             ->orderBy('sort_order', 'ASC');
+    }
+
+    /**
+     * Return the related category.
+     *
+     * @return CategoryInterface
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

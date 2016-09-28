@@ -1,10 +1,12 @@
 <?php namespace Anomaly\DocumentationModule\Project\Contract;
 
+use Anomaly\DocumentationModule\Category\Contract\CategoryInterface;
 use Anomaly\DocumentationModule\Section\SectionCollection;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\VersionCollection;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Interface ProjectInterface
@@ -73,4 +75,18 @@ interface ProjectInterface extends EntryInterface
      * @return HasMany
      */
     public function versions();
+
+    /**
+     * Return the related category.
+     *
+     * @return CategoryInterface
+     */
+    public function getCategory();
+
+    /**
+     * Return the category relation.
+     *
+     * @return HasOne
+     */
+    public function category();
 }

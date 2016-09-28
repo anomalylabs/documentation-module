@@ -60,7 +60,14 @@ class ProjectsController extends PublicController
             abort(404);
         }
 
+        $category = $project->getCategory();
+
         $this->dispatch(new AddDocumentationBreadcrumb());
+
+        if ($category) {
+            $this->breadcrumbs->add($category->getTitle(), $category->route('view'));
+        }
+
         $this->breadcrumbs->add($project->getTitle(), $this->request->path());
 
         $versions = $project->getVersions();
