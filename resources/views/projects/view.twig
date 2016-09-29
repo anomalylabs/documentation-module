@@ -8,9 +8,15 @@
             <div class="col-lg-12">
 
                 <div class="jumbotron text-center">
+
                     <h1>{{ project.title }}</h1>
+
+                    {% if project.description.value %}
+                        <p>{{ project.description }}</p>
+                    {% endif %}
+
                 </div>
-                
+
             </div>
         </div>
 
@@ -30,7 +36,8 @@
                             {{ section.title }}
 
                             {% if section.level > 1 %}
-                                <a class="permalink" name="{{ section.path }}" href="#{{ section.path }}" style="text-decoration: none;">
+                                <a class="permalink" name="{{ section.path }}" href="#{{ section.path }}"
+                                   style="text-decoration: none;">
                                     {{ icon('link') }}
                                 </a>
                             {% endif %}

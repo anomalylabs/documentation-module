@@ -44,13 +44,6 @@ class SectionEntryFormSections
                         );
                     },
                 ],
-                'seo'     => [
-                    'fields' => [
-                        'section_meta_title',
-                        'section_meta_keywords',
-                        'section_meta_description',
-                    ],
-                ],
                 'options' => [
                     'fields' => [
                         'section_enabled',
