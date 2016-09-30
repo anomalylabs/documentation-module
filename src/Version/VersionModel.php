@@ -1,9 +1,9 @@
 <?php namespace Anomaly\DocumentationModule\Version;
 
+use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Section\Contract\SectionInterface;
 use Anomaly\DocumentationModule\Section\SectionCollection;
 use Anomaly\DocumentationModule\Section\SectionModel;
-use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationVersionsEntryModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -78,7 +78,9 @@ class VersionModel extends DocumentationVersionsEntryModel implements VersionInt
      */
     public function sections()
     {
-        return $this->hasMany(SectionModel::class, 'version_id');
+        return $this->hasMany(SectionModel::class, 'version_id')
+            ->orderBy('parent_id', 'ASC')
+            ->orderBy('sort_order', 'ASC');
     }
 
     /**
