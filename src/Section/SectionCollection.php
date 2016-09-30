@@ -14,22 +14,6 @@ class SectionCollection extends EntryCollection
 {
 
     /**
-     * Return the home section.
-     *
-     * @return SectionInterface|null
-     */
-    public function home()
-    {
-        return $this->first(
-            function ($section) {
-
-                /* @var SectionInterface $section */
-                return $section->isHome();
-            }
-        );
-    }
-
-    /**
      * Return only top level sections.
      *
      * @return SectionCollection
@@ -79,22 +63,6 @@ class SectionCollection extends EntryCollection
     }
 
     /**
-     * Return the current section.
-     *
-     * @return SectionInterface|null
-     */
-    public function current()
-    {
-        return $this->first(
-            function ($section) {
-
-                /* @var SectionInterface $section */
-                return $section->isCurrent();
-            }
-        );
-    }
-
-    /**
      * Return only children of the provided item.
      *
      * @param $parent
@@ -108,23 +76,6 @@ class SectionCollection extends EntryCollection
 
                 /* @var SectionInterface $item */
                 return $item->getParentId() == $parent->getId();
-            }
-        );
-    }
-
-    /**
-     * Return only active sections.
-     *
-     * @param  bool $active
-     * @return SectionCollection
-     */
-    public function active($active = true)
-    {
-        return $this->filter(
-            function ($item) use ($active) {
-
-                /* @var SectionInterface $item */
-                return $item->isActive() == $active;
             }
         );
     }

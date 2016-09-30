@@ -1,8 +1,8 @@
 <?php namespace Anomaly\DocumentationModule\Version\Contract;
 
+use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Section\Contract\SectionInterface;
 use Anomaly\DocumentationModule\Section\SectionCollection;
-use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -17,6 +17,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 interface VersionInterface extends EntryInterface
 {
+
+    /**
+     * Return the structured sections.
+     *
+     * @return SectionInterface
+     */
+    public function content();
 
     /**
      * Get the name.

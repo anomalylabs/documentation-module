@@ -1,6 +1,8 @@
 <?php namespace Anomaly\DocumentationModule\Version;
 
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
+use Anomaly\DocumentationModule\Section\Command\SetChildrenRelations;
+use Anomaly\DocumentationModule\Section\Command\SetParentRelations;
 use Anomaly\DocumentationModule\Section\Contract\SectionInterface;
 use Anomaly\DocumentationModule\Section\SectionCollection;
 use Anomaly\DocumentationModule\Section\SectionModel;
@@ -18,6 +20,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class VersionModel extends DocumentationVersionsEntryModel implements VersionInterface
 {
+
+    /**
+     * Return the structured sections.
+     *
+     * @return SectionInterface
+     */
+    public function content()
+    {
+        $sections = $this->getSections();
+
+        $this->dispatch(new SetParentRelations($sections));
+        $this->dispatch(new SetChildrenRelations($sections));
+
+        return $sections;
+    }
 
     /**
      * Get the name.

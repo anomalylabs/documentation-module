@@ -86,6 +86,8 @@ class TypeModel extends DocumentationTypesEntryModel implements TypeInterface
      */
     public function sections()
     {
-        return $this->hasMany('Anomaly\DocumentationModule\Section\SectionModel', 'type_id');
+        return $this->hasMany('Anomaly\DocumentationModule\Section\SectionModel', 'type_id')
+            ->orderBy('parent_id', 'ASC')
+            ->orderBy('sort_order', 'ASC');
     }
 }

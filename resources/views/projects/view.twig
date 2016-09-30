@@ -2,6 +2,8 @@
 
 {% block content %}
 
+    {% import 'anomaly.module.documentation::sections/content' as content %}
+
     <div class="container">
 
         <div class="row">
@@ -28,23 +30,7 @@
 
             <div class="col-lg-9">
 
-                {% for section in version.sections %}
-                    <div class="section">
-
-                        <h{{ section.level + 1 }}>
-
-                            {{ section.title }}
-
-                            <a class="permalink" name="{{ section.path }}" href="#{{ section.path }}">
-                                {{ icon('link') }}
-                            </a>
-
-                        </h{{ section.level + 1 }}>
-
-                        {{ section.make.content|raw }}
-
-                    </div>
-                {% endfor %}
+                {{ content.make(version.content.top(), 1) }}
 
             </div>
 
