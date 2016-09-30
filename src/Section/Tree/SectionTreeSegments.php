@@ -31,17 +31,6 @@ class SectionTreeSegments
                 ],
                 [
                     'data-toggle' => 'tooltip',
-                    'class'       => 'text-success',
-                    'value'       => '<i class="fa fa-home"></i>',
-                    'attributes'  => [
-                        'title' => 'module::message.home',
-                    ],
-                    'enabled'     => function (SectionInterface $entry) {
-                        return $entry->isHome();
-                    },
-                ],
-                [
-                    'data-toggle' => 'tooltip',
                     'class'       => 'text-danger',
                     'value'       => '<i class="fa fa-ban"></i>',
                     'attributes'  => [

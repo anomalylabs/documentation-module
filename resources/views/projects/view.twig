@@ -35,12 +35,9 @@
 
                             {{ section.title }}
 
-                            {% if section.level > 1 %}
-                                <a class="permalink" name="{{ section.path }}" href="#{{ section.path }}"
-                                   style="text-decoration: none;">
-                                    {{ icon('link') }}
-                                </a>
-                            {% endif %}
+                            <a class="permalink" name="{{ section.path }}" href="#{{ section.path }}">
+                                {{ icon('link') }}
+                            </a>
 
                         </h{{ section.level + 1 }}>
 
