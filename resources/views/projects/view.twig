@@ -30,7 +30,9 @@
 
             <div class="col-lg-9">
 
-                {{ content.make(version.content.top(), 1) }}
+                {%  cache project 600 %}
+                    {{ content.make(version.content.top(), 1) }}
+                {% endcache %}
 
             </div>
 

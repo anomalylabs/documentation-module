@@ -2,6 +2,7 @@
 
 use Anomaly\DocumentationModule\Section\Command\SetPath;
 use Anomaly\DocumentationModule\Section\Command\SetStrId;
+use Anomaly\DocumentationModule\Section\Command\TouchProject;
 use Anomaly\DocumentationModule\Section\Command\UpdatePaths;
 use Anomaly\DocumentationModule\Section\Contract\SectionInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
@@ -40,6 +41,7 @@ class SectionObserver extends EntryObserver
     public function saved(EntryInterface $entry)
     {
         $this->dispatch(new UpdatePaths($entry));
+        $this->dispatch(new TouchProject($entry));
 
         parent::saved($entry);
     }
