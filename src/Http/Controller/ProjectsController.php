@@ -68,6 +68,7 @@ class ProjectsController extends PublicController
             $this->breadcrumbs->add($category->getTitle(), $category->route('view'));
         }
 
+        $this->template->set('meta_title', $project->getTitle());
         $this->breadcrumbs->add($project->getTitle(), $this->request->path());
 
         $versions = $project->getVersions();
