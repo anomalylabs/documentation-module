@@ -13,7 +13,7 @@
 
         <div class="row">
 
-            {% include 'anomaly.module.documentation::partials/projects' with {'projects': category.projects} %}
+            {% include 'anomaly.module.documentation::partials/projects' with {'projects': category.projects.enabled()} %}
 
         </div>
     </div>
