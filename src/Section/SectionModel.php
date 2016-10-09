@@ -56,13 +56,20 @@ class SectionModel extends DocumentationSectionsEntryModel implements SectionInt
     /**
      * Return the section level.
      *
-     * @return array|int
+     * @param null $ceiling
+     * @return int
      */
-    public function level()
+    public function level($ceiling = null)
     {
         $level = explode('/', trim($this->getPath(), '/'));
 
-        return (!$level) ? 1 : count($level);
+        $level = (!$level) ? 1 : count($level);
+
+        if ($ceiling && $level > $ceiling) {
+            return $ceiling;
+        }
+
+        return $level;
     }
 
     /**

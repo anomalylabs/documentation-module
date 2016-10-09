@@ -1,14 +1,13 @@
 <?php namespace Anomaly\DocumentationModule\Section\Contract;
 
-use Anomaly\DocumentationModule\Section\SectionCollection;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
+use Anomaly\DocumentationModule\Section\SectionCollection;
 use Anomaly\DocumentationModule\Type\Contract\TypeInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Http\Response;
 
 /**
  * Interface SectionInterface
@@ -20,6 +19,14 @@ use Illuminate\Http\Response;
  */
 interface SectionInterface extends EntryInterface
 {
+
+    /**
+     * Return the section level.
+     *
+     * @param null $ceiling
+     * @return int
+     */
+    public function level($ceiling = null);
 
     /**
      * Get the path.
