@@ -1,9 +1,11 @@
 {% macro make(sections, depth) %}
     {% for section in sections %}
 
+        {%  set heading = section.level + 1 %}
+
         <div class="section">
 
-            <h{{ section.level + 1 }}>
+            <h{{ heading < 6 ?: 5 }}>
 
                 {{ section.title }}
 
@@ -11,7 +13,7 @@
                     {{ icon('link') }}
                 </a>
 
-            </h{{ section.level + 1 }}>
+            </h{{ heading < 6 ?: 5 }}>
 
             {{ section.make.getContent()|raw }}
 
