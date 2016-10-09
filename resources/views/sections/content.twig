@@ -3,7 +3,7 @@
 
         <div class="section">
 
-            <h{{ section.level < 5 section.level + 1 : 5 }}>
+            <h{{ section.level + 1 }}>
 
                 {{ section.title }}
 
@@ -11,7 +11,7 @@
                     {{ icon('link') }}
                 </a>
 
-            </h{{ section.level < 5 section.level + 1 : 5 }}>
+            </h{{ section.level + 1 }}>
 
             {{ section.make.getContent()|raw }}
 
