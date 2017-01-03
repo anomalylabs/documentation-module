@@ -1,21 +1,22 @@
 {% extends layout('documentation') %}
 
 {% block content %}
+    <div id="documentation">
+        <div class="container">
 
-    <div class="container">
-
-        <div class="row">
-            <div class="jumbotron text-center">
-                <h1>{{ category.name }}</h1>
-                <p>{{ category.description }}</p>
+            <div class="row">
+                <div class="jumbotron text-center">
+                    <h1>{{ category.name }}</h1>
+                    <p>{{ category.description }}</p>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
+            <div class="row">
 
-            {% include 'anomaly.module.documentation::partials/projects' with {'projects': category.projects.enabled()} %}
+                {% include 'anomaly.module.documentation::partials/projects' with {'projects': category.projects.enabled()} %}
+
+            </div>
 
         </div>
     </div>
-
 {% endblock %}

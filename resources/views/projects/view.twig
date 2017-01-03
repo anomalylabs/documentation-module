@@ -4,40 +4,42 @@
 
     {% import 'anomaly.module.documentation::sections/content' as content %}
 
-    <div class="container">
+    <div id="documentation">
+        <div class="container">
 
-        <div class="row">
-            <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
 
-                <div class="jumbotron text-center">
+                    <div class="jumbotron text-center">
 
-                    <h1>{{ project.title }}</h1>
+                        <h1>{{ project.title }}</h1>
 
-                    {% if project.description.value %}
-                        <p>{{ project.description }}</p>
-                    {% endif %}
+                        {% if project.description.value %}
+                            <p>{{ project.description }}</p>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+
+                <aside class="col-lg-3">
+                    {{ documentation().depth(2)|raw }}
+                </aside>
+
+                <div class="col-lg-9">
+
+                    {% cache project 60*60*24 %}
+                    {{ content.make(version.content.top(), 1) }}
+                    {% endcache %}
 
                 </div>
 
             </div>
-        </div>
-
-        <div class="row">
-
-            <aside class="col-lg-3">
-                {{ documentation().depth(2)|raw }}
-            </aside>
-
-            <div class="col-lg-9">
-
-                {% cache project 60*60*24 %}
-                {{ content.make(version.content.top(), 1) }}
-                {% endcache %}
-
-            </div>
 
         </div>
-
     </div>
 
 {% endblock %}

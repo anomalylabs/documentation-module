@@ -1,57 +1,59 @@
 {% extends layout('documentation') %}
 
 {% block content %}
-    <div class="container">
-        <div class="list-group">
+    <div id="documentation">
+        <div class="container">
+            <div class="list-group">
 
-            {% for category in entries('documentation', 'categories').get() %}
-                <a href="{{ category.route('view') }}" class="btn btn-primary">{{ category.title }}</a>
-            {% endfor %}
+                {% for category in entries('documentation', 'categories').get() %}
+                    <a href="{{ category.route('view') }}" class="btn btn-primary">{{ category.title }}</a>
+                {% endfor %}
 
-            <br><br>
+                <br><br>
 
-            <form>
-                <input name="q" class="form-control" value="{{ request_get('q') }}" placeholder="Search...">
-            </form>
+                <form>
+                    <input name="q" class="form-control" value="{{ request_get('q') }}" placeholder="Search...">
+                </form>
 
-            <br>
+                <br>
 
-            {% if request_get('q') %}
+                {% if request_get('q') %}
 
-                {% set sections = entries('documentation', 'sections').search(request_get('q')).take(50).get() %}
+                    {% set sections = entries('documentation', 'sections').search(request_get('q')).take(50).get() %}
 
-                {% if sections.count() %}
-                    {% for section in sections.enabled() %}
-                        <a href="{{ section.route('view') }}" class="list-group-item">
+                    {% if sections.count() %}
+                        {% for section in sections.enabled() %}
+                            <a href="{{ section.route('view') }}" class="list-group-item">
 
-                            <h4 class="list-group-item-heading">
-                                {{ section.project.title }} > {{ section.title }}
-                                <br>
-                                <small>{{ section.version.route('view') }}#{{ section.path }}</small>
-                            </h4>
+                                <h4 class="list-group-item-heading">
+                                    {{ section.project.title }} > {{ section.title }}
+                                    <br>
+                                    <small>{{ section.version.route('view') }}#{{ section.path }}</small>
+                                </h4>
 
-                            <p class="list-group-item-text">
-                                {{ section.meta_description }}
-                            </p>
+                                <p class="list-group-item-text">
+                                    {{ section.meta_description }}
+                                </p>
 
-                            <div class="clearfix"></div>
+                                <div class="clearfix"></div>
 
-                        </a>
-                    {% endfor %}
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <div class="alert alert-info">
+                            <p>No results.</p>
+                        </div>
+                    {% endif %}
+
                 {% else %}
-                    <div class="alert alert-info">
-                        <p>No results.</p>
-                    </div>
+
+                    {% set projects = entries('documentation', 'projects').where('enabled', true).get() %}
+
+                    {% include 'anomaly.module.documentation::partials/projects' with {'projects': projects} %}
+
                 {% endif %}
 
-            {% else %}
-
-                {% set projects = entries('documentation', 'projects').where('enabled', true).get() %}
-
-                {% include 'anomaly.module.documentation::partials/projects' with {'projects': projects} %}
-
-            {% endif %}
-
+            </div>
         </div>
     </div>
 {% endblock %}
