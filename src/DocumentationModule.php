@@ -14,6 +14,13 @@ class DocumentationModule extends Module
 {
 
     /**
+     * The addon icon.
+     *
+     * @var string
+     */
+    protected $icon = 'fa fa-book';
+
+    /**
      * The addon plugins.
      *
      * @var array
