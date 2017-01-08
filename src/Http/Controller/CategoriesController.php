@@ -27,8 +27,10 @@ class CategoriesController extends PublicController
         }
 
         $this->dispatch(new AddDocumentationBreadcrumb());
+
         $this->breadcrumbs->add($category->getName(), $this->request->path());
         $this->template->put('meta_title', $category->getName());
+        $this->template->put('meta_description', $category->getDescription());
 
         return $this->view->make(
             'anomaly.module.documentation::categories/view',

@@ -25,4 +25,11 @@ interface CategoryInterface extends EntryInterface
      * @return string
      */
     public function getName();
+
+    /**
+     * Get the description.
+     *
+     * @return string
+     */
+    public function getDescription();
 }

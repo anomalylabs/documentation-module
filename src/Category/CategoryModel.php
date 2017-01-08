@@ -37,6 +37,16 @@ class CategoryModel extends DocumentationCategoriesEntryModel implements Categor
     }
 
     /**
+     * Get the description.
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
      * Get the related projects.
      *
      * @return ProjectCollection
