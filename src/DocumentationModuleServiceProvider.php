@@ -77,7 +77,11 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
         ],
         'documentation/{slug}'                                   => [
             'as'   => 'anomaly.module.documentation::projects.view',
-            'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@version',
+            'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@latest',
+        ],
+        'documentation/{slug}/latest'                            => [
+            'as'   => 'anomaly.module.documentation::projects.latest',
+            'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
         ],
         'documentation/{project}/{name}'                         => [
             'as'   => 'anomaly.module.documentation::versions.view',

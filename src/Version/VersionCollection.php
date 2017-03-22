@@ -40,6 +40,10 @@ class VersionCollection extends EntryCollection
         return $this->first(
             function ($version) use ($name) {
 
+                if ($name == 'latest') {
+                    return true;
+                }
+
                 /* @var VersionInterface $version */
                 return $version->getName() == $name;
             }

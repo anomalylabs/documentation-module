@@ -35,7 +35,7 @@ class ProjectsController extends PublicController
      * @param  ProjectRepositoryInterface $projects
      * @return string
      */
-    public function version(ProjectRepositoryInterface $projects)
+    public function latest(ProjectRepositoryInterface $projects)
     {
         if (!$project = $projects->findBySlug($this->route->getParameter('slug'))) {
             abort(404);
@@ -45,7 +45,7 @@ class ProjectsController extends PublicController
             abort(404);
         }
 
-        return $this->redirect->to($latest->route('view'));
+        return $this->redirect->to($project->route('latest'));
     }
 
     /**
@@ -56,7 +56,9 @@ class ProjectsController extends PublicController
      */
     public function view(ProjectRepositoryInterface $projects)
     {
-        if (!$project = $projects->findBySlug($this->route->getParameter('project'))) {
+        $project = $this->route->getParameter('project', $this->route->getParameter('slug'));
+
+        if (!$project = $projects->findBySlug($project)) {
             abort(404);
         }
 
@@ -73,7 +75,7 @@ class ProjectsController extends PublicController
 
         $versions = $project->getVersions();
 
-        $version = $versions->findByName($this->route->getParameter('name'));
+        $version = $versions->findByName($this->route->getParameter('name', 'latest'));
 
         if (!$version && !$version = $project->getLatestVersion()) {
             abort(404);
