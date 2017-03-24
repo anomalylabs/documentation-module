@@ -6,7 +6,7 @@
         {{ section.current ? options.get('current_class', 'current') }}
         {{ options.item_class }}">
 
-        <a href="{{ section.route('view') }}" class="{{ options.link_class }}">
+        <a href="#{{ section.path }}" class="{{ options.link_class }}">
             {{ section.title }}
         </a>
 
