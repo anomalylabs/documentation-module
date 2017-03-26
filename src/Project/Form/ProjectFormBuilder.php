@@ -34,4 +34,17 @@ class ProjectFormBuilder extends FormBuilder
             ],
         ],
     ];
+
+    /**
+     * The form buttons.
+     *
+     * @var array
+     */
+    protected $buttons = [
+        'cancel',
+        'view' => [
+            'enabled' => 'edit',
+            'target'  => '_blank',
+        ],
+    ];
 }
