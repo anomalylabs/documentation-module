@@ -41,6 +41,7 @@ class DocumentationModule extends Module
             ],
             'sections' => [
                 'versions' => [
+                    'hidden'      => true,
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
                     'permalink'   => 'admin/documentation/versions/{request.route.parameters.project}',
