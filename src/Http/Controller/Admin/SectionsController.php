@@ -11,7 +11,6 @@ use Anomaly\DocumentationModule\Type\Contract\TypeRepositoryInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Anomaly\Streams\Platform\Support\Authorizer;
 
 /**
  * Class SectionsController
@@ -27,7 +26,7 @@ class SectionsController extends AdminController
     /**
      * Display an index of existing entries.
      *
-     * @param SectionTreeBuilder            $tree
+     * @param SectionTreeBuilder         $tree
      * @param VersionRepositoryInterface $versions
      * @param                            $version
      * @return \Symfony\Component\HttpFoundation\Response
@@ -64,9 +63,9 @@ class SectionsController extends AdminController
     /**
      * Create a new entry.
      *
-     * @param SectionFormBuilder            $form
+     * @param SectionFormBuilder         $form
      * @param VersionRepositoryInterface $versions
-     * @param SectionRepositoryInterface    $sections
+     * @param SectionRepositoryInterface $sections
      * @param                            $version
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -106,7 +105,7 @@ class SectionsController extends AdminController
      * Edit an existing entry.
      *
      * @param SectionEntryFormBuilder    $form
-     * @param EntryFormBuilder        $entry
+     * @param EntryFormBuilder           $entry
      * @param SectionFormBuilder         $section
      * @param SectionRepositoryInterface $sections
      * @return \Symfony\Component\HttpFoundation\Response
@@ -142,23 +141,5 @@ class SectionsController extends AdminController
         }
 
         return $this->redirect->to($section->route('view'));
-    }
-
-    /**
-     * Delete a section and go back.
-     *
-     * @param SectionRepositoryInterface $sections
-     * @param Authorizer              $authorizer
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function delete(SectionRepositoryInterface $sections, Authorizer $authorizer)
-    {
-        $authorizer->authorize('anomaly.module.documentation::sections.delete');
-
-        $sections->delete($section = $sections->find($this->route->parameter('id')));
-
-        $section->entry->delete();
-
-        return $this->redirect->back();
     }
 }
