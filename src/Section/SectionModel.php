@@ -21,6 +21,17 @@ class SectionModel extends DocumentationSectionsEntryModel implements SectionInt
 {
 
     /**
+     * Eager loaded relationships.
+     *
+     * @var array
+     */
+    protected $with = [
+        'type',
+        'entry',
+        'translations',
+    ];
+
+    /**
      * The active flag.
      *
      * @var bool
