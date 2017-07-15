@@ -11,6 +11,7 @@ use Anomaly\DocumentationModule\Type\Contract\TypeRepositoryInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\Contract\VersionRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\Streams\Platform\Support\Authorizer;
 
 /**
  * Class SectionsController
@@ -26,7 +27,7 @@ class SectionsController extends AdminController
     /**
      * Display an index of existing entries.
      *
-     * @param SectionTreeBuilder         $tree
+     * @param SectionTreeBuilder $tree
      * @param VersionRepositoryInterface $versions
      * @param                            $version
      * @return \Symfony\Component\HttpFoundation\Response
@@ -44,7 +45,7 @@ class SectionsController extends AdminController
     /**
      * Return a selection of versions.
      *
-     * @param TypeRepositoryInterface    $types
+     * @param TypeRepositoryInterface $types
      * @param VersionRepositoryInterface $versions
      * @param                            $version
      * @return \Illuminate\View\View
@@ -63,7 +64,7 @@ class SectionsController extends AdminController
     /**
      * Create a new entry.
      *
-     * @param SectionFormBuilder         $form
+     * @param SectionFormBuilder $form
      * @param VersionRepositoryInterface $versions
      * @param SectionRepositoryInterface $sections
      * @param                            $version
@@ -104,9 +105,9 @@ class SectionsController extends AdminController
     /**
      * Edit an existing entry.
      *
-     * @param SectionEntryFormBuilder    $form
-     * @param EntryFormBuilder           $entry
-     * @param SectionFormBuilder         $section
+     * @param SectionEntryFormBuilder $form
+     * @param EntryFormBuilder $entry
+     * @param SectionFormBuilder $section
      * @param SectionRepositoryInterface $sections
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -141,5 +142,26 @@ class SectionsController extends AdminController
         }
 
         return $this->redirect->to($section->route('view'));
+    }
+
+    /**
+     * Delete a section and go back.
+     *
+     * @param  SectionRepositoryInterface $sections
+     * @param  Authorizer $authorizer
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete(SectionRepositoryInterface $sections, Authorizer $authorizer)
+    {
+        if (!$authorizer->authorize('anomaly.module.documentation::sections.delete')) {
+
+            $this->messages->error('streams::message.access_denied');
+
+            return $this->redirect->back();
+        }
+
+        $sections->delete($sections->find($this->route->parameter('id')));
+
+        return $this->redirect->back();
     }
 }
