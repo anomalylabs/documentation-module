@@ -36,57 +36,17 @@ class DocumentationModule extends Module
      */
     protected $sections = [
         'projects'   => [
-            'buttons'  => [
-                'new_project',
-            ],
-            'sections' => [
-                'versions' => [
-                    'hidden'      => true,
-                    'data-toggle' => 'modal',
-                    'data-target' => '#modal',
-                    'permalink'   => 'admin/documentation/versions/{request.route.parameters.project}',
-                    'href'        => 'admin/documentation/choose',
-
-                    'buttons' => [
-                        'new_version',
-                    ],
-                ],
-            ],
-        ],
-        'sections'   => [
-            'data-toggle' => 'modal',
-            'data-target' => '#modal',
-            'permalink'   => 'admin/documentation/sections/{request.route.parameters.version}',
-            'href'        => 'admin/documentation/choose',
-
             'buttons' => [
-                'new_section' => [
+                'new_project' => [
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
-                    'href'        => 'admin/documentation/sections/{request.route.parameters.version}/choose',
+                    'href'        => 'admin/documentation/choose',
                 ],
             ],
         ],
         'categories' => [
             'buttons' => [
                 'new_category',
-            ],
-        ],
-        'types'      => [
-            'buttons'  => [
-                'new_type',
-            ],
-            'sections' => [
-                'assignments' => [
-                    'href'    => 'admin/documentation/types/assignments/{request.route.parameters.type}',
-                    'buttons' => [
-                        'assign_fields' => [
-                            'data-toggle' => 'modal',
-                            'data-target' => '#modal',
-                            'href'        => 'admin/documentation/types/assignments/{request.route.parameters.type}/choose',
-                        ],
-                    ],
-                ],
             ],
         ],
         'fields'     => [

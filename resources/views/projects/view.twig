@@ -2,8 +2,6 @@
 
 {% block content %}
 
-    {% import 'anomaly.module.documentation::sections/content' as content %}
-
     <div id="documentation">
         <div class="container">
 
@@ -26,14 +24,12 @@
             <div class="row">
 
                 <aside class="col-lg-3">
-                    {{ documentation().depth(2)|raw }}
+                    {#{{ documentation().depth(2)|raw }}#}
                 </aside>
 
                 <div class="col-lg-9">
 
-                    {% cache project 60*60*24 %}
-                    {{ content.make(version.content.top(), 1) }}
-                    {% endcache %}
+                    {{ content|markdown|raw }}
 
                 </div>
 

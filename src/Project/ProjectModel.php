@@ -2,13 +2,7 @@
 
 use Anomaly\DocumentationModule\Category\Contract\CategoryInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
-use Anomaly\DocumentationModule\Section\SectionCollection;
-use Anomaly\DocumentationModule\Section\SectionModel;
-use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
-use Anomaly\DocumentationModule\Version\VersionCollection;
-use Anomaly\DocumentationModule\Version\VersionModel;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class ProjectModel
@@ -41,74 +35,6 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     }
 
     /**
-     * Get the related sections.
-     *
-     * @return SectionCollection
-     */
-    public function getSections()
-    {
-        return $this->sections;
-    }
-
-    /**
-     * Return the sections relation.
-     *
-     * @return HasMany
-     */
-    public function sections()
-    {
-        return $this->hasMany(SectionModel::class, 'project_id');
-    }
-
-    /**
-     * Get the related versions.
-     *
-     * @return VersionCollection
-     */
-    public function getVersions()
-    {
-        return $this->versions;
-    }
-
-    /**
-     * Get the related version by name.
-     *
-     * @param $name
-     * @return VersionInterface|null
-     */
-    public function getVersion($name)
-    {
-        $versions = $this->getVersions();
-
-        return $versions->findBy('name', $name);
-    }
-
-    /**
-     * Get the latest version.
-     *
-     * @return VersionInterface|null
-     */
-    public function getLatestVersion()
-    {
-        $versions = $this->getVersions();
-
-        return $versions
-            ->enabled()
-            ->first();
-    }
-
-    /**
-     * Return the versions relation.
-     *
-     * @return HasMany
-     */
-    public function versions()
-    {
-        return $this->hasMany(VersionModel::class, 'project_id')
-            ->orderBy('sort_order', 'ASC');
-    }
-
-    /**
      * Return the related category.
      *
      * @return CategoryInterface
@@ -116,5 +42,54 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Get the versions.
+     *
+     * @return array
+     */
+    public function getVersions()
+    {
+        $versions = [];
+
+        foreach (explode("\n", $this->versions) as $option) {
+
+            // Split on the first ":"
+            if (str_is('*:*', $option)) {
+                $option = explode(':', $option, 2);
+            } else {
+                $option = [$option, $option];
+            }
+
+            $key   = array_shift($option);
+            $value = $option ? array_shift($option) : $key;
+
+            $versions[ltrim(trim($key, "\r\n "), "\r\n ")] = ltrim(trim($value, "\r\n "), "\r\n ");
+        }
+
+        return $versions;
+    }
+
+    /**
+     * Get the version references.
+     *
+     * @return array
+     */
+    public function getReferences()
+    {
+        return array_keys($this->getVersions());
+    }
+
+    /**
+     * Get the default version.
+     *
+     * @return string
+     */
+    public function getDefaultVersion()
+    {
+        $versions = array_keys($this->getVersions());
+
+        return end($versions);
     }
 }

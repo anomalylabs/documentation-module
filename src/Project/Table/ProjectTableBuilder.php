@@ -46,11 +46,7 @@ class ProjectTableBuilder extends TableBuilder
      */
     protected $buttons = [
         'edit',
-        'versions' => [
-            'icon' => 'code-fork',
-            'type' => 'primary',
-        ],
-        'view'     => [
+        'view' => [
             'target' => '_blank',
         ],
     ];

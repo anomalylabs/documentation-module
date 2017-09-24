@@ -5,8 +5,6 @@ use Anomaly\DocumentationModule\Section\SectionCollection;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\VersionCollection;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Interface ProjectInterface
@@ -34,49 +32,6 @@ interface ProjectInterface extends EntryInterface
     public function isEnabled();
 
     /**
-     * Get the related sections.
-     *
-     * @return SectionCollection
-     */
-    public function getSections();
-
-    /**
-     * Return the sections relation.
-     *
-     * @return HasMany
-     */
-    public function sections();
-
-    /**
-     * Get the related versions.
-     *
-     * @return VersionCollection
-     */
-    public function getVersions();
-
-    /**
-     * Get the related version by name.
-     *
-     * @param $name
-     * @return VersionInterface|null
-     */
-    public function getVersion($name);
-
-    /**
-     * Get the latest version.
-     *
-     * @return VersionInterface|null
-     */
-    public function getLatestVersion();
-
-    /**
-     * Return the versions relation.
-     *
-     * @return HasMany
-     */
-    public function versions();
-
-    /**
      * Return the related category.
      *
      * @return CategoryInterface
@@ -84,9 +39,23 @@ interface ProjectInterface extends EntryInterface
     public function getCategory();
 
     /**
-     * Return the category relation.
+     * Get the versions.
      *
-     * @return HasOne
+     * @return array
      */
-    public function category();
+    public function getVersions();
+
+    /**
+     * Get the version references.
+     *
+     * @return array
+     */
+    public function getReferences();
+
+    /**
+     * Get the default version.
+     *
+     * @return string
+     */
+    public function getDefaultVersion();
 }

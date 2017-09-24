@@ -14,25 +14,15 @@ class ProjectFormBuilder extends FormBuilder
 {
 
     /**
-     * The form sections.
-     *
+     * @var
+     */
+    protected $extension;
+
+    /**
      * @var array
      */
-    protected $sections = [
-        'project' => [
-            'fields' => [
-                'name',
-                'slug',
-                'description',
-            ],
-        ],
-        'options' => [
-            'fields' => [
-                'category',
-                'tags',
-                'enabled',
-            ],
-        ],
+    protected $skips = [
+        'extension',
     ];
 
     /**
@@ -47,4 +37,35 @@ class ProjectFormBuilder extends FormBuilder
             'target'  => '_blank',
         ],
     ];
+
+    /**
+     * Fired just before saving.
+     */
+    public function onSaving()
+    {
+        $entry = $this->getFormEntry();
+
+        if ($extension = $this->getExtension()) {
+            $entry->extension = $extension;
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExtension()
+    {
+        return $this->extension;
+    }
+
+    /**
+     * @param $extension
+     * @return $this
+     */
+    public function setExtension($extension)
+    {
+        $this->extension = $extension;
+
+        return $this;
+    }
 }

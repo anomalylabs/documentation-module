@@ -44,11 +44,19 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
                 'type'    => '-',
             ],
         ],
+        'extension'   => [
+            'required' => true,
+        ],
+        'versions'    => [
+            'required' => true,
+        ],
         'description' => [
             'translatable' => true,
         ],
+        'enabled',
         'category',
         'tags',
-        'enabled',
+        'meta_title',
+        'meta_description',
     ];
 }

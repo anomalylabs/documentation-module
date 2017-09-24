@@ -1,5 +1,6 @@
 <?php
 
+use Anomaly\DocumentationModule\Category\CategoryModel;
 use Anomaly\Streams\Platform\Database\Migration\Migration;
 
 /**
@@ -22,61 +23,27 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
         'name'             => 'anomaly.field_type.text',
         'title'            => 'anomaly.field_type.text',
         'slug'             => 'anomaly.field_type.slug',
-        'path'             => 'anomaly.field_type.text',
         'description'      => 'anomaly.field_type.textarea',
         'meta_title'       => 'anomaly.field_type.text',
         'meta_description' => 'anomaly.field_type.textarea',
-        'meta_keywords'    => 'anomaly.field_type.tags',
         'tags'             => 'anomaly.field_type.tags',
-        'entry'            => 'anomaly.field_type.polymorphic',
+        'versions'         => 'anomaly.field_type.textarea',
         'enabled'          => [
             'type'   => 'anomaly.field_type.boolean',
             'config' => [
                 'default_value' => true,
             ],
         ],
-        'type'             => [
-            'type'   => 'anomaly.field_type.relationship',
+        'extension'        => [
+            'type'   => 'anomaly.field_type.addon',
             'config' => [
-                'related' => 'Anomaly\DocumentationModule\Type\TypeModel',
-            ],
-        ],
-        'parent'           => [
-            'type'   => 'anomaly.field_type.relationship',
-            'config' => [
-                'related' => 'Anomaly\DocumentationModule\Section\SectionModel',
-            ],
-        ],
-        'project'          => [
-            'type'   => 'anomaly.field_type.relationship',
-            'config' => [
-                'related' => 'Anomaly\DocumentationModule\Project\ProjectModel',
-            ],
-        ],
-        'version'          => [
-            'type'   => 'anomaly.field_type.relationship',
-            'config' => [
-                'related' => 'Anomaly\DocumentationModule\Version\VersionModel',
-            ],
-        ],
-        'layout'           => [
-            'type'   => 'anomaly.field_type.editor',
-            'config' => [
-                'default_value' => '{{ section.content.render|raw }}',
-                'mode'          => 'twig',
-            ],
-        ],
-        'content'          => [
-            'type'   => 'anomaly.field_type.wysiwyg',
-            'locked' => false, // For seeding
-            'en'     => [
-                'name' => 'Content',
+                'search' => 'anomaly.module.documentation::documentation.*',
             ],
         ],
         'category'         => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
-                'related' => 'Anomaly\DocumentationModule\Category\CategoryModel',
+                'related' => CategoryModel::class,
             ],
         ],
     ];

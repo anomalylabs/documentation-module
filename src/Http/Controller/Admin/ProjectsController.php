@@ -1,9 +1,13 @@
 <?php namespace Anomaly\DocumentationModule\Http\Controller\Admin;
 
+use Anomaly\ConfigurationModule\Configuration\Form\ConfigurationFormBuilder;
+use Anomaly\DocumentationModule\Documentation\DocumentationExtension;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
+use Anomaly\DocumentationModule\Project\Form\ProjectConfigurationFormBuilder;
 use Anomaly\DocumentationModule\Project\Form\ProjectFormBuilder;
 use Anomaly\DocumentationModule\Project\Table\ProjectTableBuilder;
+use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 /**
@@ -28,17 +32,16 @@ class ProjectsController extends AdminController
     }
 
     /**
-     * Return a selection of projects.
+     * Return documentation source options.
      *
-     * @param ProjectRepositoryInterface $projects
      * @return \Illuminate\View\View
      */
-    public function choose(ProjectRepositoryInterface $projects)
+    public function choose(ExtensionCollection $extensions)
     {
-        return $this->view->make(
+        return view(
             'module::admin/projects/choose',
             [
-                'projects' => $projects->all(),
+                'extensions' => $extensions->search('anomaly.module.documentation::documentation.*'),
             ]
         );
     }
@@ -46,24 +49,69 @@ class ProjectsController extends AdminController
     /**
      * Create a new entry.
      *
-     * @param ProjectFormBuilder $form
+     * @param ProjectConfigurationFormBuilder $builder
+     * @param ConfigurationFormBuilder        $configuration
+     * @param ProjectFormBuilder              $project
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(ProjectFormBuilder $form)
-    {
-        return $form->render();
+    public function create(
+        ExtensionCollection $extensions,
+        ProjectConfigurationFormBuilder $builder,
+        ConfigurationFormBuilder $configuration,
+        ProjectFormBuilder $project
+    ) {
+        /* @var DocumentationExtension $extension */
+        $extension = $extensions->get($this->request->get('extension'));
+
+        $builder->addForm('project', $project);
+        $builder->addForm('configuration', $configuration);
+
+        $project->setExtension($extension);
+        $configuration->setEntry($extension->getNamespace());
+
+        $project->on(
+            'saved',
+            function () use ($configuration, $extension, $project) {
+                $configuration->setScope($project->getFormEntryId());
+            }
+        );
+
+        return $builder->render();
     }
 
     /**
      * Edit an existing entry.
      *
-     * @param ProjectFormBuilder $form
-     * @param                    $id
+     * @param ExtensionCollection             $extensions
+     * @param ProjectConfigurationFormBuilder $builder
+     * @param ConfigurationFormBuilder        $configuration
+     * @param ProjectFormBuilder              $project
+     * @param                                 $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(ProjectFormBuilder $form, $id)
-    {
-        return $form->render($id);
+    public function edit(
+        ExtensionCollection $extensions,
+        ProjectConfigurationFormBuilder $builder,
+        ConfigurationFormBuilder $configuration,
+        ProjectFormBuilder $project,
+        $id
+    ) {
+        $builder->addForm('project', $project->setEntry($id));
+        $builder->addForm('configuration', $configuration);
+
+        $project->on(
+            'built',
+            function () use ($configuration, $project) {
+
+                $entry = $project->getFormEntry();
+
+                $configuration
+                    ->setEntry($entry->extension->getNamespace())
+                    ->setScope($entry->getId());
+            }
+        );
+
+        return $builder->render();
     }
 
     /**

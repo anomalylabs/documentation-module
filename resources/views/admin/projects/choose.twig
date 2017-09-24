@@ -10,13 +10,13 @@
     {% include "streams::modals/filter" %}
 
     <ul class="nav nav-pills nav-stacked">
-        {% for project in projects %}
+        {% for extension in extensions %}
             <li class="nav-item">
-                <a href="{{ url_to('admin/documentation/versions/' ~ project.id ~ '/choose') }}"
-                   class="nav-link ajax">
-                    <strong>{{ project.name }}</strong>
+                <a href="{{ url_to('admin/documentation/create?extension=' ~ extension.namespace) }}"
+                   class="nav-link">
+                    <strong>{{ trans(extension.name) }}</strong>
                     <br>
-                    <small>{{ project.description }}</small>
+                    <small>{{ trans(extension.description) }}</small>
                 </a>
             </li>
         {% endfor %}

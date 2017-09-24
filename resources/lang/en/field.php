@@ -34,10 +34,6 @@ return [
             'types'      => 'Briefly describe this section type.',
         ],
     ],
-    'layout'           => [
-        'name'         => 'Layout',
-        'instructions' => 'The layout is used for displaying the section\'s content.',
-    ],
     'enabled'          => [
         'name'         => 'Enabled',
         'label'        => [
@@ -62,10 +58,6 @@ return [
         'name'         => 'Meta Description',
         'instructions' => 'Specify the SEO description.',
     ],
-    'meta_keywords'    => [
-        'name'         => 'Meta Keywords',
-        'instructions' => 'Specify the SEO keywords.',
-    ],
     'category'         => [
         'name'         => 'Category',
         'instructions' => 'Specify the category to place this documentation in.',
@@ -73,5 +65,10 @@ return [
     'tags'             => [
         'name'         => 'Tags',
         'instructions' => 'Specify any organizational tags to help group your project with others',
+    ],
+    'versions'         => [
+        'name'         => 'Versions',
+        'instructions' => 'Enter versions below in a <strong>key: Value</strong> or <strong>Value</strong> only format. Enter each option on a new line.',
+        'warning'      => 'The last version will be used as your default/latest version.',
     ],
 ];

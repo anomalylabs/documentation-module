@@ -2,7 +2,9 @@
 
 use Anomaly\DocumentationModule\Command\AddDocumentationBreadcrumb;
 use Anomaly\DocumentationModule\Command\SetDocumentationMetaTitle;
+use Anomaly\DocumentationModule\Documentation\DocumentationExtension;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
+use Anomaly\GithubDocumentationExtension\Command\GetContent;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Illuminate\Http\Response;
 
@@ -33,17 +35,18 @@ class ProjectsController extends PublicController
      * Return the home section of a project.
      *
      * @param  ProjectRepositoryInterface $projects
+     * @param                             $slug
      * @return string
      */
-    public function latest(ProjectRepositoryInterface $projects)
+    public function latest(ProjectRepositoryInterface $projects, $slug)
     {
-        if (!$project = $projects->findBySlug($this->route->getParameter('slug'))) {
+        if (!$project = $projects->findBySlug($slug)) {
             abort(404);
         }
 
-        if (!$latest = $project->getLatestVersion()) {
-            abort(404);
-        }
+//        if (!$latest = $project->getLatestVersion()) {
+//            abort(404);
+//        }
 
         return $this->redirect->to($project->route('latest'));
     }
@@ -54,9 +57,9 @@ class ProjectsController extends PublicController
      * @param  ProjectRepositoryInterface $projects
      * @return string
      */
-    public function view(ProjectRepositoryInterface $projects)
+    public function view(ProjectRepositoryInterface $projects, $project, $version = null, $page = null)
     {
-        $project = $this->route->getParameter('project', $this->route->getParameter('slug'));
+        $project = $project ?: $version;
 
         if (!$project = $projects->findBySlug($project)) {
             abort(404);
@@ -73,19 +76,25 @@ class ProjectsController extends PublicController
         $this->template->set('meta_title', $project->getTitle());
         $this->breadcrumbs->add($project->getTitle(), $this->request->path());
 
-        $versions = $project->getVersions();
 
-        $version = $versions->findByName($this->route->getParameter('name', 'latest'));
+        /* @var DocumentationExtension $extension */
+        $extension = $project->extension;
 
-        if (!$version && !$version = $project->getLatestVersion()) {
+        if ($version == 'latest') {
+            $version = $project->getDefaultVersion();
+        }
+
+        if (!$version) {
             abort(404);
         }
 
         $this->template->put('version', $version);
 
+        $content = $this->dispatch(new GetContent($project, $version, $page));
+
         return $this->view->make(
             'anomaly.module.documentation::projects/view',
-            compact('project', 'version')
+            compact('project', 'version', 'content')
         );
     }
 }
