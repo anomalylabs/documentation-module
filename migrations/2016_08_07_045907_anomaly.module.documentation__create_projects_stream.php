@@ -32,11 +32,11 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
      * @var array
      */
     protected $assignments = [
-        'name'        => [
+        'name'          => [
             'translatable' => true,
             'required'     => true,
         ],
-        'slug'        => [
+        'slug'          => [
             'required' => true,
             'unique'   => true,
             'config'   => [
@@ -44,13 +44,13 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
                 'type'    => '-',
             ],
         ],
-        'extension'   => [
+        'documentation' => [
             'required' => true,
         ],
-        'versions'    => [
+        'versions'      => [
             'required' => true,
         ],
-        'description' => [
+        'description'   => [
             'translatable' => true,
         ],
         'enabled',

@@ -1,5 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Documentation;
 
+use Anomaly\ConfigurationModule\Configuration\Form\ConfigurationFormBuilder;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\Streams\Platform\Addon\Extension\Extension;
 
@@ -14,30 +15,78 @@ abstract class DocumentationExtension extends Extension
 {
 
     /**
-     * Return the documentation structure object.
+     * The project instance.
      *
-     * @param ProjectInterface $project
-     * @param                  $reference
+     * @var ProjectInterface
+     */
+    protected $project;
+
+    /**
+     * Return the documentation structure.
+     *
+     * @param $reference
      * @return array
      */
-    abstract public function structure(ProjectInterface $project, $reference);
+    abstract public function structure($reference);
+
+    /**
+     * Return the documentation pages.
+     *
+     * @param $reference
+     * @return array
+     */
+    abstract public function pages($reference);
 
     /**
      * Return the composer json object.
      *
-     * @param ProjectInterface $project
-     * @param                  $reference
-     * @return \stdClass
+     * @param $reference
+     * @return mixed
      */
-    abstract public function composer(ProjectInterface $project, $reference);
+    abstract public function composer($reference);
 
     /**
-     * Return the page content for a project.
+     * Validate the configuration.
+     *
+     * @param ConfigurationFormBuilder $builder
+     * @return bool
+     */
+    abstract public function validate(ConfigurationFormBuilder $builder);
+
+    /**
+     * Get the project.
+     *
+     * @return ProjectInterface
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * Get the project ID.
+     *
+     * @return int|null
+     */
+    public function getProjectId()
+    {
+        if (!$project = $this->getProject()) {
+            return null;
+        }
+
+        return $project->getId();
+    }
+
+    /**
+     * Set the project.
      *
      * @param ProjectInterface $project
-     * @param                  $reference
-     * @param                  $page
-     * @return string
+     * @return $this
      */
-    abstract public function content(ProjectInterface $project, $reference, $page);
+    public function setProject(ProjectInterface $project)
+    {
+        $this->project = $project;
+
+        return $this;
+    }
 }

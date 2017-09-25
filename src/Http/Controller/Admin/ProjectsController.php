@@ -61,12 +61,12 @@ class ProjectsController extends AdminController
         ProjectFormBuilder $project
     ) {
         /* @var DocumentationExtension $extension */
-        $extension = $extensions->get($this->request->get('extension'));
+        $extension = $extensions->get($this->request->get('documentation'));
 
         $builder->addForm('project', $project);
         $builder->addForm('configuration', $configuration);
 
-        $project->setExtension($extension);
+        $project->setDocumentation($extension);
         $configuration->setEntry($extension->getNamespace());
 
         $project->on(
@@ -106,7 +106,7 @@ class ProjectsController extends AdminController
                 $entry = $project->getFormEntry();
 
                 $configuration
-                    ->setEntry($entry->extension->getNamespace())
+                    ->setEntry($entry->documentation->getNamespace())
                     ->setScope($entry->getId());
             }
         );

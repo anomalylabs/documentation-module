@@ -34,7 +34,7 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
                 'default_value' => true,
             ],
         ],
-        'extension'        => [
+        'documentation'    => [
             'type'   => 'anomaly.field_type.addon',
             'config' => [
                 'search' => 'anomaly.module.documentation::documentation.*',

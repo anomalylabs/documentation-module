@@ -2,10 +2,10 @@
 
 use Anomaly\DocumentationModule\Command\AddDocumentationBreadcrumb;
 use Anomaly\DocumentationModule\Command\SetDocumentationMetaTitle;
-use Anomaly\DocumentationModule\Documentation\DocumentationExtension;
+use Anomaly\DocumentationModule\Documentation\DocumentationProcessor;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
-use Anomaly\GithubDocumentationExtension\Command\GetContent;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Http\Response;
 
 /**
@@ -44,22 +44,30 @@ class ProjectsController extends PublicController
             abort(404);
         }
 
-//        if (!$latest = $project->getLatestVersion()) {
-//            abort(404);
-//        }
-
         return $this->redirect->to($project->route('latest'));
     }
 
     /**
      * Return the project documentation for a version.
      *
-     * @param  ProjectRepositoryInterface $projects
+     * @param ProjectRepositoryInterface $projects
+     * @param DocumentationProcessor     $processor
+     * @param Repository                 $config
+     * @param                            $project
+     * @param null                       $version
+     * @param null                       $path
      * @return string
+     * @internal param null $page
      */
-    public function view(ProjectRepositoryInterface $projects, $project, $version = null, $page = null)
-    {
-        $project = $project ?: $version;
+    public function view(
+        ProjectRepositoryInterface $projects,
+        DocumentationProcessor $processor,
+        Repository $config,
+        $project,
+        $version = null,
+        $path = null
+    ) {
+        $version = $version ?: 'latest';
 
         if (!$project = $projects->findBySlug($project)) {
             abort(404);
@@ -76,10 +84,6 @@ class ProjectsController extends PublicController
         $this->template->set('meta_title', $project->getTitle());
         $this->breadcrumbs->add($project->getTitle(), $this->request->path());
 
-
-        /* @var DocumentationExtension $extension */
-        $extension = $project->extension;
-
         if ($version == 'latest') {
             $version = $project->getDefaultVersion();
         }
@@ -90,11 +94,48 @@ class ProjectsController extends PublicController
 
         $this->template->put('version', $version);
 
-        $content = $this->dispatch(new GetContent($project, $version, $page));
+        $pages = $processor->process(
+            $project
+                ->documentation()
+                ->pages($version)
+        );
+
+        $path = $path ?: 'index';
+
+        $locale   = $config->get('app.locale');
+        $fallback = $config->get('app.fallback_locale');
+
+        $match = str_replace('/', '.', $path);
+        $index = str_replace('/', '.', $path) . '.index';
+
+        /**
+         * Try and get the content in
+         * the current local first.
+         */
+        if (!$page = array_get($pages, $locale . '.' . $index)) {
+            $page = array_get($pages, $locale . '.' . $match);
+        }
+
+        /**
+         * If content is empty then try
+         * getting the content in the
+         * fallback locale.
+         */
+        if (!$page && !$page = array_get($pages, $fallback . '.' . $index)) {
+            $page = array_get($pages, $fallback . '.' . $match);
+        }
+
+        /**
+         * We must be lost if
+         * there is no page.
+         */
+        if ($page === null) {
+            abort(404);
+        }
 
         return $this->view->make(
             'anomaly.module.documentation::projects/view',
-            compact('project', 'version', 'content')
+            compact('project', 'version', 'pages', 'page')
         );
     }
 }

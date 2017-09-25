@@ -1,6 +1,7 @@
 <?php namespace Anomaly\DocumentationModule\Project\Contract;
 
 use Anomaly\DocumentationModule\Category\Contract\CategoryInterface;
+use Anomaly\DocumentationModule\Documentation\DocumentationExtension;
 use Anomaly\DocumentationModule\Section\SectionCollection;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\VersionCollection;
@@ -58,4 +59,18 @@ interface ProjectInterface extends EntryInterface
      * @return string
      */
     public function getDefaultVersion();
+
+    /**
+     * Get the documentation extension.
+     *
+     * @return DocumentationExtension
+     */
+    public function getDocumentation();
+
+    /**
+     * Return the project's documentation.
+     *
+     * @return DocumentationExtension
+     */
+    public function documentation();
 }

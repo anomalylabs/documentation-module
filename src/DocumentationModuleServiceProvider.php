@@ -57,29 +57,32 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
-        'documentation'                            => [
+        'documentation'                             => [
             'as'   => 'anomaly.module.documentation::projects.index',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@index',
         ],
-        'documentation/categories/{slug}'          => [
+        'documentation/categories/{slug}'           => [
             'as'   => 'anomaly.module.documentation::categories.view',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\CategoriesController@view',
         ],
-        'documentation/{slug}'                     => [
+        'documentation/{slug}'                      => [
             'as'   => 'anomaly.module.documentation::projects.view',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@latest',
         ],
-        'documentation/{slug}/latest'              => [
+        'documentation/{slug}/latest'               => [
             'as'   => 'anomaly.module.documentation::projects.latest',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
         ],
-        'documentation/{project}/{version}'        => [
+        'documentation/{project}/{version}'         => [
             'as'   => 'anomaly.module.documentation::projects.version',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
         ],
-        'documentation/{project}/{version}/{page}' => [
-            'as'   => 'anomaly.module.documentation::sections.view',
-            'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
+        'documentation/{project}/{version}/{page?}' => [
+            'as'          => 'anomaly.module.documentation::sections.view',
+            'uses'        => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
+            'constraints' => [
+                'page' => '(.*)',
+            ],
         ],
     ];
 

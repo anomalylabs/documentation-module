@@ -1,28 +1,30 @@
 <?php namespace Anomaly\DocumentationModule\Project\Form;
 
+use Anomaly\DocumentationModule\Documentation\DocumentationExtension;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
 /**
  * Class ProjectFormBuilder
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\DocumentationModule\Project\Form
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class ProjectFormBuilder extends FormBuilder
 {
 
     /**
-     * @var
+     * The documentation extension.
+     *
+     * @var DocumentationExtension
      */
-    protected $extension;
+    protected $documentation;
 
     /**
      * @var array
      */
     protected $skips = [
-        'extension',
+        'documentation',
     ];
 
     /**
@@ -45,26 +47,30 @@ class ProjectFormBuilder extends FormBuilder
     {
         $entry = $this->getFormEntry();
 
-        if ($extension = $this->getExtension()) {
-            $entry->extension = $extension;
+        if ($documentation = $this->getDocumentation()) {
+            $entry->documentation = $documentation;
         }
     }
 
     /**
-     * @return mixed
+     * Get the documentation extension.
+     *
+     * @return DocumentationExtension
      */
-    public function getExtension()
+    public function getDocumentation()
     {
-        return $this->extension;
+        return $this->documentation;
     }
 
     /**
-     * @param $extension
+     * Set the documentation extension.
+     *
+     * @param DocumentationExtension $documentation
      * @return $this
      */
-    public function setExtension($extension)
+    public function setDocumentation(DocumentationExtension $documentation)
     {
-        $this->extension = $extension;
+        $this->documentation = $documentation;
 
         return $this;
     }

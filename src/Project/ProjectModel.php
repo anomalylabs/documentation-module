@@ -1,6 +1,7 @@
 <?php namespace Anomaly\DocumentationModule\Project;
 
 use Anomaly\DocumentationModule\Category\Contract\CategoryInterface;
+use Anomaly\DocumentationModule\Documentation\DocumentationExtension;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel;
 
@@ -91,5 +92,27 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
         $versions = array_keys($this->getVersions());
 
         return end($versions);
+    }
+
+    /**
+     * Get the documentation extension.
+     *
+     * @return DocumentationExtension
+     */
+    public function getDocumentation()
+    {
+        return $this->documentation;
+    }
+
+    /**
+     * Return the project's documentation.
+     *
+     * @return DocumentationExtension
+     */
+    public function documentation()
+    {
+        return $this
+            ->getDocumentation()
+            ->setProject($this);
     }
 }
