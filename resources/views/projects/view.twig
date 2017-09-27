@@ -2,6 +2,15 @@
 
 {% block content %}
 
+    {{ asset_add('styles.css', 'anomaly.module.documentation::scss/documentation.scss') }}
+    {{ asset_add('styles.css', 'anomaly.module.documentation::scss/highlight.scss') }}
+
+    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/clipboard.min.js') }}
+    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/anchor.min.js') }}
+    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/prism.min.js') }}
+
+    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/documentation.js') }}
+
     <div id="documentation">
         <div class="container">
 
@@ -46,7 +55,7 @@
                                             {% endif %}
                                         {% endfor %}
                                     </ul>
-                                </li>ma
+                                </li>
                             {% endif %}
                         {% endfor %}
                     </ul>
