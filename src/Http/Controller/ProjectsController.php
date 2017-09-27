@@ -2,7 +2,7 @@
 
 use Anomaly\DocumentationModule\Command\AddDocumentationBreadcrumb;
 use Anomaly\DocumentationModule\Command\SetDocumentationMetaTitle;
-use Anomaly\DocumentationModule\Documentation\DocumentationProcessor;
+use Anomaly\DocumentationModule\Documentation\DocumentationStructure;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Illuminate\Contracts\Config\Repository;
@@ -51,7 +51,6 @@ class ProjectsController extends PublicController
      * Return the project documentation for a version.
      *
      * @param ProjectRepositoryInterface $projects
-     * @param DocumentationProcessor     $processor
      * @param Repository                 $config
      * @param                            $project
      * @param null                       $version
@@ -61,13 +60,12 @@ class ProjectsController extends PublicController
      */
     public function view(
         ProjectRepositoryInterface $projects,
-        DocumentationProcessor $processor,
         Repository $config,
         $project,
         $version = null,
         $path = null
     ) {
-        $version = $version ?: 'latest';
+        $version = $reference = $version ?: 'latest';
 
         if (!$project = $projects->findBySlug($project)) {
             abort(404);
@@ -85,19 +83,22 @@ class ProjectsController extends PublicController
         $this->breadcrumbs->add($project->getTitle(), $this->request->path());
 
         if ($version == 'latest') {
-            $version = $project->getDefaultVersion();
+            $reference = $project->getDefaultVersion();
         }
 
-        if (!$version) {
+        if (!$reference) {
             abort(404);
         }
 
-        $this->template->put('version', $version);
+        $pages = cache()->remember(
+            $project->getSlug() . $reference,
+            60,
+            function () use ($project, $reference) {
 
-        $pages = $processor->process(
-            $project
-                ->documentation()
-                ->pages($version)
+                return $project
+                    ->documentation()
+                    ->pages($reference);
+            }
         );
 
         $path = $path ?: 'index';
@@ -135,7 +136,7 @@ class ProjectsController extends PublicController
 
         return $this->view->make(
             'anomaly.module.documentation::projects/view',
-            compact('project', 'version', 'pages', 'page')
+            compact('project', 'version', 'structure', 'pages', 'page')
         );
     }
 }

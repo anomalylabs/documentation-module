@@ -13,23 +13,6 @@ class DocumentationParser
 {
 
     /**
-     * The YAML parser.
-     *
-     * @var Yaml
-     */
-    protected $yaml;
-
-    /**
-     * Create a new DocumentationParser instance.
-     *
-     * @param Yaml $yaml
-     */
-    public function __construct(Yaml $yaml)
-    {
-        $this->yaml = $yaml;
-    }
-
-    /**
      * Parse the content's front matter attributes.
      *
      * @param $content
@@ -41,7 +24,7 @@ class DocumentationParser
             return [];
         }
 
-        return $this->yaml->parse($pieces[1]);
+        return (new Yaml())->parse($pieces[1]);
     }
 
     /**
@@ -53,5 +36,17 @@ class DocumentationParser
     public function content($content)
     {
         return ltrim(preg_replace('~^[-]{3}[\r\n|\n]+(.*)[\r\n|\n]+[-]{3}~s', '', $content, 1));
+    }
+
+    /**
+     * Return the resource name
+     * without the numbering scheme.
+     *
+     * @param $name
+     * @return mixed
+     */
+    public function name($name)
+    {
+        return preg_replace('/([0-9]{2}\.)/', '', $name);
     }
 }
