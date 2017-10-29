@@ -35,9 +35,9 @@ class ProjectsController extends PublicController
      * @param  ProjectRepositoryInterface $projects
      * @return string
      */
-    public function latest(ProjectRepositoryInterface $projects, $slug)
+    public function latest(ProjectRepositoryInterface $projects)
     {
-        if (!$project = $projects->findBySlug($slug)) {
+        if (!$project = $projects->findBySlug($this->route->parameter('slug'))) {
             abort(404);
         }
 
