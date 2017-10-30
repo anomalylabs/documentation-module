@@ -22,7 +22,7 @@ class CategoriesController extends PublicController
      */
     public function view(CategoryRepositoryInterface $categories)
     {
-        if (!$category = $categories->findBySlug($this->route->getParameter('slug'))) {
+        if (!$category = $categories->findBySlug($this->route->parameter('slug'))) {
             abort(404);
         }
 
