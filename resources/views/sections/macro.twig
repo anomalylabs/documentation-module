@@ -1,4 +1,7 @@
 {% macro links(sections, collection, options, depth) %}
+
+    {% import _self as self %}
+
     {% for section in sections %}
         <{{ options.link_tag ?: 'li' }} class="
         {{ section.children.isEmpty() ? '' : (options.dropdown_class ?: 'dropdown') }}
@@ -13,7 +16,7 @@
         {% if not section.children.isEmpty() %}
             {% if depth+1 <= options.get('depth', 999) %}
                 <{{ options.child_list_tag ?: options.list_tag ?: 'ul' }} class="{{ options.child_list_class }}">
-                {{ _self.links(section.children, collection, options, depth+1) }}
+                {{ self.links(section.children, collection, options, depth+1) }}
                 </{{ options.child_list_tag ?: options.list_tag ?: 'ul' }}>
             {% endif %}
         {% endif %}
