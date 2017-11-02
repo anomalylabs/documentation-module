@@ -37,10 +37,16 @@ class AnomalyModuleDocumentationCreatePagesStream extends Migration
         'project'          => [
             'required' => true,
         ],
+        'reference'        => [
+            'required' => true,
+        ],
         'content'          => [
             'translatable' => true,
         ],
         'parent',
+        'data'             => [
+            'translatable' => true,
+        ],
         'meta_title'       => [
             'translatable' => true,
         ],

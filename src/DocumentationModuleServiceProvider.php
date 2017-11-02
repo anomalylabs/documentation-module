@@ -1,19 +1,20 @@
 <?php namespace Anomaly\DocumentationModule;
 
 use Anomaly\DocumentationModule\Category\CategoryModel;
-use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
-use Anomaly\DocumentationModule\Page\PageRepository;
-use Anomaly\Streams\Platform\Model\Documentation\DocumentationPagesEntryModel;
-use Anomaly\DocumentationModule\Page\PageModel;
 use Anomaly\DocumentationModule\Category\CategoryRepository;
 use Anomaly\DocumentationModule\Category\Contract\CategoryRepositoryInterface;
+use Anomaly\DocumentationModule\Console\SyncDocumentation;
 use Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController;
+use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
+use Anomaly\DocumentationModule\Page\PageModel;
+use Anomaly\DocumentationModule\Page\PageRepository;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\DocumentationModule\Project\ProjectModel;
 use Anomaly\DocumentationModule\Project\ProjectRepository;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Anomaly\Streams\Platform\Field\FieldRouter;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationCategoriesEntryModel;
+use Anomaly\Streams\Platform\Model\Documentation\DocumentationPagesEntryModel;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel;
 
 /**
@@ -25,6 +26,15 @@ use Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel
  */
 class DocumentationModuleServiceProvider extends AddonServiceProvider
 {
+
+    /**
+     * The addon commands.
+     *
+     * @var array
+     */
+    protected $commands = [
+        SyncDocumentation::class,
+    ];
 
     /**
      * The addon plugins.
@@ -41,7 +51,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $bindings = [
-        DocumentationPagesEntryModel::class => PageModel::class,
+        DocumentationPagesEntryModel::class      => PageModel::class,
         DocumentationProjectsEntryModel::class   => ProjectModel::class,
         DocumentationCategoriesEntryModel::class => CategoryModel::class,
     ];
@@ -52,7 +62,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $singletons = [
-        PageRepositoryInterface::class => PageRepository::class,
+        PageRepositoryInterface::class     => PageRepository::class,
         ProjectRepositoryInterface::class  => ProjectRepository::class,
         CategoryRepositoryInterface::class => CategoryRepository::class,
     ];
@@ -63,9 +73,9 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
-        'admin/documentation/pages'           => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@index',
-        'admin/documentation/pages/create'    => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@create',
-        'admin/documentation/pages/edit/{id}' => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@edit',
+        'admin/documentation/pages'                => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@index',
+        'admin/documentation/pages/create'         => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@create',
+        'admin/documentation/pages/edit/{id}'      => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@edit',
         'documentation'                            => [
             'as'   => 'anomaly.module.documentation::projects.index',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@index',
