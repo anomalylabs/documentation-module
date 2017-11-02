@@ -25,25 +25,18 @@ abstract class DocumentationExtension extends Extension
      * Return the documentation structure.
      *
      * @param $reference
+     * @param $locale
      * @return array
      */
-    abstract public function structure($reference);
+    abstract public function structure($reference, $locale);
 
     /**
-     * Return the documentation pages.
+     * Return a documentation page.
      *
      * @param $reference
      * @return array
      */
-    abstract public function pages($reference);
-
-    /**
-     * Return the composer json object.
-     *
-     * @param $reference
-     * @return mixed
-     */
-    abstract public function composer($reference);
+    abstract public function page($reference, $locale, $path);
 
     /**
      * Validate the configuration.

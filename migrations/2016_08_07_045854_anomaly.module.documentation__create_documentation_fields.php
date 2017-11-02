@@ -1,6 +1,8 @@
 <?php
 
 use Anomaly\DocumentationModule\Category\CategoryModel;
+use Anomaly\DocumentationModule\Page\PageModel;
+use Anomaly\DocumentationModule\Project\ProjectModel;
 use Anomaly\Streams\Platform\Database\Migration\Migration;
 
 /**
@@ -28,6 +30,8 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
         'meta_description' => 'anomaly.field_type.textarea',
         'tags'             => 'anomaly.field_type.tags',
         'versions'         => 'anomaly.field_type.textarea',
+        'path'             => 'anomaly.field_type.text',
+        'content'          => 'anomaly.field_type.markdown',
         'enabled'          => [
             'type'   => 'anomaly.field_type.boolean',
             'config' => [
@@ -44,6 +48,18 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
                 'related' => CategoryModel::class,
+            ],
+        ],
+        'project'          => [
+            'type'   => 'anomaly.field_type.relationship',
+            'config' => [
+                'related' => ProjectModel::class,
+            ],
+        ],
+        'parent'           => [
+            'type'   => 'anomaly.field_type.relationship',
+            'config' => [
+                'related' => PageModel::class,
             ],
         ],
     ];

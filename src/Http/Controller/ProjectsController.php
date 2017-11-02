@@ -3,6 +3,7 @@
 use Anomaly\DocumentationModule\Command\AddDocumentationBreadcrumb;
 use Anomaly\DocumentationModule\Command\SetDocumentationMetaTitle;
 use Anomaly\DocumentationModule\Documentation\DocumentationStructure;
+use Anomaly\DocumentationModule\Page\PageModel;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Illuminate\Contracts\Config\Repository;
@@ -90,16 +91,26 @@ class ProjectsController extends PublicController
             abort(404);
         }
 
-        $pages = cache()->remember(
-            $project->getSlug() . $reference,
-            60,
-            function () use ($project, $reference) {
+        PageModel::truncate();
 
-                return $project
-                    ->documentation()
-                    ->pages($reference);
-            }
+        $structure = $project
+            ->documentation()
+            ->structure($reference, 'en');
+
+        $structure = array_map(
+            function ($path) use ($project, $reference) {
+                return $project->documentation()->page($reference, 'en', $path);
+            },
+            $structure
         );
+
+        dd($structure);
+
+        $pages = $project
+            ->documentation()
+            ->pages($reference);
+
+        dd('Test');
 
         $path = $path ?: 'index';
 

@@ -39,14 +39,17 @@ class DocumentationParser
     }
 
     /**
-     * Return the resource name
+     * Return the resource path
      * without the numbering scheme.
      *
-     * @param $name
+     * @param        $name
+     * @param string $separator
      * @return mixed
      */
-    public function name($name)
+    public function path($name, $separator = '/')
     {
-        return preg_replace('/([0-9]{2}\.)/', '', $name);
+        $path = str_replace($separator . 'index', '', preg_replace('/([0-9]{2}\.)/', '', $name));
+
+        return $path ?: '/';
     }
 }

@@ -44,6 +44,11 @@ class DocumentationModule extends Module
                 ],
             ],
         ],
+        'pages'      => [
+            'buttons' => [
+                'new_page',
+            ],
+        ],
         'categories' => [
             'buttons' => [
                 'new_category',

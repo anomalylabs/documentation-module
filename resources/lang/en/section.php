@@ -17,4 +17,7 @@ return [
         'title'       => 'Assignments',
         'description' => 'Manage assignments for custom fields.',
     ],
+    'pages' => [
+        'title' => 'Pages',
+    ],
 ];

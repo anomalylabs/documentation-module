@@ -1,6 +1,10 @@
 <?php namespace Anomaly\DocumentationModule;
 
 use Anomaly\DocumentationModule\Category\CategoryModel;
+use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
+use Anomaly\DocumentationModule\Page\PageRepository;
+use Anomaly\Streams\Platform\Model\Documentation\DocumentationPagesEntryModel;
+use Anomaly\DocumentationModule\Page\PageModel;
 use Anomaly\DocumentationModule\Category\CategoryRepository;
 use Anomaly\DocumentationModule\Category\Contract\CategoryRepositoryInterface;
 use Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController;
@@ -37,6 +41,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $bindings = [
+        DocumentationPagesEntryModel::class => PageModel::class,
         DocumentationProjectsEntryModel::class   => ProjectModel::class,
         DocumentationCategoriesEntryModel::class => CategoryModel::class,
     ];
@@ -47,6 +52,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $singletons = [
+        PageRepositoryInterface::class => PageRepository::class,
         ProjectRepositoryInterface::class  => ProjectRepository::class,
         CategoryRepositoryInterface::class => CategoryRepository::class,
     ];
@@ -57,6 +63,9 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
+        'admin/documentation/pages'           => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@index',
+        'admin/documentation/pages/create'    => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@create',
+        'admin/documentation/pages/edit/{id}' => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@edit',
         'documentation'                            => [
             'as'   => 'anomaly.module.documentation::projects.index',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@index',
