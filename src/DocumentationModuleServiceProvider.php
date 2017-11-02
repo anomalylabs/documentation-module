@@ -94,7 +94,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
         ],
         'documentation/{project}/{version}'          => [
             'as'   => 'anomaly.module.documentation::projects.version',
-            'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
+            'uses' => 'Anomaly\DocumentationModule\Http\Controller\PagesController@view',
         ],
         'documentation/{project}/{reference}/{path}' => [
             'as'          => 'anomaly.module.documentation::pages.view',
