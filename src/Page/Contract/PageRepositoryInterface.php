@@ -14,12 +14,20 @@ interface PageRepositoryInterface extends EntryRepositoryInterface
 {
 
     /**
+     * Find a page by it's path.
+     *
+     * @param $path
+     * @return null|PageInterface
+     */
+    public function findByPath($path);
+
+    /**
      * Find a page by it's source information.
      *
      * @param ProjectInterface $project
      * @param                  $reference
      * @param                  $path
-     * @return PageInterface|null
+     * @return null|PageInterface
      */
     public function findByIdentifiers(ProjectInterface $project, $reference, $path);
 

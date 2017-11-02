@@ -3,10 +3,9 @@
 use Anomaly\DocumentationModule\Command\AddDocumentationBreadcrumb;
 use Anomaly\DocumentationModule\Command\SetDocumentationMetaTitle;
 use Anomaly\DocumentationModule\Documentation\DocumentationStructure;
-use Anomaly\DocumentationModule\Page\PageModel;
+use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
-use Illuminate\Contracts\Config\Repository;
 use Illuminate\Http\Response;
 
 /**
@@ -52,16 +51,15 @@ class ProjectsController extends PublicController
      * Return the project documentation for a version.
      *
      * @param ProjectRepositoryInterface $projects
-     * @param Repository                 $config
+     * @param PageRepositoryInterface    $pages
      * @param                            $project
      * @param null                       $version
      * @param null                       $path
      * @return string
-     * @internal param null $page
      */
     public function view(
         ProjectRepositoryInterface $projects,
-        Repository $config,
+        PageRepositoryInterface $pages,
         $project,
         $version = null,
         $path = null
@@ -91,63 +89,21 @@ class ProjectsController extends PublicController
             abort(404);
         }
 
-        PageModel::truncate();
-
-        $structure = $project
-            ->documentation()
-            ->structure($reference, 'en');
-
-        $structure = array_map(
-            function ($path) use ($project, $reference) {
-                return $project->documentation()->page($reference, 'en', $path);
-            },
-            $structure
-        );
-
-        dd($structure);
-
-        $pages = $project
-            ->documentation()
-            ->pages($reference);
-
-        dd('Test');
-
-        $path = $path ?: 'index';
-
-        $locale   = $config->get('app.locale');
-        $fallback = $config->get('app.fallback_locale');
-
-        $match = str_replace('/', '.', $path);
-        $index = str_replace('/', '.', $path) . '.index';
-
         /**
-         * Try and get the content in
-         * the current local first.
+         * Try and locate the page now
+         * that we have all the identifiers.
          */
-        if (!$page = array_get($pages, $locale . '.' . $index)) {
-            $page = array_get($pages, $locale . '.' . $match);
-        }
-
-        /**
-         * If content is empty then try
-         * getting the content in the
-         * fallback locale.
-         */
-        if (!$page && !$page = array_get($pages, $fallback . '.' . $index)) {
-            $page = array_get($pages, $fallback . '.' . $match);
-        }
-
-        /**
-         * We must be lost if
-         * there is no page.
-         */
-        if ($page === null) {
+        if (!$page = $pages->findByIdentifiers($project, $reference, '/' . $path)) {
             abort(404);
         }
 
         return $this->view->make(
             'anomaly.module.documentation::projects/view',
-            compact('project', 'version', 'structure', 'pages', 'page')
+            compact(
+                'project',
+                'version',
+                'page'
+            )
         );
     }
 }

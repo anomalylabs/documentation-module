@@ -1,5 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Console;
 
+use Anomaly\DocumentationModule\Page\Contract\PageInterface;
 use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
@@ -41,6 +42,8 @@ class SyncDocumentation extends Command
             return;
         }
 
+        $pages->truncate();
+
         $documentation = $project->documentation();
 
         foreach ($project->getReferences() as $reference) {
@@ -56,18 +59,25 @@ class SyncDocumentation extends Command
                         $page = $pages->newInstance();
                     }
 
-                    $page->fill([
-                        $locale     => [
-                            'title'            => array_pull($attributes, 'title'),
-                            'meta_title'       => array_pull($attributes, 'meta_title'),
-                            'meta_description' => array_pull($attributes, 'meta_description'),
-                        ],
-                        'path'      => array_pull($attributes, 'path'),
-                        'content'   => array_pull($attributes, 'content'),
-                        'data'      => array_pull($attributes, 'data'),
-                        'reference' => $reference,
-                        'project'   => $project,
-                    ]);
+                    $page->fill(
+                        [
+                            $locale     => [
+                                'title'            => array_pull($attributes, 'title'),
+                                'meta_title'       => array_pull($attributes, 'meta_title'),
+                                'meta_description' => array_pull($attributes, 'meta_description'),
+                            ],
+                            'path'      => array_pull($attributes, 'path'),
+                            'content'   => array_pull($attributes, 'content'),
+                            'data'      => array_pull($attributes, 'data'),
+                            'reference' => $reference,
+                            'project'   => $project,
+                        ]
+                    );
+
+                    /* @var PageInterface $parent */
+                    if (dirname($page->getPath()) !== '/' && $parent = $pages->findByPath(dirname($page->getPath()))) {
+                        $page->parent = $parent;
+                    }
 
                     $pages->save($page);
                 }

@@ -25,31 +25,31 @@
 
                 <aside class="col-lg-3">
                     <ul>
-                        {% for page, link in pages.en %}
-                            {% if page != 'index' %}
-                                <li>
-                                    <a href="{{ url_route('anomaly.module.documentation::projects.page', {
-                                        'project': project.slug.value,
-                                        'version': version,
-                                        'page': page
-                                    }) }}">{{ link.index.title }}</a>
-                                    <ul class="list-unstyled">
-                                        {% for key, inner in link %}
-                                            {% if key != 'index' %}
-                                                <li>
-                                                    -
-                                                    <a href="{{ url_route('anomaly.module.documentation::projects.page', {
-                                                        'project': project.slug.value,
-                                                        'version': version,
-                                                        'page': page ~ '/' ~ key
-                                                    }) }}">{{ inner.title }}</a>
-                                                </li>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
+                        {#{% for page, link in pages.en %}#}
+                            {#{% if page != 'index' %}#}
+                                {#<li>#}
+                                    {#<a href="{{ url_route('anomaly.module.documentation::projects.page', {#}
+                                        {#'project': project.slug.value,#}
+                                        {#'version': version,#}
+                                        {#'page': page#}
+                                    {#}) }}">{{ link.index.title }}</a>#}
+                                    {#<ul class="list-unstyled">#}
+                                        {#{% for key, inner in link %}#}
+                                            {#{% if key != 'index' %}#}
+                                                {#<li>#}
+                                                    {#-#}
+                                                    {#<a href="{{ url_route('anomaly.module.documentation::projects.page', {#}
+                                                        {#'project': project.slug.value,#}
+                                                        {#'version': version,#}
+                                                        {#'page': page ~ '/' ~ key#}
+                                                    {#}) }}">{{ inner.title }}</a>#}
+                                                {#</li>#}
+                                            {#{% endif %}#}
+                                        {#{% endfor %}#}
+                                    {#</ul>#}
+                                {#</li>#}
+                            {#{% endif %}#}
+                        {#{% endfor %}#}
                     </ul>
                 </aside>
 
