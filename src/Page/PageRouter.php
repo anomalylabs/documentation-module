@@ -1,6 +1,5 @@
 <?php namespace Anomaly\DocumentationModule\Page;
 
-use Anomaly\DocumentationModule\Page\Contract\PageInterface;
 use Anomaly\Streams\Platform\Entry\EntryRouter;
 
 /**
@@ -13,24 +12,4 @@ use Anomaly\Streams\Platform\Entry\EntryRouter;
 class PageRouter extends EntryRouter
 {
 
-    /**
-     * The router entry.
-     *
-     * @var PageInterface
-     */
-    protected $entry;
-
-    /**
-     * Return the view route.
-     */
-    public function view()
-    {
-        $project = $this->entry->getProject();
-
-        if (request()->route()->parameter('reference') == 'latest' && $project->getDefaultReference() == $this->entry->getReference()) {
-            $array['reference'] = 'latest';
-        }
-
-        parent::make('anomaly.module.documentation::pages.view');
-    }
 }
