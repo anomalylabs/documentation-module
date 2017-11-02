@@ -1,6 +1,7 @@
 <?php namespace Anomaly\DocumentationModule\Page\Contract;
 
 use Anomaly\DocumentationModule\Page\PageCollection;
+use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -27,6 +28,13 @@ interface PageInterface extends EntryInterface
      * @return string
      */
     public function getSlug();
+
+    /**
+     * Get the reference.
+     *
+     * @return string
+     */
+    public function getReference();
 
     /**
      * Get the meta title.
@@ -100,6 +108,13 @@ interface PageInterface extends EntryInterface
      * @return $this
      */
     public function setActive($active);
+
+    /**
+     * Get the related project.
+     *
+     * @return ProjectInterface
+     */
+    public function getProject();
 
     /**
      * Get the related children pages.

@@ -2,10 +2,12 @@
 
 use Anomaly\DocumentationModule\Category\Contract\CategoryInterface;
 use Anomaly\DocumentationModule\Documentation\DocumentationExtension;
+use Anomaly\DocumentationModule\Page\PageCollection;
 use Anomaly\DocumentationModule\Section\SectionCollection;
 use Anomaly\DocumentationModule\Version\Contract\VersionInterface;
 use Anomaly\DocumentationModule\Version\VersionCollection;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Interface ProjectInterface
@@ -54,11 +56,11 @@ interface ProjectInterface extends EntryInterface
     public function getReferences();
 
     /**
-     * Get the default version.
+     * Get the default version reference.
      *
      * @return string
      */
-    public function getDefaultVersion();
+    public function getDefaultReference();
 
     /**
      * Get the documentation extension.
@@ -73,4 +75,18 @@ interface ProjectInterface extends EntryInterface
      * @return DocumentationExtension
      */
     public function documentation();
+
+    /**
+     * Get the related pages.
+     *
+     * @return PageCollection
+     */
+    public function getPages();
+
+    /**
+     * Return the pages relation.
+     *
+     * @return HasMany
+     */
+    public function pages();
 }

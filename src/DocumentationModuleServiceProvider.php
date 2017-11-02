@@ -73,34 +73,34 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
-        'admin/documentation/pages'                => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@index',
-        'admin/documentation/pages/create'         => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@create',
-        'admin/documentation/pages/edit/{id}'      => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@edit',
-        'documentation'                            => [
+        'admin/documentation/pages'                  => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@index',
+        'admin/documentation/pages/create'           => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@create',
+        'admin/documentation/pages/edit/{id}'        => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@edit',
+        'documentation'                              => [
             'as'   => 'anomaly.module.documentation::projects.index',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@index',
         ],
-        'documentation/categories/{slug}'          => [
+        'documentation/categories/{slug}'            => [
             'as'   => 'anomaly.module.documentation::categories.view',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\CategoriesController@view',
         ],
-        'documentation/{slug}'                     => [
+        'documentation/{slug}'                       => [
             'as'   => 'anomaly.module.documentation::projects.view',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@latest',
         ],
-        'documentation/{slug}/latest'              => [
+        'documentation/{slug}/latest'                => [
             'as'   => 'anomaly.module.documentation::projects.latest',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
         ],
-        'documentation/{project}/{version}'        => [
+        'documentation/{project}/{version}'          => [
             'as'   => 'anomaly.module.documentation::projects.version',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
         ],
-        'documentation/{project}/{version}/{page}' => [
-            'as'          => 'anomaly.module.documentation::projects.page',
+        'documentation/{project}/{reference}/{path}' => [
+            'as'          => 'anomaly.module.documentation::pages.view',
             'uses'        => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
             'constraints' => [
-                'page' => '(.*)',
+                'path' => '(.*)',
             ],
         ],
     ];

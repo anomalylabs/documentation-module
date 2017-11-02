@@ -2,8 +2,11 @@
 
 use Anomaly\DocumentationModule\Category\Contract\CategoryInterface;
 use Anomaly\DocumentationModule\Documentation\DocumentationExtension;
+use Anomaly\DocumentationModule\Page\PageCollection;
+use Anomaly\DocumentationModule\Page\PageModel;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class ProjectModel
@@ -83,15 +86,15 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     }
 
     /**
-     * Get the default version.
+     * Get the default version reference.
      *
      * @return string
      */
-    public function getDefaultVersion()
+    public function getDefaultReference()
     {
-        $versions = array_keys($this->getVersions());
+        $references = $this->getReferences();
 
-        return end($versions);
+        return end($references);
     }
 
     /**
@@ -114,5 +117,25 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
         return $this
             ->getDocumentation()
             ->setProject($this);
+    }
+
+    /**
+     * Get the related pages.
+     *
+     * @return PageCollection
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
+
+    /**
+     * Return the pages relation.
+     *
+     * @return HasMany
+     */
+    public function pages()
+    {
+        return $this->hasMany(PageModel::class, 'project_id');
     }
 }

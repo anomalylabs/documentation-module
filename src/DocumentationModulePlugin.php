@@ -1,6 +1,6 @@
 <?php namespace Anomaly\DocumentationModule;
 
-use Anomaly\DocumentationModule\Section\Command\RenderNavigation;
+use Anomaly\DocumentationModule\Page\Command\RenderNavigation;
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
 use Anomaly\Streams\Platform\Addon\Plugin\PluginCriteria;
 use Anomaly\Streams\Platform\Support\Collection;
@@ -26,15 +26,10 @@ class DocumentationModulePlugin extends Plugin
         return [
             new \Twig_SimpleFunction(
                 'documentation',
-                function ($root = null) {
+                function () {
                     return new PluginCriteria(
                         'render',
-                        function (Collection $options) use ($root) {
-
-                            if ($root) {
-                                $options->put('root', $root);
-                            }
-
+                        function (Collection $options) {
                             return $this->dispatch(new RenderNavigation($options));
                         }
                     );

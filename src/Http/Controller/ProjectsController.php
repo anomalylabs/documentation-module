@@ -61,10 +61,10 @@ class ProjectsController extends PublicController
         ProjectRepositoryInterface $projects,
         PageRepositoryInterface $pages,
         $project,
-        $version = null,
+        $reference = null,
         $path = null
     ) {
-        $version = $reference = $version ?: 'latest';
+        $reference = $reference ?: 'latest';
 
         if (!$project = $projects->findBySlug($project)) {
             abort(404);
@@ -81,8 +81,8 @@ class ProjectsController extends PublicController
         $this->template->set('meta_title', $project->getTitle());
         $this->breadcrumbs->add($project->getTitle(), $this->request->path());
 
-        if ($version == 'latest') {
-            $reference = $project->getDefaultVersion();
+        if ($reference == 'latest') {
+            $reference = $project->getDefaultReference();
         }
 
         if (!$reference) {
@@ -96,6 +96,12 @@ class ProjectsController extends PublicController
         if (!$page = $pages->findByIdentifiers($project, $reference, '/' . $path)) {
             abort(404);
         }
+
+        /**
+         * Set the current page to
+         * access later if needed.
+         */
+        $this->template->set('page', $page);
 
         return $this->view->make(
             'anomaly.module.documentation::projects/view',

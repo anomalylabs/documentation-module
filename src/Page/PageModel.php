@@ -1,8 +1,8 @@
 <?php namespace Anomaly\DocumentationModule\Page;
 
 use Anomaly\DocumentationModule\Page\Contract\PageInterface;
+use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationPagesEntryModel;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -22,6 +22,7 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
      */
     protected $with = [
         'translations',
+        'project',
     ];
 
     /**
@@ -48,19 +49,6 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     protected $current = false;
 
     /**
-     * Sort the query.
-     *
-     * @param Builder $builder
-     * @param string  $direction
-     */
-    public function scopeSorted(Builder $builder, $direction = 'asc')
-    {
-        $builder
-            ->orderBy('parent_id', $direction)
-            ->orderBy('sort_order', $direction);
-    }
-
-    /**
      * Get the path.
      *
      * @return string
@@ -78,6 +66,16 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Get the reference.
+     *
+     * @return string
+     */
+    public function getReference()
+    {
+        return $this->reference;
     }
 
     /**
@@ -192,6 +190,28 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     }
 
     /**
+     * Get the related project.
+     *
+     * @return ProjectInterface
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * Get the related project slug.
+     *
+     * @return string
+     */
+    public function getProjectSlug()
+    {
+        return $this
+            ->getProject()
+            ->getSlug();
+    }
+
+    /**
      * Get the related children pages.
      *
      * @return PageCollection
@@ -231,6 +251,22 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     {
         return $this->hasMany(PageModel::class, 'parent_id', 'parent_id')
             ->orderBy('sort_order', 'ASC');
+    }
+
+    /**
+     * Return the routable array.
+     *
+     * @return array
+     */
+    public function toRoutableArray()
+    {
+        $array = parent::toRoutableArray();
+
+        $array['path'] = ltrim($this->getPath(), '/');
+
+        $array['project'] = $this->getProjectSlug();
+
+        return $array;
     }
 
 }
