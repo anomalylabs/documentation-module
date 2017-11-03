@@ -6,7 +6,6 @@ use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\Streams\Platform\Model\EloquentModel;
 use Illuminate\Console\Command;
-use Illuminate\Contracts\Config\Repository;
 use Symfony\Component\Console\Input\InputArgument;
 
 /**
@@ -31,9 +30,8 @@ class SyncDocumentation extends Command
      *
      * @param ProjectRepositoryInterface $projects
      * @param PageRepositoryInterface    $pages
-     * @param Repository                 $config
      */
-    public function handle(ProjectRepositoryInterface $projects, PageRepositoryInterface $pages, Repository $config)
+    public function handle(ProjectRepositoryInterface $projects, PageRepositoryInterface $pages)
     {
         /* @var ProjectInterface $project */
         if (!$project = $projects->findBySlug($this->argument('project'))) {
@@ -50,7 +48,10 @@ class SyncDocumentation extends Command
         $documentation = $project->documentation();
 
         foreach ($project->getReferences() as $reference) {
-            foreach ($config->get('streams::locales.enabled', []) as $locale) {
+
+            $locales = $documentation->locales($reference);
+
+            foreach ($locales as $locale) {
 
                 $structure = $documentation->structure($reference, $locale);
 
@@ -105,6 +106,12 @@ class SyncDocumentation extends Command
                      * remove this from trash.
                      */
                     $trash->forget($page->getId());
+
+                    /**
+                     * Let everyone know
+                     * how awesome we are.
+                     */
+                    $this->info('Synced: ' . $project->getSlug() . '/' . $reference . '/' . $locale . $path);
                 }
             }
         }
