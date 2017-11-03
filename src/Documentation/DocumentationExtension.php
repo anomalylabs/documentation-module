@@ -22,6 +22,14 @@ abstract class DocumentationExtension extends Extension
     protected $project;
 
     /**
+     * Return the available locales.
+     *
+     * @param $reference
+     * @return array
+     */
+    abstract public function locales($reference);
+
+    /**
      * Return the documentation structure.
      *
      * @param $reference
