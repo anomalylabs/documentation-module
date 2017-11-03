@@ -14,6 +14,22 @@ interface PageRepositoryInterface extends EntryRepositoryInterface
 {
 
     /**
+     * Get the next page.
+     *
+     * @param PageInterface $page
+     * @return null|PageInterface
+     */
+    public function next(PageInterface $page);
+
+    /**
+     * Get the previous page.
+     *
+     * @param PageInterface $page
+     * @return null|PageInterface
+     */
+    public function previous(PageInterface $page);
+
+    /**
      * Find a page by it's path.
      *
      * @param $path

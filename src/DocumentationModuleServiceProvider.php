@@ -90,7 +90,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
         ],
         'documentation/{slug}/latest'                => [
             'as'   => 'anomaly.module.documentation::projects.latest',
-            'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@view',
+            'uses' => 'Anomaly\DocumentationModule\Http\Controller\PagesController@view',
         ],
         'documentation/{project}/{version}'          => [
             'as'   => 'anomaly.module.documentation::projects.version',

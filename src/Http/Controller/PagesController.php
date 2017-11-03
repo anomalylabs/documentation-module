@@ -69,18 +69,25 @@ class PagesController extends PublicController
             abort(404);
         }
 
+        $next     = $pages->next($page);
+        $previous = $pages->previous($page);
+
         /**
-         * Set the current page to
-         * access later if needed.
+         * Save the relevant pages for
+         * accessing later if needed.
          */
         $this->template->set('page', $page);
+        $this->template->set('next', $next);
+        $this->template->set('previous', $previous);
 
         return $this->view->make(
             'anomaly.module.documentation::projects/view',
             compact(
+                'previous',
                 'project',
                 'version',
-                'page'
+                'page',
+                'next'
             )
         );
     }

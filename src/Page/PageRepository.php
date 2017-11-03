@@ -26,6 +26,36 @@ class PageRepository extends EntryRepository implements PageRepositoryInterface
     }
 
     /**
+     * Get the next page.
+     *
+     * @param PageInterface $page
+     * @return null|PageInterface
+     */
+    public function next(PageInterface $page)
+    {
+        return $this->model
+            ->where('project_id', $page->getProjectId())
+            ->where('reference', $page->getReference())
+            ->where('sort_order', $page->getSortOrder() + 1)
+            ->first();
+    }
+
+    /**
+     * Get the previous page.
+     *
+     * @param PageInterface $page
+     * @return null|PageInterface
+     */
+    public function previous(PageInterface $page)
+    {
+        return $this->model
+            ->where('project_id', $page->getProjectId())
+            ->where('reference', $page->getReference())
+            ->where('sort_order', $page->getSortOrder() - 1)
+            ->first();
+    }
+
+    /**
      * Find a page by it's path.
      *
      * @param $path

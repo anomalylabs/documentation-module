@@ -117,6 +117,20 @@ interface PageInterface extends EntryInterface
     public function getProject();
 
     /**
+     * Get the related project ID.
+     *
+     * @return int
+     */
+    public function getProjectId();
+
+    /**
+     * Get the related project slug.
+     *
+     * @return string
+     */
+    public function getProjectSlug();
+
+    /**
      * Get the related children pages.
      *
      * @return PageCollection

@@ -3,6 +3,7 @@
 {% block content %}
 
     {{ asset_add('styles.css', 'anomaly.module.documentation::scss/clipboard.scss', ['min']) }}
+    {{ asset_add('styles.css', 'anomaly.module.documentation::scss/anchors.scss', ['min']) }}
     {{ asset_add('styles.css', 'anomaly.module.documentation::scss/prism.scss', ['min']) }}
     {{ asset_add('styles.css', 'anomaly.module.documentation::scss/code.scss', ['min']) }}
 
@@ -37,6 +38,29 @@
                 <div class="col-lg-9">
 
                     {{ page.content|markdown|raw }}
+
+                    <hr>
+
+                    <div class="row">
+
+                        <aside class="col-lg-6">
+                            {% if previous %}
+                                <a href="{{ previous.route('view') }}" class="btn btn-default">
+                                    {{ trans('anomaly.module.documentation::message.previous_page') }}
+                                </a>
+                            {% endif %}
+                        </aside>
+
+                        <div class="col-lg-6 text-right">
+                            {% if next %}
+                                <a href="{{ next.route('view') }}" class="btn btn-default">
+                                    {{ trans('anomaly.module.documentation::message.next_page') }}
+                                </a>
+                            {% endif %}
+                        </div>
+
+                    </div>
+
 
                 </div>
 

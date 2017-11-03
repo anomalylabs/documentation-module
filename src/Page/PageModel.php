@@ -200,6 +200,18 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     }
 
     /**
+     * Get the related project ID.
+     *
+     * @return int
+     */
+    public function getProjectId()
+    {
+        return $this
+            ->getProject()
+            ->getId();
+    }
+
+    /**
      * Get the related project slug.
      *
      * @return string
@@ -268,5 +280,4 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
 
         return $array;
     }
-
 }
