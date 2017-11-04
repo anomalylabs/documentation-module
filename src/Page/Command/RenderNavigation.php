@@ -1,8 +1,9 @@
 <?php namespace Anomaly\DocumentationModule\Page\Command;
 
-use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
-use Anomaly\DocumentationModule\Page\PageCollection;
+use Anomaly\DocumentationModule\Project\Command\GetProject;
+use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\Streams\Platform\Support\Collection;
+use Anomaly\Streams\Platform\View\ViewTemplate;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
@@ -38,14 +39,17 @@ class RenderNavigation
     /**
      * Handle the command.
      *
-     * @param  PageRepositoryInterface $pages
+     * @param Factory $view
+     * @return string
      */
-    public function handle(PageRepositoryInterface $pages, Factory $view)
+    public function handle(Factory $view, ViewTemplate $template)
     {
         $options = $this->options;
 
-        /* @var PageCollection $pages */
-        $pages = $pages->sorted();
+        /* @var ProjectInterface $project */
+        $project = $this->dispatch(new GetProject($this->options->get('project')));
+
+        $pages = $project->getPages($template->get('reference'));
 
         $this->dispatch(new SetCurrentPage($pages));
         $this->dispatch(new SetActivePages($pages));

@@ -6,6 +6,7 @@ use Anomaly\DocumentationModule\Page\PageCollection;
 use Anomaly\DocumentationModule\Page\PageModel;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -122,20 +123,26 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     /**
      * Get the related pages.
      *
-     * @return PageCollection
+     * @param $reference
+     * @return PageCollection|Collection
      */
-    public function getPages()
+    public function getPages($reference)
     {
-        return $this->pages;
+        return $this
+            ->pages($reference)
+            ->get();
     }
 
     /**
      * Return the pages relation.
      *
+     * @param $reference
      * @return HasMany
      */
-    public function pages()
+    public function pages($reference)
     {
-        return $this->hasMany(PageModel::class, 'project_id');
+        return $this
+            ->hasMany(PageModel::class, 'project_id')
+            ->where('reference', $reference);
     }
 }

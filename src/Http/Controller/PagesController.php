@@ -78,11 +78,14 @@ class PagesController extends PublicController
          */
         $this->template->set('page', $page);
         $this->template->set('next', $next);
+        $this->template->set('project', $project);
         $this->template->set('previous', $previous);
+        $this->template->set('reference', $reference);
 
         return $this->view->make(
             'anomaly.module.documentation::projects/view',
             compact(
+                'reference',
                 'previous',
                 'project',
                 'version',

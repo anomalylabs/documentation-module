@@ -79,14 +79,16 @@ interface ProjectInterface extends EntryInterface
     /**
      * Get the related pages.
      *
+     * @param $reference
      * @return PageCollection
      */
-    public function getPages();
+    public function getPages($reference);
 
     /**
      * Return the pages relation.
      *
+     * @param $reference
      * @return HasMany
      */
-    public function pages();
+    public function pages($reference);
 }
