@@ -49,7 +49,11 @@ class RenderNavigation
         /* @var ProjectInterface $project */
         $project = $this->dispatch(new GetProject($this->options->get('project')));
 
-        $pages = $project->getPages($template->get('reference'));
+        $pages = $project
+            ->getPages($template->get('reference'))
+            ->keyBy('id');
+
+        $pages->forget($pages->first()->getId());
 
         $this->dispatch(new SetCurrentPage($pages));
         $this->dispatch(new SetActivePages($pages));
