@@ -12,4 +12,14 @@ use Anomaly\Streams\Platform\Ui\Form\Multiple\MultipleFormBuilder;
 class ProjectConfigurationFormBuilder extends MultipleFormBuilder
 {
 
+    /**
+     * Get the contextual ID.
+     *
+     * @return int|null
+     */
+    public function getContextualId()
+    {
+        return $this->getChildFormEntryId('project');
+    }
+
 }

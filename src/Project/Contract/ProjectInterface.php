@@ -28,6 +28,13 @@ interface ProjectInterface extends EntryInterface
     public function getSlug();
 
     /**
+     * Get the string ID.
+     *
+     * @return string
+     */
+    public function getStrId();
+
+    /**
      * Get the enabled flag.
      *
      * @return bool

@@ -83,7 +83,7 @@ class PagesController extends PublicController
         $this->template->set('reference', $reference);
 
         return $this->view->make(
-            'anomaly.module.documentation::projects/view',
+            'anomaly.module.documentation::pages/view',
             compact(
                 'reference',
                 'previous',

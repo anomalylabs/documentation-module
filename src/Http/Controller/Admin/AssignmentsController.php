@@ -1,13 +1,13 @@
 <?php namespace Anomaly\DocumentationModule\Http\Controller\Admin;
 
 /**
- * Class FieldsController
+ * Class AssignmentsController
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class FieldsController extends \Anomaly\Streams\Platform\Http\Controller\FieldsController
+class AssignmentsController extends \Anomaly\Streams\Platform\Http\Controller\AssignmentsController
 {
 
     /**

@@ -36,22 +36,44 @@ class DocumentationModule extends Module
      */
     protected $sections = [
         'projects'   => [
-            'buttons' => [
+            'buttons'  => [
                 'new_project' => [
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
                     'href'        => 'admin/documentation/choose',
                 ],
             ],
-        ],
-        'pages'      => [
-            'buttons' => [
-                'new_page',
+            'sections' => [
+                'project_assignments' => [
+                    'hidden'  => false,
+                    'href'    => 'admin/documentation/assignments/projects',
+                    'title'   => 'anomaly.module.documentation::section.assignments.title',
+                    'buttons' => [
+                        'assign_fields' => [
+                            'data-toggle' => 'modal',
+                            'data-target' => '#modal',
+                            'href'        => 'admin/documentation/assignments/projects/choose',
+                        ],
+                    ],
+                ],
             ],
         ],
         'categories' => [
-            'buttons' => [
+            'buttons'  => [
                 'new_category',
+            ],
+            'sections' => [
+                'category_assignments' => [
+                    'href'    => 'admin/documentation/assignments/categories',
+                    'title'   => 'anomaly.module.documentation::section.assignments.title',
+                    'buttons' => [
+                        'assign_fields' => [
+                            'data-toggle' => 'modal',
+                            'data-target' => '#modal',
+                            'href'        => 'admin/documentation/assignments/categories/choose',
+                        ],
+                    ],
+                ],
             ],
         ],
         'fields'     => [

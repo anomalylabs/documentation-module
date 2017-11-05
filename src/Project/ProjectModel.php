@@ -30,6 +30,16 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     }
 
     /**
+     * Get the string ID.
+     *
+     * @return string
+     */
+    public function getStrId()
+    {
+        return $this->str_id;
+    }
+    
+    /**
      * Get the enabled flag.
      *
      * @return bool

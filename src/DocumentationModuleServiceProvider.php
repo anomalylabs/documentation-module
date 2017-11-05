@@ -4,6 +4,7 @@ use Anomaly\DocumentationModule\Category\CategoryModel;
 use Anomaly\DocumentationModule\Category\CategoryRepository;
 use Anomaly\DocumentationModule\Category\Contract\CategoryRepositoryInterface;
 use Anomaly\DocumentationModule\Console\SyncDocumentation;
+use Anomaly\DocumentationModule\Http\Controller\Admin\AssignmentsController;
 use Anomaly\DocumentationModule\Http\Controller\Admin\FieldsController;
 use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
 use Anomaly\DocumentationModule\Page\PageModel;
@@ -12,6 +13,7 @@ use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\DocumentationModule\Project\ProjectModel;
 use Anomaly\DocumentationModule\Project\ProjectRepository;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
+use Anomaly\Streams\Platform\Assignment\AssignmentRouter;
 use Anomaly\Streams\Platform\Field\FieldRouter;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationCategoriesEntryModel;
 use Anomaly\Streams\Platform\Model\Documentation\DocumentationPagesEntryModel;
@@ -20,9 +22,9 @@ use Anomaly\Streams\Platform\Model\Documentation\DocumentationProjectsEntryModel
 /**
  * Class DocumentationModuleServiceProvider
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class DocumentationModuleServiceProvider extends AddonServiceProvider
 {
@@ -110,8 +112,9 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      *
      * @param FieldRouter $fields
      */
-    public function map(FieldRouter $fields)
+    public function map(FieldRouter $fields, AssignmentRouter $assignments)
     {
         $fields->route($this->addon, FieldsController::class);
+        $assignments->route($this->addon, AssignmentsController::class);
     }
 }

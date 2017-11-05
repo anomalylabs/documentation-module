@@ -8,9 +8,9 @@ use Anomaly\Streams\Platform\Database\Migration\Migration;
 /**
  * Class AnomalyModuleDocumentationCreateDocumentationFields
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
 {
@@ -24,7 +24,12 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
         'str_id'           => 'anomaly.field_type.text',
         'name'             => 'anomaly.field_type.text',
         'title'            => 'anomaly.field_type.text',
-        'slug'             => 'anomaly.field_type.slug',
+        'slug'             => [
+            'type'   => 'anomaly.field_type.slug',
+            'config' => [
+                'type' => '-',
+            ],
+        ],
         'description'      => 'anomaly.field_type.textarea',
         'meta_title'       => 'anomaly.field_type.text',
         'meta_description' => 'anomaly.field_type.textarea',

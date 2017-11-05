@@ -5,9 +5,9 @@ use Anomaly\Streams\Platform\Database\Migration\Migration;
 /**
  * Class AnomalyModuleDocumentationCreateProjectsStream
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class AnomalyModuleDocumentationCreateProjectsStream extends Migration
 {
@@ -32,6 +32,10 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
      * @var array
      */
     protected $assignments = [
+        'str_id'        => [
+            'required' => true,
+            'unique'   => true,
+        ],
         'name'          => [
             'translatable' => true,
             'required'     => true,
@@ -41,7 +45,6 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
             'unique'   => true,
             'config'   => [
                 'slugify' => 'name',
-                'type'    => '-',
             ],
         ],
         'documentation' => [
