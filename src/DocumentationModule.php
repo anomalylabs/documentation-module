@@ -45,10 +45,11 @@ class DocumentationModule extends Module
             ],
             'sections' => [
                 'project_assignments' => [
-                    'hidden'  => false,
-                    'href'    => 'admin/documentation/assignments/projects',
-                    'title'   => 'anomaly.module.documentation::section.assignments.title',
-                    'buttons' => [
+                    'hidden'     => false,
+                    'href'       => 'admin/documentation/assignments/projects',
+                    'permission' => 'anomaly.module.documentation::projects.assignments',
+                    'title'      => 'anomaly.module.documentation::section.assignments.title',
+                    'buttons'    => [
                         'assign_fields' => [
                             'data-toggle' => 'modal',
                             'data-target' => '#modal',
@@ -64,9 +65,10 @@ class DocumentationModule extends Module
             ],
             'sections' => [
                 'category_assignments' => [
-                    'href'    => 'admin/documentation/assignments/categories',
-                    'title'   => 'anomaly.module.documentation::section.assignments.title',
-                    'buttons' => [
+                    'href'       => 'admin/documentation/assignments/categories',
+                    'permission' => 'anomaly.module.documentation::categories.assignments',
+                    'title'      => 'anomaly.module.documentation::section.assignments.title',
+                    'buttons'    => [
                         'assign_fields' => [
                             'data-toggle' => 'modal',
                             'data-target' => '#modal',

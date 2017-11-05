@@ -41,15 +41,15 @@ class SyncDocumentation extends Command
             return;
         }
 
-        $trash = $project
-            ->getPages()
-            ->keyBy('id');
-
         $documentation = $project->documentation();
 
         foreach ($project->getReferences() as $reference) {
 
             $locales = $documentation->locales($reference);
+
+            $trash = $project
+                ->getPages($reference)
+                ->keyBy('id');
 
             foreach ($locales as $locale) {
 
@@ -114,18 +114,18 @@ class SyncDocumentation extends Command
                     $this->info('Synced: ' . $project->getSlug() . '/' . $reference . '/' . $locale . $path);
                 }
             }
+
+            /**
+             * Empty our trash.
+             */
+            $trash->each(
+                function (PageInterface $page) use ($pages) {
+
+                    /* @var PageInterface|EloquentModel $page */
+                    $pages->delete($page);
+                }
+            );
         }
-
-        /**
-         * Empty our trash.
-         */
-        $trash->each(
-            function (PageInterface $page) use ($pages) {
-
-                /* @var PageInterface|EloquentModel $page */
-                $pages->delete($page);
-            }
-        );
     }
 
     /**

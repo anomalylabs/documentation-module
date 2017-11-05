@@ -21,11 +21,13 @@ class ProjectTableBuilder extends TableBuilder
     protected $filters = [
         'search' => [
             'fields' => [
+                'tags',
                 'name',
                 'description',
             ],
         ],
         'category',
+        'enabled',
     ];
 
     /**
@@ -37,6 +39,7 @@ class ProjectTableBuilder extends TableBuilder
         'name',
         'category',
         'description',
+        'entry.enabled.tag',
     ];
 
     /**

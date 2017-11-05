@@ -24,6 +24,7 @@ class ProjectFormBuilder extends FormBuilder
      * @var array
      */
     protected $skips = [
+        'str_id',
         'documentation',
     ];
 
