@@ -45,6 +45,6 @@ interface PageRepositoryInterface extends EntryRepositoryInterface
      * @param                  $path
      * @return null|PageInterface
      */
-    public function findByIdentifiers(ProjectInterface $project, $reference, $path);
+    public function findByIdentifiers(ProjectInterface $project, $reference, $path = null);
 
 }

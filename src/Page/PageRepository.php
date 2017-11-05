@@ -74,13 +74,17 @@ class PageRepository extends EntryRepository implements PageRepositoryInterface
      * @param                  $path
      * @return PageInterface|null
      */
-    public function findByIdentifiers(ProjectInterface $project, $reference, $path)
+    public function findByIdentifiers(ProjectInterface $project, $reference, $path = null)
     {
-        return $this->model
+        $query = $this->model
             ->where('project_id', $project->getId())
-            ->where('reference', $reference)
-            ->where('path', $path)
-            ->first();
+            ->where('reference', $reference);
+
+        if ($path) {
+            $query = $query->where('path', $path);
+        }
+
+        return $query->first();
     }
 
 }

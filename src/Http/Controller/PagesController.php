@@ -66,7 +66,7 @@ class PagesController extends PublicController
          * that we have all the identifiers.
          */
         if (!$page = $pages->findByIdentifiers($project, $reference, '/' . $path)) {
-            abort(404);
+            $page = $pages->findByIdentifiers($project, $reference);
         }
 
         $next     = $pages->next($page);
