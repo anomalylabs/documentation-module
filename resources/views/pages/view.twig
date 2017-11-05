@@ -14,22 +14,6 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-lg-12">
-
-                    <div class="jumbotron text-center">
-
-                        <h1>{{ project.title }}</h1>
-
-                        {% if project.description.value %}
-                            <p>{{ project.description }}</p>
-                        {% endif %}
-
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="row">
 
                 <aside class="col-lg-3">
                     {{ documentation()|raw }}
