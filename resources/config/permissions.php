@@ -5,15 +5,15 @@ return [
         'read',
         'write',
         'delete',
-    ],
-    'pages'      => [
-        'read',
-        'write',
-        'delete',
+        'assignments',
     ],
     'categories' => [
         'read',
         'write',
         'delete',
+        'assignments',
+    ],
+    'fields'     => [
+        'manage',
     ],
 ];
