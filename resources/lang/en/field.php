@@ -5,21 +5,14 @@ return [
         'name'         => 'Name',
         'instructions' => [
             'projects'   => 'What is the name of this project?',
-            'versions'   => 'What is the version name?',
-            'types'      => 'Specify a short descriptive name for this section type.',
             'categories' => 'Specify a short descriptive name for this category.',
-        ],
-        'placeholder'  => [
-            'versions' => 'v3.1',
         ],
     ],
     'slug'             => [
         'name'         => 'Slug',
         'instructions' => [
             'projects'   => 'The slug is used in building the project\'s URL.',
-            'sections'   => 'The slug is used in building the section\'s URL.',
             'categories' => 'The slug is used in building the category\'s URL.',
-            'types'      => 'The slug is used in making the database table for sections of this type.',
         ],
     ],
     'title'            => [
@@ -31,7 +24,6 @@ return [
         'instructions' => [
             'projects'   => 'Briefly describe this project.',
             'categories' => 'Briefly describe this category.',
-            'types'      => 'Briefly describe this section type.',
         ],
     ],
     'enabled'          => [
@@ -43,11 +35,7 @@ return [
             ],
         ],
         'instructions' => 'If disabled, you can still access sections via a secure preview link.',
-        'warning'      => [
-            'projects' => 'This project must be enabled before it can be viewed <strong>publicly</strong>.',
-            'versions' => 'This version must be enabled before it can be viewed <strong>publicly</strong>.',
-            'sections' => 'This section must be enabled before it can be viewed <strong>publicly</strong>.',
-        ],
+        'warning'      => 'This project must be enabled before it can be viewed <strong>publicly</strong>.',
     ],
     'meta_title'       => [
         'name'         => 'Meta Title',
@@ -69,6 +57,6 @@ return [
     'versions'         => [
         'name'         => 'Versions',
         'instructions' => 'Enter versions below in a <strong>key: Value</strong> or <strong>Value</strong> only format. Enter each option on a new line.',
-        'warning'      => 'The last version will be used as your default/latest version.',
+        'warning'      => 'The first version will be used as your default/latest version.',
     ],
 ];
