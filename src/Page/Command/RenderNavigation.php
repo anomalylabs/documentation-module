@@ -53,8 +53,6 @@ class RenderNavigation
             ->getPages($template->get('reference'))
             ->keyBy('id');
 
-        $pages->forget($pages->first()->getId());
-
         $this->dispatch(new SetCurrentPage($pages));
         $this->dispatch(new SetActivePages($pages));
 
