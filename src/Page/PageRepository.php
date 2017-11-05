@@ -56,17 +56,6 @@ class PageRepository extends EntryRepository implements PageRepositoryInterface
     }
 
     /**
-     * Find a page by it's path.
-     *
-     * @param $path
-     * @return null|PageInterface
-     */
-    public function findByPath($path)
-    {
-        return $this->model->where('path', $path)->first();
-    }
-
-    /**
      * Find a page by it's source information.
      *
      * @param ProjectInterface $project

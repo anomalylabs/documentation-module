@@ -94,7 +94,7 @@ class SyncDocumentation extends Command
                      *
                      * @var PageInterface $parent
                      */
-                    if (dirname($page->getPath()) !== '/' && $parent = $pages->findByPath(dirname($page->getPath()))) {
+                    if (dirname($page->getPath()) !== '/' && $parent = $pages->findByIdentifiers($project, $reference, dirname($page->getPath()))) {
                         $page->parent = $parent;
                     }
 

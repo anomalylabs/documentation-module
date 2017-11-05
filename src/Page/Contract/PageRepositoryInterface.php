@@ -30,14 +30,6 @@ interface PageRepositoryInterface extends EntryRepositoryInterface
     public function previous(PageInterface $page);
 
     /**
-     * Find a page by it's path.
-     *
-     * @param $path
-     * @return null|PageInterface
-     */
-    public function findByPath($path);
-
-    /**
      * Find a page by it's source information.
      *
      * @param ProjectInterface $project
