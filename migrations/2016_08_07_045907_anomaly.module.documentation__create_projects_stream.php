@@ -23,7 +23,6 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
         'translatable' => true,
         'searchable'   => true,
         'trashable'    => true,
-        'sortable'     => true,
     ];
 
     /**
