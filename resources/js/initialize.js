@@ -10,7 +10,7 @@ $(function () {
         truncate: 64
     };
 
-    anchors.add('#documentation h2, #documentation h3, #documentation h4, #documentation h5');
+    anchors.add('#documentation .page h2, #documentation .page h3, #documentation .page h4, #documentation .page h5');
 
     /**
      * Code Content Highlighter
