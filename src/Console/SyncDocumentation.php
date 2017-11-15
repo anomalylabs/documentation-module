@@ -33,98 +33,128 @@ class SyncDocumentation extends Command
      */
     public function handle(ProjectRepositoryInterface $projects, PageRepositoryInterface $pages)
     {
-        /* @var ProjectInterface $project */
-        if (!$project = $projects->findBySlug($this->argument('project'))) {
+        $projects = $projects->all();
 
-            $this->error('Project [' . $this->argument('project') . '] not found!');
-
-            return;
-        }
-
-        $documentation = $project->documentation();
-
-        foreach ($project->getReferences() as $reference) {
-
-            $locales = $documentation->locales($reference);
-
-            $trash = $project
-                ->getPages($reference)
-                ->keyBy('id');
-
-            foreach ($locales as $locale) {
-
-                $structure = $documentation->structure($reference, $locale);
-
-                foreach ($structure as $order => $path) {
-
-                    $attributes = $documentation->page($reference, $locale, $path);
-
-                    /**
-                     * First see if we can find out page by
-                     * identifying attributes. If no page
-                     * is found then spin up a new one.
-                     */
-                    if (!$page = $pages->findByIdentifiers($project, $reference, $attributes['path'])) {
-                        $page = $pages->newInstance();
-                    }
-
-                    /**
-                     * Update our page with the attributes
-                     * from the documentation source.
-                     */
-                    $page->fill(
-                        [
-                            $locale      => [
-                                'title'            => array_pull($attributes, 'title'),
-                                'meta_title'       => array_pull($attributes, 'meta_title'),
-                                'meta_description' => array_pull($attributes, 'meta_description'),
-                            ],
-                            'path'       => array_pull($attributes, 'path'),
-                            'content'    => array_pull($attributes, 'content'),
-                            'data'       => array_pull($attributes, 'data'),
-                            'reference'  => $reference,
-                            'project'    => $project,
-                            'sort_order' => $order + 1,
-                        ]
-                    );
-
-                    /**
-                     * Check and see if the parent already
-                     * exists in the system and associate it.
-                     *
-                     * @var PageInterface $parent
-                     */
-                    if (dirname($page->getPath()) !== '/' && $parent = $pages->findByIdentifiers($project, $reference, dirname($page->getPath()))) {
-                        $page->parent = $parent;
-                    }
-
-                    $pages->save($page);
-
-                    /**
-                     * We're going to trash everything
-                     * we don't find or create so
-                     * remove this from trash.
-                     */
-                    $trash->forget($page->getId());
-
-                    /**
-                     * Let everyone know
-                     * how awesome we are.
-                     */
-                    $this->info('Synced: ' . $project->getSlug() . '/' . $reference . '/' . $locale . $path);
-                }
-            }
-
-            /**
-             * Empty our trash.
-             */
-            $trash->each(
-                function (PageInterface $page) use ($pages) {
-
-                    /* @var PageInterface|EloquentModel $page */
-                    $pages->delete($page);
+        /**
+         * Limit to the desired project
+         * if we've had one passed along.
+         */
+        if ($this->argument('project')) {
+            $projects = $projects->filter(
+                function (ProjectInterface $project) {
+                    return $project->getSlug() == $this->argument('project');
                 }
             );
+        }
+
+        /* @var ProjectInterface $project */
+        foreach ($projects as $project) {
+
+            $documentation = $project->documentation();
+
+            $references = $project->getReferences();
+
+            /**
+             * Limit to the desired reference
+             * if we've had one passed along.
+             */
+            if ($this->argument('reference')) {
+                $references = array_filter(
+                    $references,
+                    function ($value) {
+                        return $value == $this->argument('reference');
+                    }
+                );
+            }
+
+            foreach ($references as $reference) {
+
+                $locales = $documentation->locales($reference);
+
+                $trash = $project
+                    ->getPages($reference)
+                    ->keyBy('id');
+
+                foreach ($locales as $locale) {
+
+                    $structure = $documentation->structure($reference, $locale);
+
+                    foreach ($structure as $order => $path) {
+
+                        $attributes = $documentation->page($reference, $locale, $path);
+
+                        /**
+                         * First see if we can find out page by
+                         * identifying attributes. If no page
+                         * is found then spin up a new one.
+                         */
+                        if (!$page = $pages->findByIdentifiers($project, $reference, $attributes['path'])) {
+                            $page = $pages->newInstance();
+                        }
+
+                        /**
+                         * Update our page with the attributes
+                         * from the documentation source.
+                         */
+                        $page->fill(
+                            [
+                                $locale      => [
+                                    'title'            => array_pull($attributes, 'title'),
+                                    'meta_title'       => array_pull($attributes, 'meta_title'),
+                                    'meta_description' => array_pull($attributes, 'meta_description'),
+                                ],
+                                'path'       => array_pull($attributes, 'path'),
+                                'content'    => array_pull($attributes, 'content'),
+                                'data'       => array_pull($attributes, 'data'),
+                                'reference'  => $reference,
+                                'project'    => $project,
+                                'sort_order' => $order + 1,
+                            ]
+                        );
+
+                        /**
+                         * Check and see if the parent already
+                         * exists in the system and associate it.
+                         *
+                         * @var PageInterface $parent
+                         */
+                        if (dirname($page->getPath()) !== '/' && $parent = $pages->findByIdentifiers(
+                                $project,
+                                $reference,
+                                dirname($page->getPath())
+                            )
+                        ) {
+                            $page->parent = $parent;
+                        }
+
+                        $pages->save($page);
+
+                        /**
+                         * We're going to trash everything
+                         * we don't find or create so
+                         * remove this from trash.
+                         */
+                        $trash->forget($page->getId());
+
+                        /**
+                         * Let everyone know
+                         * how awesome we are.
+                         */
+                        $this->info('Synced: ' . $project->getSlug() . '/' . $reference . '/' . $locale . $path);
+                    }
+                }
+
+                /**
+                 * Empty our trash.
+                 */
+                $trash->each(
+                    function (PageInterface $page) use ($pages) {
+
+                        /* @var PageInterface|EloquentModel $page */
+                        $pages->delete($page);
+                    }
+                );
+            }
         }
     }
 
@@ -136,7 +166,8 @@ class SyncDocumentation extends Command
     protected function getArguments()
     {
         return [
-            ['project', InputArgument::REQUIRED, 'The projects\'s stream slug.'],
+            ['project', InputArgument::OPTIONAL, 'The projects\'s stream slug.'],
+            ['reference', InputArgument::OPTIONAL, 'The projects\'s reference.'],
         ];
     }
 
