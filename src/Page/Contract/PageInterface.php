@@ -30,6 +30,23 @@ interface PageInterface extends EntryInterface
     public function getSlug();
 
     /**
+     * Check if data exists.
+     *
+     * @param $key
+     * @return boolean
+     */
+    public function hasData($key);
+
+    /**
+     * Get the data.
+     *
+     * @param null $key
+     * @param null $default
+     * @return array
+     */
+    public function getData($key = null, $default = null);
+
+    /**
      * Get the reference.
      *
      * @return string

@@ -69,6 +69,33 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     }
 
     /**
+     * Check if data exists.
+     *
+     * @param $key
+     * @return boolean
+     */
+    public function hasData($key)
+    {
+        return array_key_exists($key, $this->data);
+    }
+
+    /**
+     * Get the data.
+     *
+     * @param null $key
+     * @param null $default
+     * @return array
+     */
+    public function getData($key = null, $default = null)
+    {
+        if ($key) {
+            return array_get($this->data, $key, $default);
+        }
+
+        return $this->data;
+    }
+
+    /**
      * Get the reference.
      *
      * @return string
