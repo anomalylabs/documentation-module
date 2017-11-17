@@ -274,8 +274,6 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     {
         $array = parent::toRoutableArray();
 
-        unset($array['data']);
-
         $array['path'] = ltrim($this->getPath(), '/');
 
         $array['project'] = $this->getProjectSlug();
