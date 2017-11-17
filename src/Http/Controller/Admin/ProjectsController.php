@@ -156,7 +156,7 @@ class ProjectsController extends AdminController
                 )
             );
         } catch (\Exception $exception) {
-            $this->messages->danger($exception->getMessage());
+            $this->messages->error($exception->getMessage());
         }
 
         return $this->redirect->back();

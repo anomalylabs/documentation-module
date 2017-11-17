@@ -29,6 +29,7 @@ class ProjectConfigurationFormButtons
                     'enabled' => 'edit',
                     'icon'    => 'refresh',
                     'type'    => 'primary',
+                    'href'    => 'admin/documentation/sync/' . $builder->getChildFormEntryId('project'),
                 ],
             ]
         );
