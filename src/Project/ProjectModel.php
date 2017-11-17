@@ -20,6 +20,17 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
 {
 
     /**
+     * Get the data attribute.
+     *
+     * @param $value
+     * @return \stdClass
+     */
+    public function getDataAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    /**
      * Get the slug.
      *
      * @return string
@@ -48,7 +59,7 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     {
         return $this->str_id;
     }
-    
+
     /**
      * Get the enabled flag.
      *
