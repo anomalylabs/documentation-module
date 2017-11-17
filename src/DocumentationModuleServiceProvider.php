@@ -78,6 +78,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
         'admin/documentation/pages'                  => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@index',
         'admin/documentation/pages/create'           => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@create',
         'admin/documentation/pages/edit/{id}'        => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@edit',
+        'documentation/sync/{id}'                    => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@sync',
         'documentation'                              => [
             'as'   => 'anomaly.module.documentation::projects.index',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@index',

@@ -42,4 +42,15 @@ class ProjectRepository extends EntryRepository implements ProjectRepositoryInte
     {
         return $this->model->where('slug', $slug)->first();
     }
+
+    /**
+     * Find a project by it's string ID.
+     *
+     * @param $strId
+     * @return ProjectInterface|null
+     */
+    public function findByStrId($strId)
+    {
+        return $this->model->where('str_id', $strId)->first();
+    }
 }

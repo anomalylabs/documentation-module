@@ -8,6 +8,7 @@ use Anomaly\DocumentationModule\Project\Form\ProjectConfigurationFormBuilder;
 use Anomaly\DocumentationModule\Project\Form\ProjectFormBuilder;
 use Anomaly\DocumentationModule\Project\Table\ProjectTableBuilder;
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
+use Anomaly\Streams\Platform\Console\Kernel;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 /**
@@ -132,5 +133,32 @@ class ProjectsController extends AdminController
                 'project' => $project->getSlug(),
             ]
         );
+    }
+
+    public function sync(ProjectRepositoryInterface $projects, Kernel $artisan, $id)
+    {
+        /* @var ProjectInterface $project */
+        $project = $projects->find($id);
+
+        try {
+
+            $artisan->call(
+                'documentation:sync',
+                [
+                    'project' => $project->getSlug(),
+                ]
+            );
+
+            $this->messages->success(
+                trans(
+                    'anomaly.module.documentation::message.sync_success',
+                    ['name' => $project->getName()]
+                )
+            );
+        } catch (\Exception $exception) {
+            $this->messages->danger($exception->getMessage());
+        }
+
+        return $this->redirect->back();
     }
 }

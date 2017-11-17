@@ -21,9 +21,14 @@ class ProjectConfigurationFormButtons
             [
                 'cancel',
                 'view' => [
-                    'target'  => '_blank',
                     'enabled' => 'edit',
+                    'target'  => '_blank',
                     'href'    => 'admin/documentation/view/' . $builder->getChildFormEntryId('project'),
+                ],
+                'sync' => [
+                    'enabled' => 'edit',
+                    'icon'    => 'refresh',
+                    'type'    => 'primary',
                 ],
             ]
         );

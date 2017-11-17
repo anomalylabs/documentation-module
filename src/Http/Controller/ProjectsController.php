@@ -4,6 +4,7 @@ use Anomaly\DocumentationModule\Command\AddDocumentationBreadcrumb;
 use Anomaly\DocumentationModule\Command\SetDocumentationMetaTitle;
 use Anomaly\DocumentationModule\Documentation\DocumentationStructure;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
+use Anomaly\Streams\Platform\Console\Kernel;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Illuminate\Http\Response;
 
@@ -44,5 +45,26 @@ class ProjectsController extends PublicController
         }
 
         return $this->redirect->to($project->route('latest'));
+    }
+
+    /**
+     * Sync a project by it's string ID.
+     *
+     * @param ProjectRepositoryInterface $projects
+     * @param Kernel                     $artisan
+     * @param                            $id
+     */
+    public function sync(ProjectRepositoryInterface $projects, Kernel $artisan, $id)
+    {
+        if (!$project = $projects->findByStrId($id)) {
+            abort(404);
+        }
+
+        $artisan->call(
+            'documentation:sync',
+            [
+                'project' => $project->getSlug(),
+            ]
+        );
     }
 }

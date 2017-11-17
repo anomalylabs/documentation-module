@@ -20,4 +20,12 @@ interface ProjectRepositoryInterface extends EntryRepositoryInterface
      * @return ProjectInterface|null
      */
     public function findBySlug($slug);
+
+    /**
+     * Find a project by it's string ID.
+     *
+     * @param $strId
+     * @return ProjectInterface|null
+     */
+    public function findByStrId($strId);
 }
