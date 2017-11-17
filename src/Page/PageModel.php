@@ -76,7 +76,7 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
      */
     public function hasData($key)
     {
-        return array_key_exists($key, $this->data);
+        return array_key_exists($key, (array)$this->data);
     }
 
     /**
@@ -89,7 +89,7 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     public function getData($key = null, $default = null)
     {
         if ($key) {
-            return array_get($this->data, $key, $default);
+            return array_get((array)$this->data, $key, $default);
         }
 
         return $this->data;
