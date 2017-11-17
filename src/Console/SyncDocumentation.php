@@ -81,7 +81,17 @@ class SyncDocumentation extends Command
 
                     foreach ($structure as $order => $path) {
 
-                        $attributes = $documentation->page($reference, $locale, $path);
+                        try {
+                            $attributes = $documentation->page($reference, $locale, $path);
+                        } catch (\Exception $exception) {
+
+                            $this->error(
+                                $project->getSlug() . '/' . $reference . '/' . $locale . $path
+                                . ' - ' . $exception->getMessage()
+                            );
+
+                            continue;
+                        }
 
                         /**
                          * First see if we can find out page by
