@@ -126,7 +126,7 @@ class ProjectModel extends DocumentationProjectsEntryModel implements ProjectInt
     {
         $references = $this->getReferences();
 
-        return end($references);
+        return reset($references);
     }
 
     /**
