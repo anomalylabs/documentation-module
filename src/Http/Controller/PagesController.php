@@ -69,6 +69,13 @@ class PagesController extends PublicController
             $page = $pages->findByIdentifiers($project, $reference);
         }
 
+        /**
+         * Huh.
+         */
+        if (!$page) {
+            abort(404);
+        }
+
         $next     = $pages->next($page);
         $previous = $pages->previous($page);
 
