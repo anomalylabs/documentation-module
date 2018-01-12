@@ -1,6 +1,38 @@
 {
     "name": "anomaly/documentation-module",
     "type": "streams-addon",
+    "description": "A powerful commenting system.",
+    "keywords": [
+        "streams module",
+        "streams addon",
+        "comments"
+    ],
+    "homepage": "http://pyrocms.com/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PyroCMS, Inc.",
+            "email": "support@pyrocms.com",
+            "homepage": "http://pyrocms.com/",
+            "role": "Owner"
+        },
+        {
+            "name": "Ryan Thompson",
+            "email": "ryan@pyrocms.com",
+            "homepage": "http://ryanthepyro.com/",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "support@pyrocms.com"
+    },
+    "require": {
+        "anomaly/streams-platform": "^1.3"
+    },
+    "suggest": {
+        "anomaly/local_documentation-extension": "Store documentation source locally.",
+        "anomaly/github_documentation-extension": "Store documentation source in a GitHub repository."
+    },
     "autoload": {
         "psr-4": {
             "Anomaly\\DocumentationModule\\": "src/"
