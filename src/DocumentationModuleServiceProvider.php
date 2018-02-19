@@ -79,7 +79,10 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
         'admin/documentation/pages/create'           => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@create',
         'admin/documentation/pages/edit/{id}'        => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@edit',
         'documentation/sync/{id}'                    => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@sync',
-        'documentation/webhook/{id}'                 => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@webhook',
+        'documentation/webhook/{id}'                 => [
+            'csrf' => false,
+            'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@webhook',
+        ],
         'documentation'                              => [
             'as'   => 'anomaly.module.documentation::projects.index',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@index',
