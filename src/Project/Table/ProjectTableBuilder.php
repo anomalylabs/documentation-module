@@ -57,6 +57,7 @@ class ProjectTableBuilder extends TableBuilder
             'type'     => 'primary',
             'dropdown' => [
                 'webhook' => [
+                    'icon'   => 'cogs',
                     'target' => '_blank',
                 ],
             ],
