@@ -5,7 +5,9 @@ use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectRepositoryInterface;
 use Anomaly\Streams\Platform\Model\EloquentModel;
+use Illuminate\Bus\Queueable;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Symfony\Component\Console\Input\InputArgument;
 
 /**
@@ -15,8 +17,10 @@ use Symfony\Component\Console\Input\InputArgument;
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class SyncDocumentation extends Command
+class SyncDocumentation extends Command implements ShouldQueue
 {
+
+    use Queueable;
 
     /**
      * The command name.
