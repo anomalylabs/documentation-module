@@ -135,6 +135,14 @@ class ProjectsController extends AdminController
         );
     }
 
+    /**
+     * Sync the project.
+     *
+     * @param ProjectRepositoryInterface $projects
+     * @param Kernel                     $artisan
+     * @param                            $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function sync(ProjectRepositoryInterface $projects, Kernel $artisan, $id)
     {
         /* @var ProjectInterface $project */
@@ -160,5 +168,22 @@ class ProjectsController extends AdminController
         }
 
         return $this->redirect->back();
+    }
+
+    /**
+     * Redirect to the webhook.
+     *
+     * @param ProjectRepositoryInterface $projects
+     * @param                            $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function webhook(ProjectRepositoryInterface $projects, $id)
+    {
+        /* @var ProjectInterface $project */
+        if (!$project = $projects->find($id)) {
+            abort(404);
+        }
+
+        return $this->redirect->to($project->route('webhook'));
     }
 }

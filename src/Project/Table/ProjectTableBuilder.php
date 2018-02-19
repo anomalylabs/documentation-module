@@ -49,12 +49,17 @@ class ProjectTableBuilder extends TableBuilder
      */
     protected $buttons = [
         'edit',
-        'view'  => [
+        'view' => [
             'target' => '_blank',
         ],
         'sync' => [
-            'icon' => 'refresh',
-            'type' => 'primary',
+            'icon'     => 'refresh',
+            'type'     => 'primary',
+            'dropdown' => [
+                'webhook' => [
+                    'target' => '_blank',
+                ],
+            ],
         ],
     ];
 

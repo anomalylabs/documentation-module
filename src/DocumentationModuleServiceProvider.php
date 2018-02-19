@@ -75,12 +75,24 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
+        'admin/documentation'                        => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@index',
+        'admin/documentation/choose'                 => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@choose',
+        'admin/documentation/create'                 => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@create',
+        'admin/documentation/edit/{id}'              => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@edit',
+        'admin/documentation/view/{id}'              => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@view',
+        'admin/documentation/sync/{id}'              => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@sync',
+        'admin/documentation/webhook/{id}'           => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@webhook',
         'admin/documentation/pages'                  => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@index',
         'admin/documentation/pages/create'           => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@create',
         'admin/documentation/pages/edit/{id}'        => 'Anomaly\DocumentationModule\Http\Controller\Admin\PagesController@edit',
-        'documentation/sync/{id}'                    => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@sync',
-        'documentation/webhook/{id}'                 => [
+        'documentation/sync/{str_id}'                => [
             'csrf' => false,
+            'as'   => 'anomaly.module.documentation::projects.sync',
+            'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@sync',
+        ],
+        'documentation/webhook/{str_id}'             => [
+            'csrf' => false,
+            'as'   => 'anomaly.module.documentation::projects.webhook',
             'uses' => 'Anomaly\DocumentationModule\Http\Controller\ProjectsController@webhook',
         ],
         'documentation'                              => [
