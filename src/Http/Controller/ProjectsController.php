@@ -74,6 +74,7 @@ class ProjectsController extends PublicController
      * @param ProjectRepositoryInterface $projects
      * @param Kernel                     $artisan
      * @param                            $id
+     * @return Response|mixed
      */
     public function webhook(ProjectRepositoryInterface $projects, Kernel $artisan, $id)
     {
@@ -87,5 +88,7 @@ class ProjectsController extends PublicController
                 'project' => $project->getSlug(),
             ]
         );
+
+        return $this->response->make('Ok!');
     }
 }
