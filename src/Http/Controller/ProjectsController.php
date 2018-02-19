@@ -82,7 +82,7 @@ class ProjectsController extends PublicController
             abort(404);
         }
 
-        $artisan->call(
+        $artisan->queue(
             'documentation:sync',
             [
                 'project' => $project->getSlug(),
