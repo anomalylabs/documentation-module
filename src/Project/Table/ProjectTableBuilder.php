@@ -59,6 +59,7 @@ class ProjectTableBuilder extends TableBuilder
                 'webhook' => [
                     'icon'   => 'cogs',
                     'target' => '_blank',
+                    'href'   => '/documentation/webhook/{entry.str_id}',
                 ],
             ],
         ],

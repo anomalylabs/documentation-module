@@ -169,21 +169,4 @@ class ProjectsController extends AdminController
 
         return $this->redirect->back();
     }
-
-    /**
-     * Redirect to the webhook.
-     *
-     * @param ProjectRepositoryInterface $projects
-     * @param                            $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function webhook(ProjectRepositoryInterface $projects, $id)
-    {
-        /* @var ProjectInterface $project */
-        if (!$project = $projects->find($id)) {
-            abort(404);
-        }
-
-        return $this->redirect->to($project->route('webhook'));
-    }
 }

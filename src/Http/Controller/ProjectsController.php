@@ -48,27 +48,6 @@ class ProjectsController extends PublicController
     }
 
     /**
-     * Sync a project by it's string ID.
-     *
-     * @param ProjectRepositoryInterface $projects
-     * @param Kernel                     $artisan
-     * @param                            $id
-     */
-    public function sync(ProjectRepositoryInterface $projects, Kernel $artisan, $id)
-    {
-        if (!$project = $projects->findByStrId($id)) {
-            abort(404);
-        }
-
-        $artisan->call(
-            'documentation:sync',
-            [
-                'project' => $project->getSlug(),
-            ]
-        );
-    }
-
-    /**
      * The callback webhook for VCS systems.
      *
      * @param ProjectRepositoryInterface $projects
