@@ -20,7 +20,7 @@ class DocumentationParser
      */
     public function attributes($content)
     {
-        if (!preg_match('/^-{3}(?:\n|\r)(.+?)-{3}(.*)$/ms', $content, $pieces)) {
+        if (!preg_match('/^-{3}(?:\n|\r)(.+?)-{3}$/ms', $content, $pieces)) {
             return [];
         }
 
@@ -35,7 +35,7 @@ class DocumentationParser
      */
     public function content($content)
     {
-        return ltrim(preg_replace('~^[-]{3}[\r\n|\n]+(.*)[\r\n|\n]+[-]{3}~s', '', $content, 1));
+        return ltrim(preg_replace('~^[-]{3}[\r\n|\n]+(.*)[\r\n|\n]+[-]{3}[\r\n|\n]~s', '', $content, 1));
     }
 
     /**
