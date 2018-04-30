@@ -20,7 +20,9 @@ class DocumentationParser
      */
     public function attributes($content)
     {
-        if (!preg_match('/^-{3}(?:\n|\r)(.+?)-{3}$/ms', $content, $pieces)) {
+        $content = str_replace("\r\n", "\n", $content);
+
+        if (!preg_match("/^-{3}(?:\n|\r)(.+?)-{3}$/ms", $content, $pieces)) {
             return [];
         }
 
