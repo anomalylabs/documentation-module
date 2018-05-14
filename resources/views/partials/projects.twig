@@ -8,7 +8,9 @@
 
                         <h3 class="panel-heading">
                             {{ project.title }}<br>
+                            {% if project.category.name.value %}
                             <small>{{ str_singular(project.category.name.value) }}</small>
+                            {% endif %}
                         </h3>
 
                         <div class="tags">
