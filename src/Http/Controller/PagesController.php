@@ -19,10 +19,10 @@ class PagesController extends PublicController
      * Return the project documentation for a version.
      *
      * @param ProjectRepositoryInterface $projects
-     * @param PageRepositoryInterface    $pages
+     * @param PageRepositoryInterface $pages
      * @param                            $project
-     * @param null                       $version
-     * @param null                       $path
+     * @param null $version
+     * @param null $path
      * @return string
      */
     public function view(
@@ -70,12 +70,27 @@ class PagesController extends PublicController
         }
 
         /**
-         * Huh.
+         * If the page can't be found then 404.
          */
         if (!$page) {
             abort(404);
         }
 
+        /**
+         * If the page is a redirect
+         * then return the redirect.
+         */
+        if ($redirect = $page->getData('redirect')) {
+
+            $hint = $pages->findByIdentifiers($project, $reference, '/' . $redirect);
+
+            return $this->redirect->to($hint ? $hint->route('view') : $redirect);
+        }
+
+        /**
+         * Get the next and previous pages
+         * to stash for later if desired.
+         */
         $next     = $pages->next($page);
         $previous = $pages->previous($page);
 
