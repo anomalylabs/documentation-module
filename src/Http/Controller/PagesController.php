@@ -50,9 +50,6 @@ class PagesController extends PublicController
             $this->breadcrumbs->add($category->getTitle(), $category->route('view'));
         }
 
-        $this->template->set('meta_title', $project->getTitle());
-        $this->breadcrumbs->add($project->getTitle(), $this->request->path());
-
         if ($reference == 'latest') {
             $reference = $project->getDefaultReference();
         }
@@ -60,6 +57,8 @@ class PagesController extends PublicController
         if (!$reference) {
             abort(404);
         }
+
+        $this->breadcrumbs->add($project->getTitle(), $project->route('view'));
 
         /**
          * Try and locate the page now
@@ -86,6 +85,13 @@ class PagesController extends PublicController
 
             return $this->redirect->to($hint ? $hint->route('view') : $redirect);
         }
+
+        /**
+         * Setup the SEO
+         */
+        $this->template->set('meta_title', $page->getData('meta_title', $page->getTitle()));
+
+        $this->breadcrumbs->add($page->getTitle(), $page->route('view'));
 
         /**
          * Get the next and previous pages
