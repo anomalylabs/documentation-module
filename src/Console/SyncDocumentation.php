@@ -83,7 +83,7 @@ class SyncDocumentation extends Command implements ShouldQueue
 
                     $structure = $documentation->structure($reference, $locale);
 
-                    foreach ($structure as $order => $path) {
+                    foreach ($structure as $path) {
 
                         try {
                             $attributes = $documentation->page($reference, $locale, $path);
@@ -120,9 +120,9 @@ class SyncDocumentation extends Command implements ShouldQueue
                                 ],
                                 'path'       => array_pull($attributes, 'path'),
                                 'content'    => array_pull($attributes, 'content'),
+                                'sort_order' => array_pull($attributes, 'sort_order'),
                                 'reference'  => $reference,
                                 'project'    => $project,
-                                'sort_order' => $order + 1,
                             ]
                         );
 
