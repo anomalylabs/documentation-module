@@ -2,11 +2,12 @@
 
 {% block content %}
 
-    {{ asset_add('styles.css', 'anomaly.module.documentation::scss/anchors.scss', ['min']) }}
-    {{ asset_add('styles.css', 'anomaly.module.documentation::scss/prism.scss', ['min']) }}
+    {{ asset_add('styles.css', 'anomaly.module.documentation::css/page.css', ['min']) }}
 
-    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/plugins/*', ['min']) }}
-    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/initialize.js', ['min']) }}
+    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/clipboard.js', ['min']) }}
+    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/anchor.js', ['min']) }}
+    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/prism.js', ['min']) }}
+    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/page.js', ['min']) }}
 
     <div id="documentation">
         <div class="container">
