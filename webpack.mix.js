@@ -14,8 +14,7 @@ let mix = require('laravel-mix');
 mix
     .copy('node_modules/clipboard/dist/clipboard.js', 'resources/js')
     .copy('node_modules/anchor-js/anchor.js', 'resources/js')
-    .copy('node_modules/prismjs/prism.js', 'resources/js')
-    .sass('resources/scss/page.scss', 'resources/css');
+    .sass('resources/scss/documentation.scss', 'resources/css');
 
 // Full API
 // mix.js(src, output);

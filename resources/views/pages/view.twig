@@ -2,29 +2,36 @@
 
 {% block content %}
 
-    {{ asset_add('styles.css', 'anomaly.module.documentation::css/page.css', ['min']) }}
+    <style type="text/css">
+        {{ asset_inline('anomaly.module.documentation::css/prism.css', ['min']) }}
+        {{ asset_inline('anomaly.module.documentation::css/documentation.css', ['min']) }}
+    </style>
 
     {{ asset_add('scripts.js', 'anomaly.module.documentation::js/clipboard.js', ['min']) }}
     {{ asset_add('scripts.js', 'anomaly.module.documentation::js/anchor.js', ['min']) }}
     {{ asset_add('scripts.js', 'anomaly.module.documentation::js/prism.js', ['min']) }}
     {{ asset_add('scripts.js', 'anomaly.module.documentation::js/page.js', ['min']) }}
 
-    <div id="documentation">
-        <div class="container">
+    <div class="row">
 
-            <div class="row">
-
-                <aside class="col-lg-3">
-                    {{ documentation()|raw }}
-                </aside>
-
-                <div class="col-lg-9 page">
-                    {{ page.content|markdown|raw }}
-                </div>
-
+        <div class="col-lg-2">
+            <div class="documentation__sidebar--left">
+                {{ documentation()|raw }}
             </div>
-
         </div>
+
+        <div class="col-lg-8">
+            <div class="documentation__content">
+                {{ page.content|markdown|raw }}
+            </div>
+        </div>
+
+        <div class="col-lg-2">
+            <div class="documentation__sidebar--right">
+                Sidebar
+            </div>
+        </div>
+
     </div>
 
 {% endblock %}
