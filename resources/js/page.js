@@ -10,7 +10,7 @@
         truncate: 64
     };
 
-    anchors.add('#documentation .page h2, #documentation .page h3, #documentation .page h4');
+    anchors.add('.documentation__content h2, .documentation__content h3, .documentation__content h4');
 
     /**
      * Setup the code examples

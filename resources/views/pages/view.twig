@@ -14,21 +14,15 @@
 
     <div class="row">
 
-        <div class="col-lg-2">
+        <div class="col-lg-3">
             <div class="documentation__sidebar">
                 {{ documentation()|raw }}
             </div>
         </div>
 
-        <div class="col-lg-8">
+        <div class="col-lg-9">
             <div class="documentation__content">
                 {{ page.content|markdown|raw }}
-            </div>
-        </div>
-
-        <div class="col-lg-2">
-            <div class="documentation__sidebar">
-                {{ documentation()|raw }}
             </div>
         </div>
 

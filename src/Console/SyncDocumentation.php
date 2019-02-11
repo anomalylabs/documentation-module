@@ -33,7 +33,7 @@ class SyncDocumentation extends Command implements ShouldQueue
      * Handle the command.
      *
      * @param ProjectRepositoryInterface $projects
-     * @param PageRepositoryInterface    $pages
+     * @param PageRepositoryInterface $pages
      */
     public function handle(ProjectRepositoryInterface $projects, PageRepositoryInterface $pages)
     {
