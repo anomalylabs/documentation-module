@@ -20,7 +20,7 @@ pre {
   background: #1d1f21;
   border-radius: 0.25rem;
   padding: 2rem !important;
-  margin: 1.5rem 0 !important;
+  margin: 2rem 0 !important;
 }
 
 pre > code {
@@ -30,11 +30,11 @@ pre > code {
 }
 
 pre > code::-moz-selection {
-  background: none;
+  background: none !important;
 }
 
 pre > code::selection {
-  background: none;
+  background: none !important;
 }
 
 .copy-to-clipboard {

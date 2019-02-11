@@ -20,7 +20,7 @@ pre {
     background: #1d1f21;
     border-radius: 0.25rem;
     padding: 2rem !important;
-    margin: 1.5rem 0 !important;
+    margin: 2.0rem 0!important;
 
     > code {
         background: #1d1f21;
@@ -28,7 +28,7 @@ pre {
         white-space: pre-wrap !important;
 
         &::selection {
-            background: none;
+            background: none !important;
         }
     }
 }
