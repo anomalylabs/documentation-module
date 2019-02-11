@@ -91,4 +91,20 @@ class PageCollection extends EntryCollection
             }
         );
     }
+
+    /**
+     * Return only visible items.
+     *
+     * @return PageCollection
+     */
+    public function visible()
+    {
+        return $this->filter(
+            function ($item) {
+
+                /* @var PageInterface $item */
+                return $item->data('hidden', false) == false;
+            }
+        );
+    }
 }

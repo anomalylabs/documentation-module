@@ -80,6 +80,18 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     }
 
     /**
+     * Return data for a given key.
+     *
+     * @param $key
+     * @param null $default
+     * @return array
+     */
+    public function data($key, $default = null)
+    {
+        return array_get((array)$this->data, $key, $default);
+    }
+
+    /**
      * Get the data.
      *
      * @param null $key

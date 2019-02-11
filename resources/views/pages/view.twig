@@ -1,4 +1,4 @@
-{% extends layout('documentation') %}
+{% extends layout(page.data('layout', 'documentation')) %}
 
 {% block content %}
 
@@ -15,7 +15,7 @@
     <div class="row">
 
         <div class="col-lg-2">
-            <div class="documentation__sidebar--left">
+            <div class="documentation__sidebar">
                 {{ documentation()|raw }}
             </div>
         </div>
@@ -27,8 +27,8 @@
         </div>
 
         <div class="col-lg-2">
-            <div class="documentation__sidebar--right">
-                Sidebar
+            <div class="documentation__sidebar">
+                {{ documentation()|raw }}
             </div>
         </div>
 

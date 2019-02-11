@@ -38,6 +38,15 @@ interface PageInterface extends EntryInterface
     public function hasData($key);
 
     /**
+     * Return data for a given key.
+     *
+     * @param $key
+     * @param null $default
+     * @return array
+     */
+    public function data($key, $default = null);
+
+    /**
      * Get the data.
      *
      * @param null $key
