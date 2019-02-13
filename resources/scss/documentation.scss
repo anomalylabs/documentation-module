@@ -105,12 +105,54 @@
         background: #1d1f21;
         border-radius: 0.25rem;
         padding: 2rem !important;
-        margin: 2.0rem 0!important;
+        margin: 2.0rem 0 !important;
 
         > code {
             background: #1d1f21;
             word-break: break-all !important;
             white-space: pre-wrap !important;
+        }
+    }
+}
+
+.documentation__sidebar {
+
+}
+
+.documentation__toc {
+    font-size: 14px;
+
+    ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        &.is-collapsed {
+            display: none;
+        }
+
+        li {
+            line-height: 1.8;
+
+            &:before {
+                opacity: .3;
+                content: "# ";
+                margin-right: .25em;
+            }
+
+            &.is-active-li {
+                > a {
+                    font-weight: bold;
+                }
+            }
+        }
+
+        ol {
+            padding-left: 2rem;
+
+            li {
+                font-size: 13px;
+            }
         }
     }
 }

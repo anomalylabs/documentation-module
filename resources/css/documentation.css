@@ -105,3 +105,39 @@
   white-space: pre-wrap !important;
 }
 
+.documentation__toc {
+  font-size: 14px;
+}
+
+.documentation__toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.documentation__toc ol.is-collapsed {
+  display: none;
+}
+
+.documentation__toc ol li {
+  line-height: 1.8;
+}
+
+.documentation__toc ol li:before {
+  opacity: 0.3;
+  content: "# ";
+  margin-right: 0.25em;
+}
+
+.documentation__toc ol li.is-active-li > a {
+  font-weight: bold;
+}
+
+.documentation__toc ol ol {
+  padding-left: 2rem;
+}
+
+.documentation__toc ol ol li {
+  font-size: 13px;
+}
+

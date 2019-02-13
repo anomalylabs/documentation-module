@@ -13,6 +13,7 @@ let mix = require('laravel-mix');
 
 mix
     .copy('node_modules/clipboard/dist/clipboard.js', 'resources/js')
+    .copy('node_modules/tocbot/dist/tocbot.js', 'resources/js')
     .copy('node_modules/anchor-js/anchor.js', 'resources/js')
     .sass('resources/scss/documentation.scss', 'resources/css');
 

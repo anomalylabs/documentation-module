@@ -9,18 +9,19 @@
 
     {{ asset_add('scripts.js', 'anomaly.module.documentation::js/clipboard.js', ['min']) }}
     {{ asset_add('scripts.js', 'anomaly.module.documentation::js/anchor.js', ['min']) }}
+    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/tocbot.js', ['min']) }}
     {{ asset_add('scripts.js', 'anomaly.module.documentation::js/prism.js', ['min']) }}
     {{ asset_add('scripts.js', 'anomaly.module.documentation::js/page.js', ['min']) }}
 
     <div class="row">
 
-        <div class="col-lg-3">
-            <div class="documentation__sidebar">
+        <div class="col-lg-2">
+            <div class="documentation__sidebar documentation__sidebar--left">
                 {{ documentation()|raw }}
             </div>
         </div>
 
-        <div class="col-lg-9">
+        <div class="col-lg-10">
             <div class="documentation__content">
                 {{ page.content|markdown|raw }}
             </div>

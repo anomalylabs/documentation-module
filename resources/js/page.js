@@ -13,6 +13,17 @@
     anchors.add('.documentation__content h2, .documentation__content h3, .documentation__content h4');
 
     /**
+     * Initialize our TOC sidebar.
+     */
+    tocbot.init({
+        tocSelector: '.documentation__toc',
+        contentSelector: '.documentation__content',
+        positionFixedSelector: '.documentation__toc',
+        headingSelector: 'h2, h3',
+        collapseDepth: 6
+    });
+
+    /**
      * Setup the code examples
      */
     let examples = Array.prototype.slice.call(
