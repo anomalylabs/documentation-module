@@ -83,7 +83,7 @@ class SyncDocumentation extends Command implements ShouldQueue
 
                     $structure = $documentation->structure($reference, $locale);
 
-                    foreach ($structure as $path) {
+                    foreach ($structure as $index => $path) {
 
                         try {
                             $attributes = $documentation->page($reference, $locale, $path);
@@ -104,6 +104,22 @@ class SyncDocumentation extends Command implements ShouldQueue
                          */
                         if (!$page = $pages->findByIdentifiers($project, $reference, $attributes['path'])) {
                             $page = $pages->newInstance();
+                        }
+
+                        /**
+                         * Order the directories.
+                         */
+                        if (str_is('/*/01.index', $path)) {
+
+                            $segments = array_filter(explode('/', $path));
+
+                            array_pop($segments); // Remove trailing index.
+
+                            $parent = array_pop($segments);
+
+                            $parts = explode('.', $parent);
+
+                            array_set($attributes, 'sort_order', (int)array_shift($parts) + 1);
                         }
 
                         /**

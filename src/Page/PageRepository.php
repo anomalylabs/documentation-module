@@ -5,6 +5,13 @@ use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
 use Anomaly\Streams\Platform\Entry\EntryRepository;
 
+/**
+ * Class PageRepository
+ *
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
+ */
 class PageRepository extends EntryRepository implements PageRepositoryInterface
 {
 
@@ -36,6 +43,7 @@ class PageRepository extends EntryRepository implements PageRepositoryInterface
         return $this->model
             ->where('project_id', $page->getProjectId())
             ->where('reference', $page->getReference())
+            ->where('parent_id', $page->getParentId())
             ->where('sort_order', $page->getSortOrder() + 1)
             ->first();
     }
@@ -51,6 +59,7 @@ class PageRepository extends EntryRepository implements PageRepositoryInterface
         return $this->model
             ->where('project_id', $page->getProjectId())
             ->where('reference', $page->getReference())
+            ->where('parent_id', $page->getParentId())
             ->where('sort_order', $page->getSortOrder() - 1)
             ->first();
     }
