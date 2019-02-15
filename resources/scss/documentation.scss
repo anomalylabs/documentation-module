@@ -139,12 +139,6 @@
                 content: "# ";
                 margin-right: .25em;
             }
-
-            &.is-active-li {
-                > a {
-                    font-weight: bold;
-                }
-            }
         }
 
         ol {

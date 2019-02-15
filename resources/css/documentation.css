@@ -129,10 +129,6 @@
   margin-right: 0.25em;
 }
 
-.documentation__toc ol li.is-active-li > a {
-  font-weight: bold;
-}
-
 .documentation__toc ol ol {
   padding-left: 2rem;
 }
