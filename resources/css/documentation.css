@@ -35,7 +35,12 @@
 }
 
 .documentation__sidebar ul ul {
+  display: none;
   padding-left: 1rem;
+}
+
+.documentation__sidebar ul li.active ul {
+  display: inherit;
 }
 
 .documentation__sidebar > ul > li > a {

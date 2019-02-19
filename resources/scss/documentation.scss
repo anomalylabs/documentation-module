@@ -36,7 +36,14 @@
         list-style: none;
 
         ul {
+            display: none;
             padding-left: 1rem;
+        }
+
+        li.active {
+            ul {
+                display: inherit;
+            }
         }
     }
 
