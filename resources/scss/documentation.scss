@@ -40,6 +40,12 @@
             padding-left: 1rem;
         }
 
+        li.selected {
+            a {
+                font-weight: bold;
+            }
+        }
+
         li.active,
         li.selected {
             > ul {

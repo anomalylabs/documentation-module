@@ -39,6 +39,10 @@
   padding-left: 1rem;
 }
 
+.documentation__sidebar ul li.selected a {
+  font-weight: bold;
+}
+
 .documentation__sidebar ul li.active > ul,
 .documentation__sidebar ul li.selected > ul {
   display: inherit;

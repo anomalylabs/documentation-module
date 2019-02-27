@@ -12,6 +12,7 @@
         <a
                 href="{{ page.route('view') }}"
                 class="{{ options.link_class }}"
+                target="{{ page.target ?: '_self' }}"
                 {{ html_attributes(options.get('link_attributes', [])) }}
                 {% if page.children.count() %}
                     {{ html_attributes(options.get('link_attributes_dropdown', [])) }}
