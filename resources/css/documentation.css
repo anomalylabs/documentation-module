@@ -39,7 +39,13 @@
   padding-left: 1rem;
 }
 
-.documentation__sidebar ul li.active ul {
+.documentation__sidebar ul li.active > ul,
+.documentation__sidebar ul li.selected > ul {
+  display: inherit;
+}
+
+.documentation__sidebar ul li.active ul li.selected ul,
+.documentation__sidebar ul li.selected ul li.selected ul {
   display: inherit;
 }
 

@@ -58,6 +58,24 @@ class PageCollection extends EntryCollection
     }
 
     /**
+     * Return the parent of the child.
+     *
+     * @param $child
+     * @return PageInterface
+     */
+    public function parent(PageInterface $child)
+    {
+        /* @var PageInterface $parent */
+        return $this->first(
+            function ($item) use ($child) {
+
+                /* @var PageInterface $item */
+                return $child->getParentId() == $item->getId();
+            }
+        );
+    }
+
+    /**
      * Return the current page.
      *
      * @return PageInterface|null

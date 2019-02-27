@@ -40,9 +40,18 @@
             padding-left: 1rem;
         }
 
-        li.active {
-            ul {
+        li.active,
+        li.selected {
+            > ul {
                 display: inherit;
+            }
+
+            ul {
+                li.selected {
+                    ul {
+                        display: inherit;
+                    }
+                }
             }
         }
     }

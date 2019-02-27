@@ -62,7 +62,6 @@ class SetActivePages
              * parent of current page.
              */
             if ($page->getId() == $current->getParentId()) {
-
                 $page->setActive(true);
             }
 
@@ -70,11 +69,16 @@ class SetActivePages
              * If the active page is in the children
              * of this page then mark it active too.
              */
-            if (!$this->pages->children($page)->active()->isEmpty()) {
+            if (($parent = $page->getParent()) && $this->pages->children($parent)->active()->isNotEmpty()) {
 
-                $page->setActive(true);
+                $parent->setActive(true);
 
-                $this->dispatch(new SetActivePages($this->pages));
+                if ($parent = $this->pages->parent($page)) {
+
+                    $parent->setActive(true);
+
+                    $this->dispatch(new SetActivePages($this->pages));
+                }
             }
         }
     }
