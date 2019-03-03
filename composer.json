@@ -27,7 +27,8 @@
         "email": "support@pyrocms.com"
     },
     "require": {
-        "anomaly/streams-platform": "^1.3"
+        "anomaly/sitemap-extension": "^2.2",
+        "anomaly/streams-platform": "^1.6"
     },
     "suggest": {
         "anomaly/local_documentation-extension": "Store documentation source locally.",
