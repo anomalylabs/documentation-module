@@ -77,7 +77,8 @@ class SetActivePages
 
                     $parent->setActive(true);
 
-                    $this->dispatch(new SetActivePages($this->pages));
+                    // We don't seem to need this - let's stash it.
+                    //$this->dispatch(new SetActivePages($this->pages));
                 }
             }
         }
