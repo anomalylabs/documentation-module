@@ -43,11 +43,13 @@
   font-weight: bold;
 }
 
+.documentation__sidebar ul li.open > ul,
 .documentation__sidebar ul li.active > ul,
 .documentation__sidebar ul li.selected > ul {
   display: inherit;
 }
 
+.documentation__sidebar ul li.open ul li.selected ul,
 .documentation__sidebar ul li.active ul li.selected ul,
 .documentation__sidebar ul li.selected ul li.selected ul {
   display: inherit;
