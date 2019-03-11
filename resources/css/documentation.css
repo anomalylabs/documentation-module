@@ -39,7 +39,7 @@
   padding-left: 1rem;
 }
 
-.documentation__sidebar ul li.selected a {
+.documentation__sidebar ul li.selected > a {
   font-weight: bold;
 }
 
