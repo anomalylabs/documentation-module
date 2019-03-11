@@ -112,14 +112,13 @@ class PagesController extends PublicController
 
         return $this->view->make(
             'anomaly.module.documentation::pages/view',
-            compact(
-                'reference',
-                'previous',
-                'project',
-                'version',
-                'page',
-                'next'
-            )
+            [
+                'reference' => $reference,
+                'previous'  => $previous,
+                'project'   => $project,
+                'page'      => $page,
+                'next'      => $next,
+            ]
         );
     }
 }
