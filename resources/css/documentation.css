@@ -39,7 +39,7 @@
   padding-left: 1rem;
 }
 
-.documentation__sidebar ul li.selected a {
+.documentation__sidebar ul li.selected > a {
   font-weight: bold;
 }
 
@@ -101,6 +101,7 @@
 .documentation__content h2,
 .documentation__content h3,
 .documentation__content h4 {
+  outline: none;
   padding-top: 2rem;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
@@ -118,10 +119,6 @@
   background: #1d1f21;
   word-break: break-all !important;
   white-space: pre-wrap !important;
-}
-
-.documentation__toc {
-  font-size: 1rem;
 }
 
 .documentation__toc ol {
@@ -149,6 +146,6 @@
 }
 
 .documentation__toc ol ol li {
-  font-size: 0.9rem;
+  font-size: 90%;
 }
 
