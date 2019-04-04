@@ -2,7 +2,6 @@
 
 use Anomaly\DocumentationModule\Page\Contract\PageInterface;
 use Anomaly\DocumentationModule\Page\PageCollection;
-use Anomaly\Streams\Platform\View\ViewTemplate;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
@@ -37,7 +36,7 @@ class SetActivePages
     /**
      * Handle the command.
      */
-    public function handle(ViewTemplate $template)
+    public function handle()
     {
         if (!$current = $this->pages->current()) {
             return;
@@ -77,7 +76,7 @@ class SetActivePages
 
                     $parent->setActive(true);
 
-                    $this->dispatch(new SetActivePages($this->pages));
+                    $this->dispatch(new SetActivePages($parent->getChildren()));
                 }
             }
         }
