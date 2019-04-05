@@ -38,9 +38,6 @@ class AnomalyModuleDocumentationCreateCategoriesStream extends Migration
         'slug'        => [
             'required' => true,
             'unique'   => true,
-            'config'   => [
-                'slugify' => 'name',
-            ],
         ],
         'description' => [
             'translatable' => true,

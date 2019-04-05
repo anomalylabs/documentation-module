@@ -42,9 +42,6 @@ class AnomalyModuleDocumentationCreateProjectsStream extends Migration
         'slug'          => [
             'required' => true,
             'unique'   => true,
-            'config'   => [
-                'slugify' => 'name',
-            ],
         ],
         'documentation' => [
             'required' => true,

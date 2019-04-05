@@ -27,7 +27,8 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
         'slug'             => [
             'type'   => 'anomaly.field_type.slug',
             'config' => [
-                'type' => '-',
+                'type'    => '-',
+                'slugify' => 'name',
             ],
         ],
         'description'      => 'anomaly.field_type.textarea',

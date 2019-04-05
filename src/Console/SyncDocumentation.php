@@ -134,7 +134,7 @@ class SyncDocumentation extends Command implements ShouldQueue
                                     'meta_title'       => array_pull($attributes, 'meta_title'),
                                     'meta_description' => array_pull($attributes, 'meta_description'),
                                 ],
-                                'path'       => array_pull($attributes, 'path'),
+                                'path'       => $path = array_pull($attributes, 'path'),
                                 'content'    => array_pull($attributes, 'content'),
                                 'sort_order' => array_pull($attributes, 'sort_order'),
                                 'reference'  => $reference,
