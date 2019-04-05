@@ -1,158 +1,158 @@
 .anchorjs-link:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .copy-to-clipboard {
-    top: 0;
-    right: 0;
-    font-size: 12px;
-    background: none;
-    position: absolute;
-    border-style: solid;
-    padding: 0.25rem 0.5rem;
-    outline: none !important;
-    border-width: 0 0 1px 1px;
-    color: rgba(255, 255, 255, 0.4);
-    border-bottom-left-radius: 0.25rem;
-    border-color: rgba(255, 255, 255, 0.25);
+  top: 0;
+  right: 0;
+  font-size: 12px;
+  background: none;
+  position: absolute;
+  border-style: solid;
+  padding: 0.25rem 0.5rem;
+  outline: none !important;
+  border-width: 0 0 1px 1px;
+  color: rgba(255, 255, 255, 0.4);
+  border-bottom-left-radius: 0.25rem;
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .copy-to-clipboard:hover {
-    cursor: pointer;
-    color: white;
-    border-color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.75);
 }
 
 .copy-to-clipboard.copied {
-    color: rgba(255, 255, 255, 0.3) !important;
-    border-color: rgba(255, 255, 255, 0.25) !important;
+  color: rgba(255, 255, 255, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
 }
 
 .documentation__sidebar ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .documentation__sidebar ul ul {
-    display: none;
-    padding-left: 1rem;
+  display: none;
+  padding-left: 1rem;
 }
 
 .documentation__sidebar ul li.selected > a {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .documentation__sidebar ul li.active > ul,
 .documentation__sidebar ul li.selected > ul {
-    display: inherit;
+  display: inherit;
 }
 
 .documentation__sidebar ul li.active ul li.selected ul,
 .documentation__sidebar ul li.selected ul li.selected ul {
-    display: inherit;
+  display: inherit;
 }
 
 .documentation__sidebar > ul > li > a {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .documentation__content blockquote {
-    border-radius: 0.25rem;
+  border-radius: 0.25rem;
 }
 
 .documentation__content blockquote p {
-    padding: 0.75rem 1.25rem;
+  padding: 0.75rem 1.25rem;
 }
 
 .documentation__content blockquote p code {
-    color: #ffffff;
-    padding: 0 0.25rem;
-    text-shadow: none !important;
-    background: rgba(0, 0, 0, 0.15);
+  color: #ffffff;
+  padding: 0 0.25rem;
+  text-shadow: none !important;
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .documentation__content blockquote.tip,
 .documentation__content blockquote.info,
 .documentation__content blockquote.link {
-    color: #ffffff;
-    border-color: #0071eb;
-    background-color: #007bff;
+  color: #ffffff;
+  border-color: #0071eb;
+  background-color: #007bff;
 }
 
 .documentation__content blockquote.notice,
 .documentation__content blockquote.danger {
-    color: #ffffff;
-    border-color: #ca313f;
-    background-color: #dc3545;
+  color: #ffffff;
+  border-color: #ca313f;
+  background-color: #dc3545;
 }
 
 .documentation__content blockquote.notice,
 .documentation__content blockquote.success {
-    color: #ffffff;
-    border-color: #259a3f;
-    background-color: #28a745;
+  color: #ffffff;
+  border-color: #259a3f;
+  background-color: #28a745;
 }
 
 .documentation__content p {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .documentation__content h1:first-of-type {
-    margin-top: 0;
-    padding-top: 0;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .documentation__content h1,
 .documentation__content h2,
 .documentation__content h3,
 .documentation__content h4 {
-    outline: none;
-    padding-top: 2rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
+  outline: none;
+  padding-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .documentation__content pre {
-    position: relative;
-    background: #1d1f21;
-    border-radius: 0.25rem;
-    padding: 2rem !important;
-    margin: 2rem 0 !important;
+  position: relative;
+  background: #1d1f21;
+  border-radius: 0.25rem;
+  padding: 2rem !important;
+  margin: 2rem 0 !important;
 }
 
 .documentation__content pre > code {
-    color: #cccccc;
-    background: #1d1f21;
-    word-break: break-all !important;
-    white-space: pre-wrap !important;
+  color: #cccccc;
+  background: #1d1f21;
+  word-break: break-all !important;
+  white-space: pre-wrap !important;
 }
 
 .documentation__toc ol {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .documentation__toc ol.is-collapsed {
-    display: none;
+  display: none;
 }
 
 .documentation__toc ol li {
-    line-height: 1.8;
+  line-height: 1.8;
 }
 
 .documentation__toc ol li:before {
-    opacity: 0.3;
-    content: "# ";
-    margin-right: 0.25em;
+  opacity: 0.3;
+  content: "# ";
+  margin-right: 0.25em;
 }
 
 .documentation__toc ol ol {
-    padding-left: 2rem;
+  padding-left: 2rem;
 }
 
 .documentation__toc ol ol li {
-    font-size: 90%;
+  font-size: 90%;
 }
 
