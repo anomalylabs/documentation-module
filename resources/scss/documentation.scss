@@ -73,6 +73,23 @@
 
 .documentation__content {
 
+    a.link {
+        color: #0071eb;
+        display: block;
+        font-weight: bold;
+        border: 1px solid;
+        margin-top: 0.5rem;
+        text-decoration: none;
+        border-color: #0071eb;
+        border-radius: 0.25rem;
+        padding: 0.75rem 1.25rem;
+
+        &:hover {
+            color: #ffffff;
+            background-color: #007bff;
+        }
+    }
+
     blockquote {
         border-radius: 0.25rem;
 
@@ -93,8 +110,7 @@
         }
 
         &.tip,
-        &.info,
-        &.link {
+        &.info {
             color: #ffffff;
             border-color: #0071eb;
             background-color: #007bff;

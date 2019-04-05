@@ -57,6 +57,23 @@
   text-transform: uppercase;
 }
 
+.documentation__content a.link {
+  color: #0071eb;
+  display: block;
+  font-weight: bold;
+  border: 1px solid;
+  margin-top: 0.5rem;
+  text-decoration: none;
+  border-color: #0071eb;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1.25rem;
+}
+
+.documentation__content a.link:hover {
+  color: #ffffff;
+  background-color: #007bff;
+}
+
 .documentation__content blockquote {
   border-radius: 0.25rem;
 }
@@ -78,8 +95,7 @@
 }
 
 .documentation__content blockquote.tip,
-.documentation__content blockquote.info,
-.documentation__content blockquote.link {
+.documentation__content blockquote.info {
   color: #ffffff;
   border-color: #0071eb;
   background-color: #007bff;
