@@ -72,6 +72,11 @@
   background: rgba(0, 0, 0, 0.15);
 }
 
+.documentation__content blockquote p a {
+  color: #ffffff;
+  font-weight: bold;
+}
+
 .documentation__content blockquote.tip,
 .documentation__content blockquote.info,
 .documentation__content blockquote.link {

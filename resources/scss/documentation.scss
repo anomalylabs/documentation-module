@@ -85,10 +85,16 @@
                 text-shadow: none !important;
                 background: rgba(0, 0, 0, 0.15);
             }
+
+            a {
+                color: #ffffff;
+                font-weight: bold;
+            }
         }
 
         &.tip,
-        &.info {
+        &.info,
+        &.link {
             color: #ffffff;
             border-color: #0071eb;
             background-color: #007bff;
