@@ -51,4 +51,14 @@
         });
     });
 
+    let tables = Array.prototype.slice.call(
+        document.querySelectorAll('.documentation__content table')
+    );
+
+    tables.forEach(function (table) {
+        table.classList.add('table');
+        table.classList.add('table-striped');
+        table.classList.add('table-bordered');
+    });
+
 })(window, document);
