@@ -109,7 +109,6 @@
   background-color: #dc3545;
 }
 
-.documentation__content blockquote.notice,
 .documentation__content blockquote.success {
   color: #ffffff;
   border-color: #259a3f;
