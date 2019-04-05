@@ -102,7 +102,8 @@
 }
 
 .documentation__content blockquote.notice,
-.documentation__content blockquote.danger {
+.documentation__content blockquote.danger,
+.documentation__content blockquote.important {
   color: #ffffff;
   border-color: #ca313f;
   background-color: #dc3545;

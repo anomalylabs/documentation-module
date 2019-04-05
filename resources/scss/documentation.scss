@@ -117,7 +117,8 @@
         }
 
         &.notice,
-        &.danger {
+        &.danger,
+        &.important {
             color: #ffffff;
             border-color: #ca313f;
             background-color: #dc3545;
