@@ -42,7 +42,9 @@ class ProjectsController extends AdminController
         return view(
             'module::admin/projects/choose',
             [
-                'extensions' => $extensions->search('anomaly.module.documentation::documentation.*'),
+                'extensions' => $extensions
+                    ->search('anomaly.module.documentation::documentation.*')
+                    ->enabled(),
             ]
         );
     }
@@ -51,8 +53,8 @@ class ProjectsController extends AdminController
      * Create a new entry.
      *
      * @param ProjectConfigurationFormBuilder $builder
-     * @param ConfigurationFormBuilder        $configuration
-     * @param ProjectFormBuilder              $project
+     * @param ConfigurationFormBuilder $configuration
+     * @param ProjectFormBuilder $project
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(
@@ -83,11 +85,11 @@ class ProjectsController extends AdminController
     /**
      * Edit an existing entry.
      *
-     * @param ExtensionCollection             $extensions
+     * @param ExtensionCollection $extensions
      * @param ProjectConfigurationFormBuilder $builder
-     * @param ConfigurationFormBuilder        $configuration
-     * @param ProjectFormBuilder              $project
-     * @param                                 $id
+     * @param ConfigurationFormBuilder $configuration
+     * @param ProjectFormBuilder $project
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(
@@ -119,7 +121,7 @@ class ProjectsController extends AdminController
      * Redirect to the view for a project.
      *
      * @param ProjectRepositoryInterface $projects
-     * @param                            $id
+     * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function view(ProjectRepositoryInterface $projects, $id)
@@ -139,8 +141,8 @@ class ProjectsController extends AdminController
      * Sync the project.
      *
      * @param ProjectRepositoryInterface $projects
-     * @param Kernel                     $artisan
-     * @param                            $id
+     * @param Kernel $artisan
+     * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function sync(ProjectRepositoryInterface $projects, Kernel $artisan, $id)
