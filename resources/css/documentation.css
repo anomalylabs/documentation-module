@@ -101,6 +101,13 @@
   background-color: #007bff;
 }
 
+.documentation__content blockquote.note,
+.documentation__content blockquote.warning {
+  color: #ffffff;
+  border-color: #fd7e14;
+  background-color: #fd7e14;
+}
+
 .documentation__content blockquote.notice,
 .documentation__content blockquote.danger,
 .documentation__content blockquote.important {

@@ -116,6 +116,13 @@
             background-color: #007bff;
         }
 
+        &.note,
+        &.warning {
+            color: #ffffff;
+            border-color: #fd7e14;
+            background-color: #fd7e14;
+        }
+
         &.notice,
         &.danger,
         &.important {
