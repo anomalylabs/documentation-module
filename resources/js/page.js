@@ -29,7 +29,6 @@
         positionFixedSelector: '.documentation__sidebar .documentation__toc',
         tocSelector: '.documentation__sidebar .documentation__toc',
         contentSelector: '.documentation__content',
-        positionFixedClass: 'position-fixed',
         headingSelector: 'h2, h3',
         collapseDepth: 2
     });
