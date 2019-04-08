@@ -24,6 +24,30 @@
 
             <div class="col-xl-8  col-lg-9">
                 <div class="documentation__content">
+
+                    <div class="dropdown">
+                        {% if template.page.id %}
+                            <a href="{{ template.page.source ?: template.page.url }}" target="_blank"
+                               class="btn btn-sm btn-outline btn-info">
+                                Edit this Page
+                            </a>
+                            <button class="btn btn-sm btn-outline btn-info dropdown-toggle" type="button"
+                                    data-toggle="dropdown">
+                                {{ page.reference }}
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                {% for reference, version in project.getVersions() %}
+                                    <li>
+                                        <a href="{{ project.route('view') }}/{{ reference }}{{ page.getPath() }}">
+                                            {{ version }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+
                     {{ page.content.value|markdown|raw }}
                 </div>
             </div>
