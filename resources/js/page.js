@@ -13,14 +13,26 @@
     anchors.add('.documentation__content h2, .documentation__content h3, .documentation__content h4');
 
     /**
-     * Initialize our TOC sidebar.
+     * Initialize our body TOC.
      */
     tocbot.init({
-        tocSelector: '.documentation__toc',
+        tocSelector: '.documentation__content .documentation__toc',
         contentSelector: '.documentation__content',
-        positionFixedSelector: '.documentation__toc',
+        //positionFixedSelector: '.documentation__content',
         headingSelector: 'h2, h3',
         collapseDepth: 6
+    });
+
+    /**
+     * Initialize our sidebar TOC.
+     */
+    tocbot.init({
+        positionFixedSelector: '.documentation__sidebar .documentation__toc',
+        tocSelector: '.documentation__sidebar .documentation__toc',
+        contentSelector: '.documentation__content',
+        positionFixedClass: 'position-fixed',
+        headingSelector: 'h2, h3',
+        collapseDepth: 2
     });
 
     /**
@@ -36,7 +48,7 @@
 
         Prism.highlightElement(code);
 
-        var copy = document.createElement('button');
+        let copy = document.createElement('button');
 
         copy.textContent = 'copy';
         copy.setAttribute('data-clipboard-target', '#code-' + (index + 1));

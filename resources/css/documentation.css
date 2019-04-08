@@ -53,8 +53,8 @@
   display: inherit;
 }
 
-.documentation__sidebar > ul > li > a {
-  text-transform: uppercase;
+.documentation__sidebar a {
+  color: #212529;
 }
 
 .documentation__content a.link {
@@ -156,31 +156,103 @@
   white-space: pre-wrap !important;
 }
 
-.documentation__toc ol {
+.documentation__content .documentation__toc ol {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.documentation__toc ol.is-collapsed {
+.documentation__content .documentation__toc ol.is-collapsed {
   display: none;
 }
 
-.documentation__toc ol li {
+.documentation__content .documentation__toc ol li {
   line-height: 1.8;
 }
 
-.documentation__toc ol li:before {
+.documentation__content .documentation__toc ol li:before {
   opacity: 0.3;
   content: "# ";
   margin-right: 0.25em;
 }
 
-.documentation__toc ol ol {
+.documentation__content .documentation__toc ol ol {
   padding-left: 2rem;
 }
 
-.documentation__toc ol ol li {
+.documentation__content .documentation__toc ol ol li {
   font-size: 90%;
+}
+
+.documentation__sidebar.documentation__sidebar--right {
+  margin: 0 -15px;
+}
+
+.documentation__sidebar .documentation__toc .toc {
+  overflow-y: auto;
+}
+
+.documentation__sidebar .documentation__toc .toc > .toc-list {
+  overflow: hidden;
+  position: relative;
+}
+
+.documentation__sidebar .documentation__toc .toc > .toc-list li {
+  list-style: none;
+}
+
+.documentation__sidebar .documentation__toc .toc-list {
+  margin: 0;
+  padding-left: 10px;
+  list-style: none;
+}
+
+.documentation__sidebar .documentation__toc a.toc-link {
+  color: currentColor;
+  height: 100%;
+}
+
+.documentation__sidebar .documentation__toc a.toc-link:not(.is-active-link)::before {
+  background-color: #ffffff;
+}
+
+.documentation__sidebar .documentation__toc .is-collapsible {
+  max-height: 1000px;
+  overflow: hidden;
+  transition: all 300ms ease-in-out;
+}
+
+.documentation__sidebar .documentation__toc .is-collapsed {
+  max-height: 0;
+}
+
+.documentation__sidebar .documentation__toc .is-position-fixed {
+  position: fixed !important;
+  top: 0;
+}
+
+.documentation__sidebar .documentation__toc .is-active-link {
+  font-weight: 700;
+}
+
+.documentation__sidebar .documentation__toc .toc-link::before {
+  background-color: #EEE;
+  content: " ";
+  display: inline-block;
+  height: inherit;
+  left: 0;
+  margin-top: -1px;
+  position: absolute;
+  width: 2px;
+}
+
+.documentation__sidebar .documentation__toc .is-active-link::before {
+  background-color: #DD424C;
+}
+
+@media (min-width: 1200px) {
+  .documentation__content .documentation__toc {
+    display: none;
+  }
 }
 
