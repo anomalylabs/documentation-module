@@ -13,17 +13,6 @@
     anchors.add('.documentation__content h2, .documentation__content h3, .documentation__content h4');
 
     /**
-     * Initialize our body TOC.
-     */
-    tocbot.init({
-        tocSelector: '.documentation__content .documentation__toc',
-        contentSelector: '.documentation__content',
-        //positionFixedSelector: '.documentation__content',
-        headingSelector: 'h2, h3',
-        collapseDepth: 6
-    });
-
-    /**
      * Initialize our sidebar TOC.
      */
     tocbot.init({
@@ -33,6 +22,17 @@
         positionFixedClass: 'position-fixed',
         headingSelector: 'h2, h3',
         collapseDepth: 2
+    });
+    
+    /**
+     * Initialize our body TOC.
+     */
+    tocbot.init({
+        tocSelector: '.documentation__content .documentation__toc',
+        contentSelector: '.documentation__content',
+        //positionFixedSelector: '.documentation__content',
+        headingSelector: 'h2, h3',
+        collapseDepth: 6
     });
 
     /**
