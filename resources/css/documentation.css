@@ -210,6 +210,7 @@
 .documentation__sidebar .documentation__toc a.toc-link {
   color: currentColor;
   height: 100%;
+  position: relative;
 }
 
 .documentation__sidebar .documentation__toc a.toc-link:not(.is-active-link)::before {
@@ -239,11 +240,12 @@
   background-color: #EEE;
   content: " ";
   display: inline-block;
-  height: inherit;
-  left: 0;
+  top: 0;
+  left: -10px;
   margin-top: -1px;
   position: absolute;
   width: 2px;
+  bottom: 0;
 }
 
 .documentation__sidebar .documentation__toc .is-active-link::before {
