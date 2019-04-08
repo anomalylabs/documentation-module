@@ -36,7 +36,7 @@
                                 {{ page.reference }}
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-right">
+                            <ul class="dropdown-menu">
                                 {% for reference, version in project.getVersions() %}
                                     <li>
                                         <a href="{{ project.route('view') }}/{{ reference }}{{ page.getPath() }}">
