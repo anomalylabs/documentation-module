@@ -30,6 +30,8 @@
         tocSelector: '.documentation__sidebar .documentation__toc',
         contentSelector: '.documentation__content',
         headingSelector: 'h2, h3',
+        fixedSidebarOffset: 450,
+        headingsOffset: -450,
         collapseDepth: 2
     });
 
