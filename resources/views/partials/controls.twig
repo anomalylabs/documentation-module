@@ -4,13 +4,13 @@
 
         {% if template.page.source or template.page.url %}
             <a href="{{ template.page.source ?: template.page.url }}" target="_blank"
-               class="btn btn-sm btn-secondary">
+               class="btn btn-sm btn-light">
                 Edit this Page
             </a>
         {% endif %}
 
         {% if count(project.getVersions()) > 1 %}
-            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+            <button class="btn btn-sm btn-light dropdown-toggle" type="button" data-toggle="dropdown">
                 {{ page.reference }}
             </button>
             <div class="dropdown-menu">
