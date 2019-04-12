@@ -1,0 +1,26 @@
+{% if template.page.source or template.page.url or count(project.getVersions()) > 1 %}
+<div class="documentation__controls">
+    <div class="dropdown">
+
+        {% if template.page.source or template.page.url %}
+            <a href="{{ template.page.source ?: template.page.url }}" target="_blank"
+               class="btn btn-sm btn-secondary">
+                Edit this Page
+            </a>
+        {% endif %}
+
+        {% if count(project.getVersions()) > 1 %}
+            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                {{ page.reference }}
+            </button>
+            <div class="dropdown-menu">
+                {% for reference, version in project.getVersions() %}
+                    <a href="{{ project.route('view') }}/{{ reference }}{{ page.getPath() }}" class="dropdown-item">
+                        {{ version }}
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}

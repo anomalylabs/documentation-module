@@ -1,38 +1,28 @@
-{% for row in projects.chunk(3) %}
-    <div class="row">
-        {% for project in row %}
+<div class="row d-flex flex-wrap">
+    {% for project in projects %}
+        <div class="col-md-4 mt-4">
+            <div class="card d-flex">
+                <div class="card-body">
 
-            <div class="col-lg-4">
-                <div class="panel panel-default text-center">
-                    <div class="panel-body">
-
-                        <h3 class="panel-heading">
-                            {{ project.title }}<br>
-                            {% if project.category.name.value %}
+                    <h5 class="card-title">
+                        {{ project.title }}
+                        {% if project.tags.value %}
+                            {{ project.tags.labels('label-default label-sm')|join|raw }}
+                        {% endif %}
+                        {% if project.category.name.value %}
+                            <br>
                             <small>{{ str_singular(project.category.name.value) }}</small>
-                            {% endif %}
-                        </h3>
+                        {% endif %}
+                    </h5>
 
-                        <div class="tags">
-                            {% if project.tags.value %}
-                                {{ project.tags.labels('label-default label-sm')|join|raw }}
-                            {% endif %}
-                        </div>
+                    <p class="card-text">
+                        {{ project.description }}
+                    </p>
 
-                        <p>
-                            {{ project.description }}
-                        </p>
+                    <a href="{{ project.route('view') }}" class="btn btn-block btn-light text-left">View Documentation</a>
 
-                        <br>
-
-                        <a href="{{ project.route('view') }}" class="btn btn-sm btn-block btn-primary">
-                            Documentation
-                        </a>
-
-                    </div>
                 </div>
             </div>
-
-        {% endfor %}
-    </div>
-{% endfor %}
+        </div>
+    {% endfor %}
+</div>

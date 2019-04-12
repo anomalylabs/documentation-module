@@ -1,58 +1,27 @@
 {% extends layout(page.data('layout', 'documentation')) %}
 
 {% block content %}
-
-    <style type="text/css">
-        {{ asset_inline('anomaly.module.documentation::css/prism.css', ['min']) }}
-        {{ asset_inline('anomaly.module.documentation::css/documentation.css', ['min']) }}
-    </style>
-
-    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/clipboard.js', ['min']) }}
-    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/anchor.js', ['min']) }}
-    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/tocbot.js', ['min']) }}
-    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/prism.js', ['min']) }}
-    {{ asset_add('scripts.js', 'anomaly.module.documentation::js/page.js', ['min']) }}
-
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-xl-2 col-lg-3">
+            <div class="col-lg-2">
                 <div class="documentation__sidebar documentation__sidebar--left">
                     {{ documentation()|raw }}
                 </div>
             </div>
 
-            <div class="col-xl-8  col-lg-9">
+            <div class="col-lg-8">
                 <div class="documentation__content">
 
-                    <div class="dropdown">
-                        {% if template.page.id %}
-                            <a href="{{ template.page.source ?: template.page.url }}" target="_blank"
-                               class="btn btn-sm btn-outline btn-info">
-                                Edit this Page
-                            </a>
-                            <button class="btn btn-sm btn-outline btn-info dropdown-toggle" type="button"
-                                    data-toggle="dropdown">
-                                {{ page.reference }}
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                {% for reference, version in project.getVersions() %}
-                                    <li>
-                                        <a href="{{ project.route('view') }}/{{ reference }}{{ page.getPath() }}">
-                                            {{ version }}
-                                        </a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    </div>
+                    {{ breadcrumb() }}
+
+                    {% include "anomaly.module.documentation::partials/controls" %}
 
                     {{ page.content.value|markdown|raw }}
                 </div>
             </div>
 
-            <div class="col-xl-2 hidden-lg-down">
+            <div class="col-lg-2 hidden-lg-down">
                 <div class="documentation__sidebar documentation__sidebar--right">
                     <div class="documentation__toc"></div>
                 </div>
@@ -60,5 +29,4 @@
 
         </div>
     </div>
-
 {% endblock %}

@@ -4,18 +4,21 @@
     <div id="documentation">
         <div class="container">
 
-            <div class="row">
-                <div class="jumbotron text-center">
-                    <h1>{{ category.name }}</h1>
-                    <p>{{ category.description }}</p>
+            {{ breadcrumb() }}
+
+            <div class="jumbotron jumbotron-fluid mt-5">
+                <div class="container">
+
+                    <h1 class="display-4">{{ category.name }}</h1>
+
+                    {% if category.description.value %}
+                        <p class="lead">{{ category.description }}</p>
+                    {% endif %}
+
                 </div>
             </div>
 
-            <div class="row">
-
-                {% include 'anomaly.module.documentation::partials/projects' with {'projects': category.projects.enabled()} %}
-
-            </div>
+            {% include 'anomaly.module.documentation::partials/projects' with {'projects': category.projects.enabled()} %}
 
         </div>
     </div>
