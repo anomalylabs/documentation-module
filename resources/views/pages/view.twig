@@ -6,6 +6,9 @@
 
             <div class="col-lg-2">
                 <div class="documentation__sidebar documentation__sidebar--left">
+                    {% include "anomaly.module.documentation::partials/controls" %}
+                    {% include "anomaly.module.documentation::partials/search" %}
+                    <hr>
                     {{ documentation()|raw }}
                 </div>
             </div>
@@ -14,8 +17,6 @@
                 <div class="documentation__content">
 
                     {{ breadcrumb() }}
-
-                    {% include "anomaly.module.documentation::partials/controls" %}
 
                     {{ page.content.value|markdown|raw }}
 
