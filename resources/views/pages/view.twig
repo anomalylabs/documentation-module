@@ -4,22 +4,28 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-lg-2 documentation__sidebar documentation__sidebar--left">
-                {{ documentation()|raw }}
+            <div class="col-lg-2">
+                <div class="documentation__sidebar documentation__sidebar--left">
+                    {{ documentation()|raw }}
+                </div>
             </div>
 
-            <div class="col-lg-8 documentation__content">
+            <div class="col-lg-8">
+                <div class="documentation__content">
 
-                {{ breadcrumb() }}
+                    {{ breadcrumb() }}
 
-                {% include "anomaly.module.documentation::partials/controls" %}
+                    {% include "anomaly.module.documentation::partials/controls" %}
 
-                {{ page.content.value|markdown|raw }}
+                    {{ page.content.value|markdown|raw }}
 
+                </div>
             </div>
 
-            <div class="col-lg-2 documentation__sidebar documentation__sidebar--right">
-                <div class="documentation__toc"></div>
+            <div class="col-lg-2">
+                <div class="documentation__sidebar documentation__sidebar--right">
+                    <div class="documentation__toc"></div>
+                </div>
             </div>
 
         </div>
