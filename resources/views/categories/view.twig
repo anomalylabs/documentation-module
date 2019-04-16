@@ -6,17 +6,11 @@
 
             {{ breadcrumb() }}
 
-            <div class="jumbotron jumbotron-fluid mt-5">
-                <div class="container">
+            <h1 class="display-4 mt-5">{{ category.name }}</h1>
 
-                    <h1 class="display-4">{{ category.name }}</h1>
-
-                    {% if category.description.value %}
-                        <p class="lead">{{ category.description }}</p>
-                    {% endif %}
-
-                </div>
-            </div>
+            {% if category.description.value %}
+                <p class="lead">{{ category.description }}</p>
+            {% endif %}
 
             {% include 'anomaly.module.documentation::partials/projects' with {'projects': category.projects.enabled()} %}
 
