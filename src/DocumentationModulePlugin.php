@@ -27,7 +27,7 @@ class DocumentationModulePlugin extends Plugin
             new \Twig_SimpleFunction(
                 'documentation',
                 function () {
-                    return new PluginCriteria(
+                    return new DocumentationModuleCriteria(
                         'render',
                         function (Collection $options) {
                             return $this->dispatch(new RenderNavigation($options));
