@@ -305,6 +305,19 @@ class PageModel extends DocumentationPagesEntryModel implements PageInterface
     }
 
     /**
+     * Return if the model should
+     * be searchable or not.
+     *
+     * @return bool
+     */
+    public function shouldBeSearchable()
+    {
+        $project = $this->getProject();
+
+        return $this->getReference() == $project->getDefaultReference();
+    }
+
+    /**
      * Return the routable array.
      *
      * @return array
