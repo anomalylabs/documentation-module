@@ -1,5 +1,6 @@
 <?php namespace Anomaly\DocumentationModule\Console;
 
+use Anomaly\DocumentationModule\Documentation\DocumentationParser;
 use Anomaly\DocumentationModule\Page\Contract\PageInterface;
 use Anomaly\DocumentationModule\Page\Contract\PageRepositoryInterface;
 use Anomaly\DocumentationModule\Project\Contract\ProjectInterface;
@@ -34,9 +35,13 @@ class SyncDocumentation extends Command implements ShouldQueue
      *
      * @param ProjectRepositoryInterface $projects
      * @param PageRepositoryInterface $pages
+     * @param DocumentationParser $parser
      */
-    public function handle(ProjectRepositoryInterface $projects, PageRepositoryInterface $pages)
-    {
+    public function handle(
+        ProjectRepositoryInterface $projects,
+        PageRepositoryInterface $pages,
+        DocumentationParser $parser
+    ) {
         $projects = $projects->all();
 
         /**
@@ -62,11 +67,11 @@ class SyncDocumentation extends Command implements ShouldQueue
              * Limit to the desired reference
              * if we've had one passed along.
              */
-            if ($this->argument('reference')) {
+            if ($reference = $this->argument('reference')) {
                 $references = array_filter(
                     $references,
-                    function ($value) {
-                        return $value == $this->argument('reference');
+                    function ($value) use ($reference) {
+                        return $value == $reference;
                     }
                 );
             }
@@ -82,6 +87,19 @@ class SyncDocumentation extends Command implements ShouldQueue
                 foreach ($locales as $locale) {
 
                     $structure = $documentation->structure($reference, $locale);
+
+                    /**
+                     * Limit to the desired paths
+                     * if we've had one passed along.
+                     */
+                    if ($page = $this->argument('page')) {
+                        $structure = array_filter(
+                            $structure,
+                            function ($value) use ($page, $parser) {
+                                return $parser->path($value) == '/' . ltrim($page, '/');
+                            }
+                        );
+                    }
 
                     foreach ($structure as $index => $path) {
 
@@ -198,6 +216,7 @@ class SyncDocumentation extends Command implements ShouldQueue
         return [
             ['project', InputArgument::OPTIONAL, 'The projects\'s stream slug.'],
             ['reference', InputArgument::OPTIONAL, 'The projects\'s reference.'],
+            ['page', InputArgument::OPTIONAL, 'The page\'s path if syncing a single page.'],
         ];
     }
 
