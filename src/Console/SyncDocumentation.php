@@ -195,13 +195,15 @@ class SyncDocumentation extends Command implements ShouldQueue
                 /**
                  * Empty our trash.
                  */
-                $trash->each(
-                    function (PageInterface $page) use ($pages) {
+                if (!$this->argument('page')) {
+                    $trash->each(
+                        function (PageInterface $page) use ($pages) {
 
-                        /* @var PageInterface|EloquentModel $page */
-                        $pages->delete($page);
-                    }
-                );
+                            /* @var PageInterface|EloquentModel $page */
+                            $pages->delete($page);
+                        }
+                    );
+                }
             }
         }
     }
