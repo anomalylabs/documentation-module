@@ -50,7 +50,11 @@ class DocumentationParser
      */
     public function path($name, $separator = '/')
     {
-        $path = str_replace($separator . 'index.', '.', preg_replace('/([0-9]{2}\.)/', '', $name));
+        if (ends_with($name, $separator . '01.index')) {
+            $name = str_replace('01.index', '', $name);
+        }
+
+        $path = rtrim(preg_replace('/([0-9]{2}\.)/', '', $name), $separator);
 
         return $path ?: '/';
     }
