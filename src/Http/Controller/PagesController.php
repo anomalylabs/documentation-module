@@ -65,6 +65,18 @@ class PagesController extends PublicController
          * that we have all the identifiers.
          */
         if (!$page = $pages->findByIdentifiers($project, $reference, '/' . $path)) {
+
+            $parts = explode('/', $path);
+
+            while ($parts) {
+
+                if ($page = $pages->findByIdentifiers($project, $reference, '/' . implode('/', $parts))) {
+                    return redirect($page->route('view'));
+                }
+
+                array_pop($parts);
+            }
+
             $page = $pages->findByIdentifiers($project, $reference);
         }
 
