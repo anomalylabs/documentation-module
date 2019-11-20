@@ -1,4 +1,6 @@
-<?php namespace Anomaly\DocumentationModule;
+<?php
+
+namespace Anomaly\DocumentationModule;
 
 use Anomaly\DocumentationModule\Category\CategoryModel;
 use Anomaly\DocumentationModule\Category\CategoryRepository;
@@ -34,7 +36,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      *
      * @var array
      */
-    protected $commands = [
+    public $commands = [
         SyncDocumentation::class,
     ];
 
@@ -43,7 +45,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      *
      * @var array
      */
-    protected $plugins = [
+    public $plugins = [
         DocumentationModulePlugin::class,
     ];
 
@@ -52,7 +54,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      *
      * @var array
      */
-    protected $bindings = [
+    public $bindings = [
         DocumentationPagesEntryModel::class      => PageModel::class,
         DocumentationProjectsEntryModel::class   => ProjectModel::class,
         DocumentationCategoriesEntryModel::class => CategoryModel::class,
@@ -63,7 +65,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      *
      * @var array
      */
-    protected $singletons = [
+    public $singletons = [
         PageRepositoryInterface::class     => PageRepository::class,
         ProjectRepositoryInterface::class  => ProjectRepository::class,
         CategoryRepositoryInterface::class => CategoryRepository::class,
@@ -74,7 +76,7 @@ class DocumentationModuleServiceProvider extends AddonServiceProvider
      *
      * @var array
      */
-    protected $routes = [
+    public $routes = [
         'admin/documentation'                        => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@index',
         'admin/documentation/choose'                 => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@choose',
         'admin/documentation/create'                 => 'Anomaly\DocumentationModule\Http\Controller\Admin\ProjectsController@create',
