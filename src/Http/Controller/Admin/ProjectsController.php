@@ -1,4 +1,6 @@
-<?php namespace Anomaly\DocumentationModule\Http\Controller\Admin;
+<?php
+
+namespace Anomaly\DocumentationModule\Http\Controller\Admin;
 
 use Anomaly\ConfigurationModule\Configuration\Form\ConfigurationFormBuilder;
 use Anomaly\DocumentationModule\Documentation\DocumentationExtension;
@@ -53,14 +55,12 @@ class ProjectsController extends AdminController
      * Create a new entry.
      *
      * @param ProjectConfigurationFormBuilder $builder
-     * @param ConfigurationFormBuilder $configuration
      * @param ProjectFormBuilder $project
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(
         ExtensionCollection $extensions,
         ProjectConfigurationFormBuilder $builder,
-        ConfigurationFormBuilder $configuration,
         ProjectFormBuilder $project
     ) {
         /* @var DocumentationExtension $extension */
