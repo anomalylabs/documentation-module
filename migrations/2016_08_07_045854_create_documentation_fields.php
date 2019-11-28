@@ -6,13 +6,13 @@ use Anomaly\DocumentationModule\Project\ProjectModel;
 use Anomaly\Streams\Platform\Database\Migration\Migration;
 
 /**
- * Class AnomalyModuleDocumentationCreateDocumentationFields
+ * Class CreateDocumentationFields
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
+class CreateDocumentationFields extends Migration
 {
 
     /**
@@ -76,5 +76,4 @@ class AnomalyModuleDocumentationCreateDocumentationFields extends Migration
             ],
         ],
     ];
-
 }

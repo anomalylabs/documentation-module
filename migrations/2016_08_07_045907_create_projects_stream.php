@@ -3,13 +3,13 @@
 use Anomaly\Streams\Platform\Database\Migration\Migration;
 
 /**
- * Class AnomalyModuleDocumentationCreateProjectsStream
+ * Class CreateProjectsStream
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class AnomalyModuleDocumentationCreateProjectsStream extends Migration
+class CreateProjectsStream extends Migration
 {
 
     /**

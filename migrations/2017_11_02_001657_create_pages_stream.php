@@ -3,13 +3,13 @@
 use Anomaly\Streams\Platform\Database\Migration\Migration;
 
 /**
- * Class AnomalyModuleDocumentationCreatePagesStream
+ * Class CreatePagesStream
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class AnomalyModuleDocumentationCreatePagesStream extends Migration
+class CreatePagesStream extends Migration
 {
 
     /**
@@ -58,5 +58,4 @@ class AnomalyModuleDocumentationCreatePagesStream extends Migration
             'translatable' => true,
         ],
     ];
-
 }
