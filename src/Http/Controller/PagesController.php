@@ -128,7 +128,6 @@ class PagesController extends PublicController
                 'reference',
                 'previous',
                 'project',
-                'version',
                 'page',
                 'next'
             )
